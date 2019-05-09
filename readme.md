@@ -1,4 +1,3 @@
----
 # Down the STM32 Bare Metal Rabbit Hole
 
 ## Introduction
