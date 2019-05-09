@@ -9,8 +9,8 @@
 #####				  st-flash, stm32flash, stm32loader, openocd, etc.
 #####
 
-BUILDTOOLPATH	= /usr/local/arm-none-eabi/bin
-FLASHTOOLPATH	= /opt/local/bin
+BUILDTOOLPATH	= ~/gcc-arm-none-eabi-8-2018-q4-major/bin
+FLASHTOOLPATH	= /home/arthur
 
 ################################################################################
 #####
@@ -108,7 +108,7 @@ GDBPY 			= $(BUILDTOOLPATH)/arm-none-eabi-gdb-py
 OBJCOPY 		= $(BUILDTOOLPATH)/arm-none-eabi-objcopy
 SIZE 			= $(BUILDTOOLPATH)/arm-none-eabi-size
 OBJDUMP 		= $(BUILDTOOLPATH)/arm-none-eabi-objdump
-SWDFLASH 		= $(FLASHTOOLPATH)/st-flash
+SWDFLASH 		= $(FLASHTOOLPATH)/stlink
 SERFLASH 		= $(FLASHTOOLPATH)/stm32flash
 RM 				= rm -rf
 
