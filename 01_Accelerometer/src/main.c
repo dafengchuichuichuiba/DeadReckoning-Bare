@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include "stm32f1xx.h"
-#include "stm32f103xb.h"
+// #include "stm32f103xb.h"
 #include "globals.h"
 #include "main.h"
 
@@ -55,7 +55,8 @@ void i2c_start(uint8_t num_bytes) {
 
 void i2c_send_7bit_address(uint32_t slave_address) {
     slave_address &= ~I2C_OAR1_ADD0;
-    I2C1->DR = slave_address;
+    I2C1->SR1 |= I2C_SR1_SB; // Set start bit 
+    I2C1->DR = slave_address; // send slave address
 }
 
 void i2c_stop(int num_bytes) {
@@ -119,9 +120,8 @@ void init_hardware();
 int main(void) {
     init_hardware();
 
-    uint8_t slave_address = 1101000;
     uint8_t buffer[1] = { 0x6B };
-    I2C_Write(buffer, 1, slave_address);
+    I2C_Write(buffer, 1, 1101000);
 
     while (1)
     {
@@ -133,7 +133,7 @@ int main(void) {
 
 void init_hardware() {
     init_clock();
-    I2C_Low_Level_Init();
+    I2C_Low_Level_Init(100100, 0x0410);
 }
 
 /*  Function:       init_clock()
@@ -181,27 +181,17 @@ void I2C_Low_Level_Init(int ClockSpeed, int OwnAddress) {
     I2C1->CCR &= ~I2C_CCR_DUTY; // set duty cycle to 2
     I2C1->CR1 |= I2C_CR1_ACK; // Enable acknowledge bit
 
-    /* Set I2Cx Own Address1 and acknowledged address */
-    I2C1->OAR1 |= (OwnAddress << 1); // set self address STM32 Blue pill is 0x0410
-    I2C1->OAR1 &= ~I2C_OAR1_ADDMODE; // slave address uses 7 bits
+    //TODO: FIGURE OUT HOW TF I2C_Init Works in I2C.c
+    /*---------------------------- I2Cx CR2 Configuration ------------------------*/
     I2C1->CR2 |= ClockSpeed; // Ex: 100100 sets to f_pclk to 36 MHz and is equal to 36
 
-    //TODO: FIGURE OUT HOW TF I2C_Init Works in I2C.c
-
-    // Note: Assumes 4.7 kohm pullup and 20 kHz scl
-    // enable I2C #1
+    /*---------------------------- I2Cx CCR Configuration ------------------------*/
     I2C1->CR1 &= ~I2C_CR1_PE; // disable peripherals to configure Trise and CCR
-    // Programs CR2 to generate correct timings
-    I2C1->CR2 |= (100100 << 0); // sets peripheral clock frequency f_pclk to 36 MHz
-    // Configure CCR
-    I2C1->CCR |= I2C_CCR_FS; // set to fast mode
-    I2C1->CCR &= ~I2C_CCR_DUTY; // set duty to zero
-    I2C1->CCR = (uint32_t)0x0384; // set clock control register according to specs
+    I2C1->CCR = (uint32_t)0x28; // set clock control register according pg 782 of datasheet
     // Configure Rise Time Registers
-    I2C1->TRISE = (010101 << 0); // Sets Trise to 21 as per Data Sheet
-    
+    I2C1->TRISE = (001001 << 0); // Sets Trise to 9 as per Data Sheet thus PClk_1 = 125 ns
+
     /*---------------------------- I2Cx CR1 Configuration ------------------------*/
-    I2C1->CR1 |= I2C_CR1_PE; // enable peripherals
     /* Clear ACK, SMBTYPE and  SMBUS bits */
     I2C1->CR1 &= ~I2C_CR1_ACK;
     I2C1->CR1 &= ~I2C_CR1_SMBTYPE;
@@ -210,11 +200,14 @@ void I2C_Low_Level_Init(int ClockSpeed, int OwnAddress) {
     /* Already Set SMBTYPE and SMBUS bits according to I2C_Mode value */
     /* Set ACK bit according to I2C_Ack value */
     I2C1->CR1 |= I2C_CR1_ACK;
-    
+
     /*---------------------------- I2Cx OAR1 Configuration -----------------------*/
     /* Set I2Cx Own Address1 and acknowledged address */
+    I2C1->OAR1 |= (OwnAddress << 1); // set self address STM32 Blue pill is 0x0410
     I2C1->OAR1 &= ~I2C_OAR1_ADDMODE; // slave address uses 7 bits
-    I2C1->OAR1 |= (0x0410 << 1); // 7 bit STM32 Blue ID with LSB reset
+
+    /* Complete Initialization Sequence By Re-enabling Peripherals */
+    I2C1->CR1 |= I2C_CR1_PE;
 }
 
 /*  Function:       init_gpio_pins()
@@ -283,30 +276,31 @@ void i2c_NACK_position_config(uint16_t I2C_NACKPosition) {
 */
 void I2C_Write(const uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
     if (nbyte) {
-        while(!(I2C1->SR2 & I2C_SR2_BUSY));
+        while(I2C1->SR2 & ~I2C_SR2_BUSY);
 
         /* Initiate Start Sequence */
         i2c_start(1);
 
         /* Send 7 bit slave Address */
         i2c_send_7bit_address(SlaveAddress); // send slave mpu address 1101000
-        uint32_t lastevent = i2c_get_last_event;
+        uint32_t lastevent = (uint32_t) i2c_get_last_event;
         while(((lastevent & I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED) == I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) {
-            lastevent = i2c_get_last_event;
+            lastevent = (uint32_t) i2c_get_last_event;
         }
+
 
         /* Send Address to Be Transmitted */
         i2c_send_data(*buf++); // PWR_MGT_1 address on mpu-9250
 
         while (--nbyte) {
             // wait on BTF
-            while(!(I2C1->SR1 & I2C_SR1_AF) & I2C_SR1_BTF);
+            while(I2C1->SR1 & I2C_SR1_BTF);
             i2c_send_data(*buf++); // PWR_MGT_1 address on mpu-9250
         }
-        while(!(I2C1->SR1 & I2C_SR1_AF) & I2C_SR1_BTF);
+        while(I2C1->SR1 & I2C_SR1_BTF);
 
         /* Generate Stop Condition */
-        i2c_stop;
+        i2c_stop(1);
 
     }
 }
@@ -326,16 +320,16 @@ void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
 
     /* Initiate Start Sequence */
     i2c_start(1);
-    uint32_t lastevent = i2c_get_last_event;
+    uint32_t lastevent = (uint32_t) i2c_get_last_event;
     while((lastevent & I2C_EVENT_MASTER_MODE_SELECT) == I2C_EVENT_MASTER_MODE_SELECT){
-        lastevent = i2c_get_last_event;
+        lastevent = (uint32_t) i2c_get_last_event;
     } // confirm start condition is met
 
     // Send Address
     i2c_send_7bit_address(SlaveAddress);
-    uint32_t lastevent = i2c_get_last_event;
+    lastevent = (uint32_t) i2c_get_last_event;
     while(((lastevent & I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED) == I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) {
-        lastevent = i2c_get_last_event;
+        lastevent = (uint32_t) i2c_get_last_event;
     }
 
     if (nbyte == 1) {
@@ -352,16 +346,16 @@ void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
         *buf++ = i2c_receive_data();
     } else if (nbyte == 2) {
         // Set POS flag
-        i2c_NACKPositionConfig(I2C_NACKPosition_Next);
+        i2c_NACK_position_config(I2C_NACKPosition_Next);
 
         // must be atomic and in this order
         (void) I2C1->SR2;                 // Clear ADDR flag
          I2C1->CR1 &= ~I2C_CR1_ACK;       // Clear Ack bit
 
         // Wait for BTF, program stop, read data twice
-        while(!(I2C1->SR1 & I2C_SR1_AF) & I2C_SR1_BTF);
+        while(~(I2C1->SR1 & I2C_SR1_AF) & I2C_SR1_BTF);
 
-        i2c_stop;
+        i2c_stop(1);
         *buf++ = I2C1->DR;
 
         *buf++ = I2C1->DR;
@@ -369,23 +363,23 @@ void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
         (void) I2C1->SR2;                           // Clear ADDR flag
         while (nbyte-- != 3) {
             // cannot guarantee 1 transfer completion time, wait for BTF instead of RXNE
-            while(!(I2C1->SR1 & I2C_SR1_AF) & I2C_SR1_BTF);
+            while(~(I2C1->SR1 & I2C_SR1_AF) & I2C_SR1_BTF);
             *buf++ = i2c_receive_data();
         }
-        while(!(I2C1->SR1 & I2C_SR1_AF) & I2C_SR1_BTF);
+        while(~(I2C1->SR1 & I2C_SR1_AF) & I2C_SR1_BTF);
 
         // Clear Ack bit
         I2C1->CR1 &= ~I2C_CR1_ACK;
 
         *buf++ = i2c_receive_data;      // receive byte N-2
-        i2c_stop;                       // program stop
+        i2c_stop(1);                       // program stop
 
         *buf++ = i2c_receive_data;  // receive byte N-1
 
         // wait for byte N
         uint32_t lastevent = i2c_get_last_event;
         while((lastevent & I2C_EVENT_MASTER_BYTE_RECEIVED) == I2C_EVENT_MASTER_BYTE_RECEIVED){
-            lastevent = i2c_get_last_event;
+            lastevent = (uint32_t) i2c_get_last_event;
         } // confirm start condition is met
 
         *buf++ = i2c_receive_data;
