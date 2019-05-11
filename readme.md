@@ -1,10 +1,10 @@
----
----
 # Down the STM32 Bare Metal Rabbit Hole
 
 ## Introduction
 
-This repository is a collection of my code projects as I learn the aspects of programming an STM32F103C8 Cortex M3 micro controller at the "bare metal" register level.  I will be creating example code for most all aspects of the µC including SPI, USART, I2C, DMA, etc.
+This repository is a collection of my code projects as I learn the aspects of programming an STM32F103C8 Cortex M3 micro controller at the "bare metal" register level. The primary code project in this repository implements a dead-reckoning tool to determine the user's position by using a 9 axis accelerometer and Kalman Filters. This computation will be run in parallel by multiple STM32's and accelerometers to create an additional layer of redundancy and discrepancies will be resolved using the Byzantine General's Algorithm.
+
+Note: I decided to develop this project simply using predefined CMSIS registers to gain a better understanding of how to develop high efficiency and robust code for microproccesors.
 
 With a working toolchain, all projects can be built from within their project directory.  The `master.mk` file **REQUIRES** modification in order to set the paths to the build tools.
 
@@ -32,23 +32,7 @@ The template directory contains the files necessary to start a new STM32F103 pro
 
 The gdb directory contains gbd command files used for debugging and flashing.
 
-### Example Projects
-
-#### [01 Hello World/](01_Hello_World)
-
-The first project being the ubiquitous "Hello World" as a "Blinken Light".
-
-#### [02 Warp Speed/](02_Warp_Speed)
-
-Extends "Hello World" to configure the clock to run at max speed (72MHz.)
-
-#### [03 Tick Tock/](03_Tick_Tock)
-
-This extends the previous projects implementing the Cortex SysTick timer in order to create a 1ms interrupt.  This interrupt will become the clock used to time the LED heartbeat.  This becomes the code for the project template.
-
-#### [04 USART/](04_USART)
-
-This project works as a simple serial test platform using USART1 to transmit and receive data by implementing a *chargen* and *echo* service.
-
-
 [blue pill]: http://wiki.stm32duino.com/index.php?title=Blue_Pill
+
+#### Credits
+A large part of the original Makefile initialization was originally developed by getoffmyhack.
