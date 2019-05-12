@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include "stm32f1xx.h"
-// #include "stm32f103xb.h"
+#include "stm32f103xb.h"
 #include "globals.h"
 #include "main.h"
 
@@ -18,6 +18,7 @@
 #define  I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED        ((uint32_t)0x00070082)  /* BUSY, MSL, ADDR, TXE and TRA flags */
 #define I2C_NACKPosition_Next           ((uint16_t)0x0800)
 #define I2C_NACKPosition_Current        ((uint16_t)0xF7FF)
+#define MPU_ADDRESS                     1101000
 
 /* Master RECEIVER mode -----------------------------*/ 
 /* --EV7 */
@@ -109,6 +110,10 @@ void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress);
 */
 void init_clock(void);
 
+void init_MPU9250();
+
+void readAccelerometer(double* acc);
+
 void init_hardware();
 
 /*
@@ -119,16 +124,53 @@ void init_hardware();
 */
 int main(void) {
     init_hardware();
+    init_MPU9250();
 
-    uint8_t buffer[1] = { 0x6B };
-    I2C_Write(buffer, 1, 1101000);
+    // Initialize Acceleration Array
+    double* acc = (double *)malloc(sizeof(double)*3);
+    acc[0] = 11;
+    acc[1] = 12;
 
     while (1)
     {
         // main loop
+        readAccelerometer(acc);
     }
     
     return 0;
+}
+
+void init_MPU9250() {
+    // MPU Initialization
+    uint8_t buffer[2] = { 0x6B, 0 };
+    I2C_Write(buffer, 2, MPU_ADDRESS);
+
+    // Gyroscope Initialization
+    buffer[0] = 0x1B;
+    buffer[1] = 0b00011000;
+    I2C_Write(buffer, 2, MPU_ADDRESS);
+
+    // Accelerometer Initialization
+    buffer[0] = 0x1C;
+    buffer[1] = 0b00011000;
+    I2C_Write(buffer, 2, MPU_ADDRESS);
+}
+
+void readAccelerometer(double* acc) {
+    uint8_t RawData[6];
+    uint8_t buf[6] = {0x3B, 0x3C, 0x3D, 0x3E, 0x3F, 0x40};
+    I2C_Write(buf, 6, MPU_ADDRESS);
+
+    I2C_Read(RawData, 6, MPU_ADDRESS);
+
+    double RealData[3];
+    RealData[0] = RawData[0]<<8|RawData[1];
+    RealData[1] = RawData[2]<<8|RawData[3];
+    RealData[2] = RawData[4]<<8|RawData[5];
+
+    acc[0] = RealData[0]/2048.0;
+    acc[1] = RealData[1]/2048.0;
+    acc[2] = RealData[2]/2048.0;
 }
 
 void init_hardware() {
@@ -290,12 +332,12 @@ void I2C_Write(const uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
 
 
         /* Send Address to Be Transmitted */
-        i2c_send_data(*buf++); // PWR_MGT_1 address on mpu-9250
+        i2c_send_data(*buf++);
 
         while (--nbyte) {
-            // wait on BTF
+            // wait on Byte Transfer Finish
             while(I2C1->SR1 & I2C_SR1_BTF);
-            i2c_send_data(*buf++); // PWR_MGT_1 address on mpu-9250
+            i2c_send_data(*buf++);
         }
         while(I2C1->SR1 & I2C_SR1_BTF);
 
@@ -312,7 +354,7 @@ void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
     if (!nbyte) return;
 
     /* Wait for Idle I2C Interface */
-    while(!(I2C1->SR2 & I2C_SR2_BUSY));
+    while(I2C1->SR2 & ~I2C_SR2_BUSY);
 
     // Enable Acknowledgement, clear POS flag
     I2C1->CR1 |= I2C_CR1_ACK;
@@ -327,60 +369,75 @@ void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
 
     // Send Address
     i2c_send_7bit_address(SlaveAddress);
-    lastevent = (uint32_t) i2c_get_last_event;
-    while(((lastevent & I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED) == I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) {
-        lastevent = (uint32_t) i2c_get_last_event;
-    }
+    // lastevent = (uint32_t) i2c_get_last_event;
+    // while(((lastevent & I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED) == I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) {
+    //     lastevent = (uint32_t) i2c_get_last_event;
+    // }
+    while(I2C1->SR1 & I2C_SR1_BTF); // wait for receive data register to be not empty
 
     if (nbyte == 1) {
         // Clear Ack bit
         I2C1->CR1 &= ~I2C_CR1_ACK;
 
         // EV6_1 -- must be atomic -- Clear ADDR, generate STOP
-        (void) I2C1->SR2;
+        // (void) I2C1->SR2;
+        __disable_irq();
+        I2C1->SR1 &= ~I2C_SR1_ADDR;
         /* Generate a STOP condition */
         I2C1->CR1 |= I2C_CR1_STOP;
+        __enable_irq();
 
         // Receive data
-        while(!(I2C1->SR1 & I2C_SR1_RXNE)); // wait until data is received
+        while(I2C1->SR1 & I2C_SR1_RXNE); // wait until data is received
         *buf++ = i2c_receive_data();
     } else if (nbyte == 2) {
         // Set POS flag
         i2c_NACK_position_config(I2C_NACKPosition_Next);
 
+        // Wait for ADDR to be set by hardware
+        while(I2C1->SR1 & I2C_SR1_ADDR);
+
         // must be atomic and in this order
-        (void) I2C1->SR2;                 // Clear ADDR flag
-         I2C1->CR1 &= ~I2C_CR1_ACK;       // Clear Ack bit
+        __disable_irq();
+        I2C1->SR1 &= ~I2C_SR1_ADDR;       // Clear ADDR flag
+        I2C1->CR1 &= ~I2C_CR1_ACK;        // Clear Ack bit
+        __enable_irq();
 
         // Wait for BTF, program stop, read data twice
-        while(~(I2C1->SR1 & I2C_SR1_AF) & I2C_SR1_BTF);
+        while(I2C1->SR1 & I2C_SR1_BTF);
 
+        __disable_irq();
         i2c_stop(1);
         *buf++ = I2C1->DR;
+        __enable_irq();
 
         *buf++ = I2C1->DR;
     } else {
-        (void) I2C1->SR2;                           // Clear ADDR flag
+
+        I2C1->SR1 &= ~I2C_SR1_ADDR;                        // Clear ADDR flag
         while (nbyte-- != 3) {
             // cannot guarantee 1 transfer completion time, wait for BTF instead of RXNE
-            while(~(I2C1->SR1 & I2C_SR1_AF) & I2C_SR1_BTF);
+            while(I2C1->SR1 & I2C_SR1_BTF);
             *buf++ = i2c_receive_data();
         }
-        while(~(I2C1->SR1 & I2C_SR1_AF) & I2C_SR1_BTF);
+        while(I2C1->SR1 & I2C_SR1_BTF);
 
         // Clear Ack bit
         I2C1->CR1 &= ~I2C_CR1_ACK;
 
+        __disable_irq();
         *buf++ = i2c_receive_data;      // receive byte N-2
         i2c_stop(1);                       // program stop
+        __enable_irq();
 
         *buf++ = i2c_receive_data;  // receive byte N-1
 
         // wait for byte N
-        uint32_t lastevent = i2c_get_last_event;
-        while((lastevent & I2C_EVENT_MASTER_BYTE_RECEIVED) == I2C_EVENT_MASTER_BYTE_RECEIVED){
-            lastevent = (uint32_t) i2c_get_last_event;
-        } // confirm start condition is met
+        // uint32_t lastevent = i2c_get_last_event;
+        // while((lastevent & I2C_EVENT_MASTER_BYTE_RECEIVED) == I2C_EVENT_MASTER_BYTE_RECEIVED){
+        //     lastevent = (uint32_t) i2c_get_last_event;
+        // } // confirm start condition is met
+        while(I2C1->SR1 & I2C_SR1_RXNE); // wait until data is received
 
         *buf++ = i2c_receive_data;
 
@@ -388,5 +445,5 @@ void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
     }
 
     // Wait For Stop
-    while(!(I2C1->SR1 & I2C_SR1_STOPF));
+    while(I2C1->SR1 & I2C_SR1_STOPF);
 }
