@@ -1,31 +1,12 @@
 #include <stdint.h>
+#include <stdlib.h>
 #include "stm32f1xx.h"
-#include "stm32f103xb.h"
+// #include "stm32f103xb.h"
 #include "globals.h"
 #include "main.h"
 
 /*********************** defines                    *************************/
-
-/** 
-  * @brief  Communication start
-  * 
-  * After sending the START condition the master 
-  * has to wait for this event. It means that the Start condition has been correctly 
-  * released on the I2C bus (the bus is free, no other devices is communicating).
-  * 
-  */
-#define  I2C_EVENT_MASTER_MODE_SELECT                      ((uint32_t)0x00030001)  /* BUSY, MSL and SB flag */
-#define  I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED        ((uint32_t)0x00070082)  /* BUSY, MSL, ADDR, TXE and TRA flags */
-#define I2C_NACKPosition_Next           ((uint16_t)0x0800)
-#define I2C_NACKPosition_Current        ((uint16_t)0xF7FF)
 #define MPU_ADDRESS                     1101000
-
-/* Master RECEIVER mode -----------------------------*/ 
-/* --EV7 */
-#define  I2C_EVENT_MASTER_BYTE_RECEIVED                    ((uint32_t)0x00030040)  /* BUSY, MSL and RXNE flags */
-
-/* I2C FLAG mask */
-#define FLAG_Mask               ((uint32_t)0x00FFFFFF)
 
 /*********************** global variables           *************************/
 
@@ -40,40 +21,20 @@
 */
 void init_gpio_pins();
 
-/*  @brief  Returns the last I2Cx Event.
-    @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.    
-    @note: For detailed description of Events, please refer to section 
-           I2C_Events in stm32f10x_i2c.h file.
-      
-    @retval The last event
-*/
-uint32_t i2c_get_last_event();
-
 void i2c_start(uint8_t num_bytes) {
     // Set Start bit in CR1 to generate Start condition
     I2C1->CR1 |= I2C_CR1_START;
 }
 
 void i2c_send_7bit_address(uint32_t slave_address) {
-    slave_address &= ~I2C_OAR1_ADD0;
     I2C1->SR1 |= I2C_SR1_SB; // Set start bit 
     I2C1->DR = slave_address; // send slave address
 }
 
-void i2c_stop(int num_bytes) {
+void i2c_stop() {
     // Check Stop Condition, automatically applies NACK to SDA line, asserts to slave that no further data will be transmitted or received
     I2C1->CR1 |= I2C_CR1_STOP;
     while(I2C1->CR1 & I2C_CR1_STOP); // confirm end condition is met
-}
-
-/*  Function: i2c_start_read
-    Description: Start writing a set number of bits to i2c
-    Parameters: Number of Bytes To Write
-    Returns: void
-*/
-void i2c_start_read(uint8_t num_bytes) {
-    I2C1->OAR1 |= ~I2C_OAR1_ADD0; // sets address to read
-    i2c_start(num_bytes);
 }
 
 uint8_t i2c_receive_data() {
@@ -90,8 +51,6 @@ void i2c_send_data(uint8_t data) {
     Returns:        void
 */
 void I2C_Low_Level_Init(int ClockSpeed, int OwnAddress);
-
-void i2c_NACK_position_config(uint16_t I2C_NACKPosition);
 
 /* 
     Handles everything needed to write to address
@@ -277,42 +236,6 @@ void init_gpio_pins() {
     RCC->APB1RSTR |= RCC_APB1RSTR_I2C1RST;
 }
 
-/**
-  * @brief  Returns the last I2Cx Event.
-  * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
-  *     
-  * @note: For detailed description of Events, please refer to section 
-  *    I2C_Events in stm32f10x_i2c.h file.
-  *    
-  * @retval The last event
-  */
-uint32_t i2c_get_last_event() {
-  uint32_t lastevent = 0;
-  uint32_t flag1 = 0, flag2 = 0;
-
-  /* Read the I2Cx status register */
-  flag1 = I2C1->SR1;
-  flag2 = I2C1->SR2;
-  flag2 = flag2 << 16;
-
-  /* Get the last event value from I2C status register */
-  lastevent = (flag1 | flag2) & FLAG_Mask;
-
-  /* Return status */
-  return lastevent;
-}
-
-void i2c_NACK_position_config(uint16_t I2C_NACKPosition) {
-    /* Check the input parameter */
-    if (I2C_NACKPosition == I2C_NACKPosition_Next) {
-        /* Next byte in shift register is the last received byte */
-        I2C1->CR1 |= I2C_NACKPosition_Next;
-    } else {
-        /* Current byte in shift register is the last received byte */
-        I2C1->CR1 &= I2C_NACKPosition_Current;
-    }
-}
-
 /* 
     Handles everything needed to write to slave address
 */
@@ -325,11 +248,9 @@ void I2C_Write(const uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
 
         /* Send 7 bit slave Address */
         i2c_send_7bit_address(SlaveAddress); // send slave mpu address 1101000
-        uint32_t lastevent = (uint32_t) i2c_get_last_event;
-        while(((lastevent & I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED) == I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) {
-            lastevent = (uint32_t) i2c_get_last_event;
-        }
-
+        /* Wait for ADDR bit to be set and then clear by reading SR1 and SR2 */
+        while(I2C1->SR1 & I2C_SR1_ADDR);
+        while(I2C1->SR2 & I2C_SR2_MSL);
 
         /* Send Address to Be Transmitted */
         i2c_send_data(*buf++);
@@ -342,8 +263,8 @@ void I2C_Write(const uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
         while(I2C1->SR1 & I2C_SR1_BTF);
 
         /* Generate Stop Condition */
-        i2c_stop(1);
-
+        i2c_stop();
+        while(I2C1->CR1 & ~I2C_CR1_STOP);
     }
 }
 
@@ -356,24 +277,14 @@ void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
     /* Wait for Idle I2C Interface */
     while(I2C1->SR2 & ~I2C_SR2_BUSY);
 
-    // Enable Acknowledgement, clear POS flag
-    I2C1->CR1 |= I2C_CR1_ACK;
-    i2c_NACK_position_config(I2C_NACKPosition_Current);
-
     /* Initiate Start Sequence */
     i2c_start(1);
-    uint32_t lastevent = (uint32_t) i2c_get_last_event;
-    while((lastevent & I2C_EVENT_MASTER_MODE_SELECT) == I2C_EVENT_MASTER_MODE_SELECT){
-        lastevent = (uint32_t) i2c_get_last_event;
-    } // confirm start condition is met
-
+    while(I2C1->SR1 & I2C_SR1_SB); // wait for start bit to be set
     // Send Address
     i2c_send_7bit_address(SlaveAddress);
-    // lastevent = (uint32_t) i2c_get_last_event;
-    // while(((lastevent & I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED) == I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) {
-    //     lastevent = (uint32_t) i2c_get_last_event;
-    // }
-    while(I2C1->SR1 & I2C_SR1_BTF); // wait for receive data register to be not empty
+    while(I2C1->SR1 & I2C_SR1_ADDR); // Wait For Addresses to Match
+    while(I2C1->SR2 & I2C_SR2_MSL); // Ensure Device is Master
+    while(I2C1->SR1 & I2C_SR1_BTF); // Wait for Data To populate register
 
     if (nbyte == 1) {
         // Clear Ack bit
@@ -390,60 +301,64 @@ void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
         // Receive data
         while(I2C1->SR1 & I2C_SR1_RXNE); // wait until data is received
         *buf++ = i2c_receive_data();
+
+        /* Wait until stop is cleared by hardware and prepare ack bit for another reception*/
+        while(I2C1->CR1 & ~I2C_CR1_STOP);
+        I2C1->CR1 |= I2C_CR1_ACK;
     } else if (nbyte == 2) {
-        // Set POS flag
-        i2c_NACK_position_config(I2C_NACKPosition_Next);
+        // Set POS and ACK flag
+        I2C1->CR1 |= I2C_CR1_ACK;
+        I2C1->CR1 |= I2C_CR1_POS;
+        while(I2C1->SR1 & I2C_SR1_ADDR); // wait for addr bit to be set
 
-        // Wait for ADDR to be set by hardware
-        while(I2C1->SR1 & I2C_SR1_ADDR);
-
-        // must be atomic and in this order
+        /* Clears ADDR and ACK bit */
         __disable_irq();
-        I2C1->SR1 &= ~I2C_SR1_ADDR;       // Clear ADDR flag
-        I2C1->CR1 &= ~I2C_CR1_ACK;        // Clear Ack bit
+        I2C1->SR1 &= ~I2C_SR1_ADDR;
+        I2C1->CR1 &= ~I2C_CR1_ACK;
         __enable_irq();
 
-        // Wait for BTF, program stop, read data twice
-        while(I2C1->SR1 & I2C_SR1_BTF);
+        while (I2C1->SR1 & I2C_SR1_BTF); // wait btf to be set by hardware
 
+        /* Disable Interrupts As Per Spec Sheet */
         __disable_irq();
-        i2c_stop(1);
-        *buf++ = I2C1->DR;
+        i2c_stop();
+        *buf++ = i2c_receive_data();
         __enable_irq();
 
-        *buf++ = I2C1->DR;
+        *buf++ = i2c_receive_data();
+        /* Wait until stop is cleared by hardware */
+        while(I2C1->CR1 & ~I2C_CR1_STOP);
+
+        /* reset pos and set ack for another reception */
+        I2C1->CR1 &= ~I2C_CR1_POS;
+        I2C1->CR1 |= I2C_CR1_ACK;
     } else {
-
-        I2C1->SR1 &= ~I2C_SR1_ADDR;                        // Clear ADDR flag
-        while (nbyte-- != 3) {
-            // cannot guarantee 1 transfer completion time, wait for BTF instead of RXNE
-            while(I2C1->SR1 & I2C_SR1_BTF);
+        /* Clear ACK bit */
+        I2C1->CR1 &= ~I2C_CR1_ACK;
+        while (nbyte-- > 3) {
+            while (I2C1->SR1 & I2C_SR1_BTF); // wait btf to be set by hardware
+            /* Read in next data bit */
             *buf++ = i2c_receive_data();
         }
-        while(I2C1->SR1 & I2C_SR1_BTF);
 
-        // Clear Ack bit
+        while (I2C1->SR1 & I2C_SR1_BTF); // wait btf to be set by hardware
+        /* Clear ACK bit */
         I2C1->CR1 &= ~I2C_CR1_ACK;
 
         __disable_irq();
-        *buf++ = i2c_receive_data;      // receive byte N-2
-        i2c_stop(1);                       // program stop
+        i2c_stop();
+
+        /* Read in Data N-1 from register */
+        *buf++ = i2c_receive_data();
         __enable_irq();
 
-        *buf++ = i2c_receive_data;  // receive byte N-1
+        /* Wait for received bit register to have bits again */
+        while(I2C1->SR1 & I2C_SR1_RXNE);
+        
+        *buf++ = i2c_receive_data();
+        while(I2C1->CR1 & ~I2C_CR1_STOP); // wait until stop generation cleared by hardware
 
-        // wait for byte N
-        // uint32_t lastevent = i2c_get_last_event;
-        // while((lastevent & I2C_EVENT_MASTER_BYTE_RECEIVED) == I2C_EVENT_MASTER_BYTE_RECEIVED){
-        //     lastevent = (uint32_t) i2c_get_last_event;
-        // } // confirm start condition is met
-        while(I2C1->SR1 & I2C_SR1_RXNE); // wait until data is received
-
-        *buf++ = i2c_receive_data;
-
-        nbyte = 0;
+         /* Set ACK bit for another reception */
+        I2C1->CR1 |= I2C_CR1_ACK;
     }
-
-    // Wait For Stop
-    while(I2C1->SR1 & I2C_SR1_STOPF);
 }
