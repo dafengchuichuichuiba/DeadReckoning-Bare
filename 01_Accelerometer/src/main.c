@@ -1,12 +1,15 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "stm32f1xx.h"
-// #include "stm32f103xb.h"
+#include "stm32f103xb.h"
 #include "globals.h"
 #include "main.h"
 
 /*********************** defines                    *************************/
-#define MPU_ADDRESS                     1101000
+#define MPU_ADDRESS                     0x68
+#define BLUE_PILL                       0x0410
+#define MPU_DELAY   150000UL
+#define I2C_IT_ERR                      ((uint16_t)0x0100)
 
 /*********************** global variables           *************************/
 
@@ -27,7 +30,6 @@ void i2c_start(uint8_t num_bytes) {
 }
 
 void i2c_send_7bit_address(uint32_t slave_address) {
-    I2C1->SR1 |= I2C_SR1_SB; // Set start bit 
     I2C1->DR = slave_address; // send slave address
 }
 
@@ -89,14 +91,24 @@ int main(void) {
     double* acc = (double *)malloc(sizeof(double)*3);
     acc[0] = 11;
     acc[1] = 12;
+    acc[2] = 4;
 
+    uint32_t       mpu_delay_count = 0;
     while (1)
     {
         // main loop
-        readAccelerometer(acc);
+        mpu_delay_count = ( (mpu_delay_count + 1) % MPU_DELAY );
+        if (mpu_delay_count == 0) {
+            readAccelerometer(acc);
+        }
     }
     
     return 0;
+}
+
+void init_hardware() {
+    init_clock();
+    I2C_Low_Level_Init(0b100100, MPU_ADDRESS);
 }
 
 void init_MPU9250() {
@@ -116,11 +128,15 @@ void init_MPU9250() {
 }
 
 void readAccelerometer(double* acc) {
-    uint8_t RawData[6];
+    uint8_t RawData[6] = { 2, 2, 2, 2, 2, 2 };
     uint8_t buf[6] = {0x3B, 0x3C, 0x3D, 0x3E, 0x3F, 0x40};
-    I2C_Write(buf, 6, MPU_ADDRESS);
 
-    I2C_Read(RawData, 6, MPU_ADDRESS);
+    for (int i = 0; i < 6; i++) {
+        I2C_Write(&buf[i], 1, MPU_ADDRESS);
+        I2C_Read(&RawData[i], 1, MPU_ADDRESS);
+    }
+    // I2C_Write(buf, 6, MPU_ADDRESS);
+    // I2C_Read(RawData, 6, MPU_ADDRESS);
 
     double RealData[3];
     RealData[0] = RawData[0]<<8|RawData[1];
@@ -130,11 +146,6 @@ void readAccelerometer(double* acc) {
     acc[0] = RealData[0]/2048.0;
     acc[1] = RealData[1]/2048.0;
     acc[2] = RealData[2]/2048.0;
-}
-
-void init_hardware() {
-    init_clock();
-    I2C_Low_Level_Init(100100, 0x0410);
 }
 
 /*  Function:       init_clock()
@@ -159,6 +170,31 @@ void init_clock(void) {
     while( !(RCC->CFGR & RCC_CFGR_SWS_PLL) );    // wait for PLL as source
     
     SystemCoreClockUpdate();                // calculate the SYSCLOCK value
+}
+
+/*  Function:       init_gpio_pins()
+    Description:    Configure i2c settings for blue pill
+    Parameters:     void
+    Returns:        void
+*/
+void init_gpio_pins() {
+    // Set alternate gpio scl sda behavior to default
+    // AFIO->MAPR &= ~AFIO_MAPR_I2C1_REMAP;
+    // GPIO Mode, Type, Speed, and Alternate Function for pins 6 and 7
+    GPIOB->CRL  |= GPIO_CRL_CNF6_1 | ~GPIO_CRL_CNF6_0; // sets gpio high to output mode max speed 50MHz
+    GPIOB->CRL  |= GPIO_CRL_CNF7_1; // sets gpio high to output mode max speed 50MHz
+    // GPIOB->CRH  |= GPIO_CRH_MODE6_0; // does the same but for high mode
+    // GPIOB->CRH  |= GPIO_CRH_MODE7_1; // does the same but for high mode
+
+    // Set According to Ref 9.2.2
+    GPIOB->CRL  |= GPIO_CRL_MODE6_1; // sets alternate function open drain mode
+    GPIOB->CRL  |= GPIO_CRL_MODE7_1; // sets alternate function open drain mode 
+    // GPIOB->CRH  |= GPIO_CRH_CNF9_0; // does the same but for high mode
+    // GPIOB->CRH  |= GPIO_CRH_CNF9_1; // does the same but for high mode
+
+    /* I2C1 Reset */
+    RCC->APB1RSTR &= ~RCC_APB1RSTR_I2C1RST;
+    RCC->APB1RSTR |= RCC_APB1RSTR_I2C1RST;
 }
 
 /*  Function:       init_i2c()
@@ -211,60 +247,43 @@ void I2C_Low_Level_Init(int ClockSpeed, int OwnAddress) {
     I2C1->CR1 |= I2C_CR1_PE;
 }
 
-/*  Function:       init_gpio_pins()
-    Description:    Configure i2c settings for blue pill
-    Parameters:     void
-    Returns:        void
-*/
-void init_gpio_pins() {
-    // Set alternate gpio scl sda behavior to default
-    AFIO->MAPR &= ~AFIO_MAPR_I2C1_REMAP;
-    // GPIO Mode, Type, Speed, and Alternate Function for pins 6 and 7
-    GPIOB->CRL  |= GPIO_CRL_MODE1_0; // sets gpio high to output mode max speed 50MHz
-    GPIOB->CRL  |= GPIO_CRL_MODE1_1; // sets gpio high to output mode max speed 50MHz
-    GPIOB->CRH  |= GPIO_CRH_MODE9_0; // does the same but for high mode
-    GPIOB->CRH  |= GPIO_CRH_MODE9_1; // does the same but for high mode
-
-    // Set According to Ref 9.2.2
-    GPIOB->CRL  |= GPIO_CRL_CNF1_1; // sets alternate function open drain mode
-    GPIOB->CRL  |= GPIO_CRL_CNF1_0; // sets alternate function open drain mode 
-    GPIOB->CRH  |= GPIO_CRH_CNF9_0; // does the same but for high mode
-    GPIOB->CRH  |= GPIO_CRH_CNF9_1; // does the same but for high mode
-
-    /* I2C1 Reset */
-    RCC->APB1RSTR &= ~RCC_APB1RSTR_I2C1RST;
-    RCC->APB1RSTR |= RCC_APB1RSTR_I2C1RST;
-}
-
 /* 
     Handles everything needed to write to slave address
 */
 void I2C_Write(const uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
     if (nbyte) {
-        while(I2C1->SR2 & ~I2C_SR2_BUSY);
-
-        /* Initiate Start Sequence */
+        /* Set Start Condition */
         i2c_start(1);
+        while(I2C1->SR1 & I2C_SR1_SB);
 
+        /* Send slave address */
+        /* Reset the address bit0 for write*/
+        SlaveAddress &= ~I2C_OAR1_ADD1;
         /* Send 7 bit slave Address */
         i2c_send_7bit_address(SlaveAddress); // send slave mpu address 1101000
-        /* Wait for ADDR bit to be set and then clear by reading SR1 and SR2 */
-        while(I2C1->SR1 & I2C_SR1_ADDR);
-        while(I2C1->SR2 & I2C_SR2_MSL);
+        /* Wait until ADDR is set: EV6 */
+        while((I2C1->SR1 & I2C_SR1_ADDR) != I2C_SR1_ADDR);
 
-        /* Send Address to Be Transmitted */
+        /* Clear ADDR flag by reading SR2 register */
+        (void) I2C1->SR2;
+        /* Write the first data in DR register (EV8_1) */
         i2c_send_data(*buf++);
 
-        while (--nbyte) {
-            // wait on Byte Transfer Finish
-            while(I2C1->SR1 & I2C_SR1_BTF);
+        while(--nbyte) {
+            /* Poll on BTF to receive data because in polling mode we can not guarantee the
+              EV8 software sequence is managed before the current byte transfer completes */
+            while ((I2C1->SR1 & I2C_SR1_BTF) != I2C_SR1_BTF);
+            /* Send the current byte */
             i2c_send_data(*buf++);
         }
-        while(I2C1->SR1 & I2C_SR1_BTF);
 
-        /* Generate Stop Condition */
+        /* EV8_2: Wait until BTF is set before programming the STOP */
+        while((I2C1->SR1 & I2C_SR1_BTF) != I2C_SR1_BTF);
+
+        /* Send STOP condition */
         i2c_stop();
-        while(I2C1->CR1 & ~I2C_CR1_STOP);
+        /* Make sure that the STOP bit is cleared by Hardware */
+        while((I2C1->CR1 & ~I2C_CR1_STOP) == ~I2C_CR1_STOP);
     }
 }
 
@@ -273,27 +292,33 @@ void I2C_Write(const uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
 */
 void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
     if (!nbyte) return;
+    /* Enable I2C errors interrupts (used in all modes: Polling, DMA and Interrupts */
+    I2C1->CR2 |= I2C_IT_ERR;
 
-    /* Wait for Idle I2C Interface */
-    while(I2C1->SR2 & ~I2C_SR2_BUSY);
-
-    /* Initiate Start Sequence */
-    i2c_start(1);
-    while(I2C1->SR1 & I2C_SR1_SB); // wait for start bit to be set
-    // Send Address
-    i2c_send_7bit_address(SlaveAddress);
+    I2C1->CR1 |= I2C_CR1_ACK;
     while(I2C1->SR1 & I2C_SR1_ADDR); // Wait For Addresses to Match
-    while(I2C1->SR2 & I2C_SR2_MSL); // Ensure Device is Master
-    while(I2C1->SR1 & I2C_SR1_BTF); // Wait for Data To populate register
+    while(I2C1->SR2 & I2C_SR2_TRA); // Wait For Successful Transfer
 
     if (nbyte == 1) {
-        // Clear Ack bit
+        /* Initiate Start Sequence */
+        i2c_start(1);
+        while((I2C1->SR1 & I2C_SR1_SB) != I2C_SR1_SB); // wait for start bit to be set
+        /* Send Slave Address and reset bit 0 for read */
+        SlaveAddress |= I2C_OAR1_ADD1;
+        i2c_send_7bit_address(SlaveAddress);
+        /* Wait until ADDR is set: EV6_3, then program ACK = 0, clear ADDR
+        and program the STOP just after ADDR is cleared. The EV6_3 
+        software sequence must complete before the current byte end of transfer.*/
+        /* Wait until ADDR is set */
+        while((I2C1->SR1 & I2C_SR1_ADDR) != I2C_SR1_ADDR);
+        /* Clear Ack bit */
         I2C1->CR1 &= ~I2C_CR1_ACK;
 
         // EV6_1 -- must be atomic -- Clear ADDR, generate STOP
         // (void) I2C1->SR2;
         __disable_irq();
-        I2C1->SR1 &= ~I2C_SR1_ADDR;
+        (void) I2C1->SR1; // reads SR1
+        i2c_stop();
         /* Generate a STOP condition */
         I2C1->CR1 |= I2C_CR1_STOP;
         __enable_irq();
@@ -302,18 +327,31 @@ void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
         while(I2C1->SR1 & I2C_SR1_RXNE); // wait until data is received
         *buf++ = i2c_receive_data();
 
-        /* Wait until stop is cleared by hardware and prepare ack bit for another reception*/
-        while(I2C1->CR1 & ~I2C_CR1_STOP);
+        /* Make sure that the STOP bit is cleared by Hardware before CR1 write access */
+        while ((I2C1->CR1 & ~I2C_CR1_STOP) == ~I2C_CR1_STOP);
+        /* Enable Acknowledgement to be ready for another reception */
         I2C1->CR1 |= I2C_CR1_ACK;
+
     } else if (nbyte == 2) {
-        // Set POS and ACK flag
-        I2C1->CR1 |= I2C_CR1_ACK;
+        /* Set POS bit */
         I2C1->CR1 |= I2C_CR1_POS;
-        while(I2C1->SR1 & I2C_SR1_ADDR); // wait for addr bit to be set
+
+        /* Send START condition */
+        I2C1->CR1 |= I2C_CR1_START;
+        /* Wait until SB flag is set: EV5 */
+        while((I2C1->SR1 & I2C_SR1_SB) != I2C_SR1_SB);
+
+        /* Send slave address */
+        /* Set the address bit0 for read */
+        SlaveAddress |= I2C_OAR1_ADD1;
+        /* Send the slave address */
+        i2c_send_7bit_address(SlaveAddress);
+        /* Wait until ADDR is set: EV6 */
+        while((I2C1->SR1 & I2C_SR1_ADDR) != I2C_SR1_ADDR);
 
         /* Clears ADDR and ACK bit */
         __disable_irq();
-        I2C1->SR1 &= ~I2C_SR1_ADDR;
+        (void) I2C1->SR2; // reads SR2 after to clear ADDR
         I2C1->CR1 &= ~I2C_CR1_ACK;
         __enable_irq();
 
@@ -329,36 +367,61 @@ void I2C_Read(uint8_t *buf, uint32_t nbyte, uint8_t SlaveAddress) {
         /* Wait until stop is cleared by hardware */
         while(I2C1->CR1 & ~I2C_CR1_STOP);
 
-        /* reset pos and set ack for another reception */
+        // /* reset pos and set ack for another reception */
         I2C1->CR1 &= ~I2C_CR1_POS;
         I2C1->CR1 |= I2C_CR1_ACK;
+
     } else {
-        /* Clear ACK bit */
-        I2C1->CR1 &= ~I2C_CR1_ACK;
-        while (nbyte-- > 3) {
-            while (I2C1->SR1 & I2C_SR1_BTF); // wait btf to be set by hardware
-            /* Read in next data bit */
-            *buf++ = i2c_receive_data();
-        }
-
-        while (I2C1->SR1 & I2C_SR1_BTF); // wait btf to be set by hardware
-        /* Clear ACK bit */
-        I2C1->CR1 &= ~I2C_CR1_ACK;
-
-        __disable_irq();
+        /* Send START condition */
         i2c_stop();
+        while((I2C1->SR1 & I2C_SR1_SB) != I2C_SR1_SB);
 
-        /* Read in Data N-1 from register */
-        *buf++ = i2c_receive_data();
-        __enable_irq();
+        /* Send slave address */
+        /* Reset the address bit0 for write */
+        SlaveAddress |= I2C_OAR1_ADD1;
+        i2c_send_7bit_address(SlaveAddress);
+        /* Wait until ADDR is set: EV6 */
+        while((I2C1->SR1 & I2C_SR1_ADDR) != I2C_SR1_ADDR);
 
-        /* Wait for received bit register to have bits again */
-        while(I2C1->SR1 & I2C_SR1_RXNE);
-        
-        *buf++ = i2c_receive_data();
-        while(I2C1->CR1 & ~I2C_CR1_STOP); // wait until stop generation cleared by hardware
+        /* Clear ADDR by reading SR2 status register */
+        (void) I2C1->SR2;
 
-         /* Set ACK bit for another reception */
+        while (nbyte) {
+            if (nbyte-- != 3) {
+                /* Poll on BTF to receive data because in polling mode we can not guarantee the
+                EV7 software sequence is managed before the current byte transfer completes */
+                while (I2C1->SR1 & I2C_SR1_BTF);
+                /* Read data */
+                *buf++ = i2c_receive_data();
+            }
+
+            if (nbyte == 3) {
+                /* Wait until BTF is set: Data N-2 in DR and data N -1 in shift register */
+                while (I2C1->SR1 & I2C_SR1_BTF);
+                /* Clear ACK bit */
+                I2C1->CR1 &= ~I2C_CR1_ACK;
+
+                /* Disable IRQs around data reading and STOP programming because of the
+                limitation ? */
+                __disable_irq();
+                /* Read Data N-2 */
+                *buf++ = i2c_receive_data();
+                i2c_stop();
+                /* Read DataN-1 */
+                *buf++ = i2c_receive_data();
+                __enable_irq();
+
+                /* Wait for received bit register to have bits again */
+                while(I2C1->SR1 & I2C_SR1_RXNE);
+                /* Read DataN */
+                *buf++ = i2c_receive_data();
+                /* Reset the number of bytes to be read by master */
+                nbyte = 0;
+            }
+        }
+        /* Make sure that the STOP bit is cleared by Hardware before CR1 write access */
+        while((I2C1->CR1 & I2C_CR1_STOP) == I2C_CR1_STOP);
+        /* Enable Acknowledgement to be ready for another reception */
         I2C1->CR1 |= I2C_CR1_ACK;
     }
 }
