@@ -1,0 +1,979 @@
+
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\stm32f10x_gpio.o:     file format elf32-littlearm
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\stm32f10x_gpio.o
+
+Disassembly of section .text.GPIO_Init:
+
+00000000 <GPIO_Init>:
+GPIO_Init():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:173
+  * @param  GPIO_InitStruct: pointer to a GPIO_InitTypeDef structure that
+  *   contains the configuration information for the specified GPIO peripheral.
+  * @retval None
+  */
+void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct)
+{
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:182
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  assert_param(IS_GPIO_MODE(GPIO_InitStruct->GPIO_Mode));
+  assert_param(IS_GPIO_PIN(GPIO_InitStruct->GPIO_Pin));  
+  
+/*---------------------------- GPIO Mode Configuration -----------------------*/
+  currentmode = ((uint32_t)GPIO_InitStruct->GPIO_Mode) & ((uint32_t)0x0F);
+   2:	78cd      	ldrb	r5, [r1, #3]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:192
+    /* Output mode */
+    currentmode |= (uint32_t)GPIO_InitStruct->GPIO_Speed;
+  }
+/*---------------------------- GPIO CRL Configuration ------------------------*/
+  /* Configure the eight low port pins */
+  if (((uint32_t)GPIO_InitStruct->GPIO_Pin & ((uint32_t)0x00FF)) != 0x00)
+   4:	880e      	ldrh	r6, [r1, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:183
+  assert_param(IS_GPIO_MODE(GPIO_InitStruct->GPIO_Mode));
+  assert_param(IS_GPIO_PIN(GPIO_InitStruct->GPIO_Pin));  
+  
+/*---------------------------- GPIO Mode Configuration -----------------------*/
+  currentmode = ((uint32_t)GPIO_InitStruct->GPIO_Mode) & ((uint32_t)0x0F);
+  if ((((uint32_t)GPIO_InitStruct->GPIO_Mode) & ((uint32_t)0x10)) != 0x00)
+   6:	f015 0f10 	tst.w	r5, #16	; 0x10
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:188
+  { 
+    /* Check the parameters */
+    assert_param(IS_GPIO_SPEED(GPIO_InitStruct->GPIO_Speed));
+    /* Output mode */
+    currentmode |= (uint32_t)GPIO_InitStruct->GPIO_Speed;
+   a:	bf18      	it	ne
+   c:	788b      	ldrbne	r3, [r1, #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:182
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  assert_param(IS_GPIO_MODE(GPIO_InitStruct->GPIO_Mode));
+  assert_param(IS_GPIO_PIN(GPIO_InitStruct->GPIO_Pin));  
+  
+/*---------------------------- GPIO Mode Configuration -----------------------*/
+  currentmode = ((uint32_t)GPIO_InitStruct->GPIO_Mode) & ((uint32_t)0x0F);
+   e:	f005 070f 	and.w	r7, r5, #15	; 0xf
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:188
+  if ((((uint32_t)GPIO_InitStruct->GPIO_Mode) & ((uint32_t)0x10)) != 0x00)
+  { 
+    /* Check the parameters */
+    assert_param(IS_GPIO_SPEED(GPIO_InitStruct->GPIO_Speed));
+    /* Output mode */
+    currentmode |= (uint32_t)GPIO_InitStruct->GPIO_Speed;
+  12:	bf18      	it	ne
+  14:	431f      	orrne	r7, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:192
+  }
+/*---------------------------- GPIO CRL Configuration ------------------------*/
+  /* Configure the eight low port pins */
+  if (((uint32_t)GPIO_InitStruct->GPIO_Pin & ((uint32_t)0x00FF)) != 0x00)
+  16:	f016 0fff 	tst.w	r6, #255	; 0xff
+  1a:	d020      	beq.n	5e <GPIO_Init+0x5e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:194
+  {
+    tmpreg = GPIOx->CRL;
+  1c:	6804      	ldr	r4, [r0, #0]
+  1e:	f04f 0c00 	mov.w	ip, #0	; 0x0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:197
+    for (pinpos = 0x00; pinpos < 0x08; pinpos++)
+    {
+      pos = ((uint32_t)0x01) << pinpos;
+  22:	2301      	movs	r3, #1
+  24:	fa03 f30c 	lsl.w	r3, r3, ip
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:199
+      /* Get the port pins position */
+      currentpin = (GPIO_InitStruct->GPIO_Pin) & pos;
+  28:	ea03 0106 	and.w	r1, r3, r6
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:200
+      if (currentpin == pos)
+  2c:	4299      	cmp	r1, r3
+  2e:	d110      	bne.n	52 <GPIO_Init+0x52>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:204
+      {
+        pos = pinpos << 2;
+        /* Clear the corresponding low control register bits */
+        pinmask = ((uint32_t)0x0F) << pos;
+  30:	ea4f 028c 	mov.w	r2, ip, lsl #2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:205
+        tmpreg &= ~pinmask;
+  34:	230f      	movs	r3, #15
+  36:	4093      	lsls	r3, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:207
+        /* Write the mode configuration in the corresponding bits */
+        tmpreg |= (currentmode << pos);
+  38:	fa17 f202 	lsls.w	r2, r7, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:205
+      if (currentpin == pos)
+      {
+        pos = pinpos << 2;
+        /* Clear the corresponding low control register bits */
+        pinmask = ((uint32_t)0x0F) << pos;
+        tmpreg &= ~pinmask;
+  3c:	ea24 0303 	bic.w	r3, r4, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:209
+        /* Write the mode configuration in the corresponding bits */
+        tmpreg |= (currentmode << pos);
+        /* Reset the corresponding ODR bit */
+        if (GPIO_InitStruct->GPIO_Mode == GPIO_Mode_IPD)
+  40:	2d28      	cmp	r5, #40
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:207
+        pos = pinpos << 2;
+        /* Clear the corresponding low control register bits */
+        pinmask = ((uint32_t)0x0F) << pos;
+        tmpreg &= ~pinmask;
+        /* Write the mode configuration in the corresponding bits */
+        tmpreg |= (currentmode << pos);
+  42:	ea43 0402 	orr.w	r4, r3, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:209
+        /* Reset the corresponding ODR bit */
+        if (GPIO_InitStruct->GPIO_Mode == GPIO_Mode_IPD)
+  46:	d101      	bne.n	4c <GPIO_Init+0x4c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:211
+        {
+          GPIOx->BRR = (((uint32_t)0x01) << pinpos);
+  48:	6141      	str	r1, [r0, #20]
+  4a:	e002      	b.n	52 <GPIO_Init+0x52>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:216
+        }
+        else
+        {
+          /* Set the corresponding ODR bit */
+          if (GPIO_InitStruct->GPIO_Mode == GPIO_Mode_IPU)
+  4c:	2d48      	cmp	r5, #72
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:218
+          {
+            GPIOx->BSRR = (((uint32_t)0x01) << pinpos);
+  4e:	bf08      	it	eq
+  50:	6101      	streq	r1, [r0, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:195
+/*---------------------------- GPIO CRL Configuration ------------------------*/
+  /* Configure the eight low port pins */
+  if (((uint32_t)GPIO_InitStruct->GPIO_Pin & ((uint32_t)0x00FF)) != 0x00)
+  {
+    tmpreg = GPIOx->CRL;
+    for (pinpos = 0x00; pinpos < 0x08; pinpos++)
+  52:	f10c 0c01 	add.w	ip, ip, #1	; 0x1
+  56:	f1bc 0f08 	cmp.w	ip, #8	; 0x8
+  5a:	d1e2      	bne.n	22 <GPIO_Init+0x22>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:223
+            GPIOx->BSRR = (((uint32_t)0x01) << pinpos);
+          }
+        }
+      }
+    }
+    GPIOx->CRL = tmpreg;
+  5c:	6004      	str	r4, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:227
+  }
+/*---------------------------- GPIO CRH Configuration ------------------------*/
+  /* Configure the eight high port pins */
+  if (GPIO_InitStruct->GPIO_Pin > 0x00FF)
+  5e:	2eff      	cmp	r6, #255
+  60:	d921      	bls.n	a6 <GPIO_Init+0xa6>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:229
+  {
+    tmpreg = GPIOx->CRH;
+  62:	6844      	ldr	r4, [r0, #4]
+  64:	f04f 0c00 	mov.w	ip, #0	; 0x0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:232
+    for (pinpos = 0x00; pinpos < 0x08; pinpos++)
+    {
+      pos = (((uint32_t)0x01) << (pinpos + 0x08));
+  68:	2301      	movs	r3, #1
+  6a:	f10c 0208 	add.w	r2, ip, #8	; 0x8
+  6e:	4093      	lsls	r3, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:234
+      /* Get the port pins position */
+      currentpin = ((GPIO_InitStruct->GPIO_Pin) & pos);
+  70:	ea03 0106 	and.w	r1, r3, r6
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:235
+      if (currentpin == pos)
+  74:	4299      	cmp	r1, r3
+  76:	d110      	bne.n	9a <GPIO_Init+0x9a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:239
+      {
+        pos = pinpos << 2;
+        /* Clear the corresponding high control register bits */
+        pinmask = ((uint32_t)0x0F) << pos;
+  78:	ea4f 028c 	mov.w	r2, ip, lsl #2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:240
+        tmpreg &= ~pinmask;
+  7c:	230f      	movs	r3, #15
+  7e:	4093      	lsls	r3, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:242
+        /* Write the mode configuration in the corresponding bits */
+        tmpreg |= (currentmode << pos);
+  80:	fa17 f202 	lsls.w	r2, r7, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:240
+      if (currentpin == pos)
+      {
+        pos = pinpos << 2;
+        /* Clear the corresponding high control register bits */
+        pinmask = ((uint32_t)0x0F) << pos;
+        tmpreg &= ~pinmask;
+  84:	ea24 0303 	bic.w	r3, r4, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:244
+        /* Write the mode configuration in the corresponding bits */
+        tmpreg |= (currentmode << pos);
+        /* Reset the corresponding ODR bit */
+        if (GPIO_InitStruct->GPIO_Mode == GPIO_Mode_IPD)
+  88:	2d28      	cmp	r5, #40
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:242
+        pos = pinpos << 2;
+        /* Clear the corresponding high control register bits */
+        pinmask = ((uint32_t)0x0F) << pos;
+        tmpreg &= ~pinmask;
+        /* Write the mode configuration in the corresponding bits */
+        tmpreg |= (currentmode << pos);
+  8a:	ea43 0402 	orr.w	r4, r3, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:244
+        /* Reset the corresponding ODR bit */
+        if (GPIO_InitStruct->GPIO_Mode == GPIO_Mode_IPD)
+  8e:	d101      	bne.n	94 <GPIO_Init+0x94>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:246
+        {
+          GPIOx->BRR = (((uint32_t)0x01) << (pinpos + 0x08));
+  90:	6141      	str	r1, [r0, #20]
+  92:	e002      	b.n	9a <GPIO_Init+0x9a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:249
+        }
+        /* Set the corresponding ODR bit */
+        if (GPIO_InitStruct->GPIO_Mode == GPIO_Mode_IPU)
+  94:	2d48      	cmp	r5, #72
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:251
+        {
+          GPIOx->BSRR = (((uint32_t)0x01) << (pinpos + 0x08));
+  96:	bf08      	it	eq
+  98:	6101      	streq	r1, [r0, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:230
+/*---------------------------- GPIO CRH Configuration ------------------------*/
+  /* Configure the eight high port pins */
+  if (GPIO_InitStruct->GPIO_Pin > 0x00FF)
+  {
+    tmpreg = GPIOx->CRH;
+    for (pinpos = 0x00; pinpos < 0x08; pinpos++)
+  9a:	f10c 0c01 	add.w	ip, ip, #1	; 0x1
+  9e:	f1bc 0f08 	cmp.w	ip, #8	; 0x8
+  a2:	d1e1      	bne.n	68 <GPIO_Init+0x68>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:255
+        {
+          GPIOx->BSRR = (((uint32_t)0x01) << (pinpos + 0x08));
+        }
+      }
+    }
+    GPIOx->CRH = tmpreg;
+  a4:	6044      	str	r4, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:257
+  }
+}
+  a6:	bdf0      	pop	{r4, r5, r6, r7, pc}
+Disassembly of section .text.GPIO_StructInit:
+
+00000000 <GPIO_StructInit>:
+GPIO_StructInit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:268
+  * @retval None
+  */
+void GPIO_StructInit(GPIO_InitTypeDef* GPIO_InitStruct)
+{
+  /* Reset GPIO init structure parameters values */
+  GPIO_InitStruct->GPIO_Pin  = GPIO_Pin_All;
+   0:	f04f 33ff 	mov.w	r3, #4294967295	; 0xffffffff
+   4:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:269
+  GPIO_InitStruct->GPIO_Speed = GPIO_Speed_2MHz;
+   6:	2302      	movs	r3, #2
+   8:	7083      	strb	r3, [r0, #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:270
+  GPIO_InitStruct->GPIO_Mode = GPIO_Mode_IN_FLOATING;
+   a:	18db      	adds	r3, r3, r3
+   c:	70c3      	strb	r3, [r0, #3]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:271
+}
+   e:	4770      	bx	lr
+Disassembly of section .text.GPIO_ReadInputDataBit:
+
+00000000 <GPIO_ReadInputDataBit>:
+GPIO_ReadInputDataBit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:288
+  
+  /* Check the parameters */
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  assert_param(IS_GET_GPIO_PIN(GPIO_Pin)); 
+  
+  if ((GPIOx->IDR & GPIO_Pin) != (uint32_t)Bit_RESET)
+   0:	6883      	ldr	r3, [r0, #8]
+   2:	4219      	tst	r1, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:297
+  else
+  {
+    bitstatus = (uint8_t)Bit_RESET;
+  }
+  return bitstatus;
+}
+   4:	bf0c      	ite	eq
+   6:	2000      	moveq	r0, #0
+   8:	2001      	movne	r0, #1
+   a:	4770      	bx	lr
+Disassembly of section .text.GPIO_ReadInputData:
+
+00000000 <GPIO_ReadInputData>:
+GPIO_ReadInputData():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:309
+uint16_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx)
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  
+  return ((uint16_t)GPIOx->IDR);
+   0:	6880      	ldr	r0, [r0, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:310
+}
+   2:	b280      	uxth	r0, r0
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.GPIO_ReadOutputDataBit:
+
+00000000 <GPIO_ReadOutputDataBit>:
+GPIO_ReadOutputDataBit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:326
+  uint8_t bitstatus = 0x00;
+  /* Check the parameters */
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  assert_param(IS_GET_GPIO_PIN(GPIO_Pin)); 
+  
+  if ((GPIOx->ODR & GPIO_Pin) != (uint32_t)Bit_RESET)
+   0:	68c3      	ldr	r3, [r0, #12]
+   2:	4219      	tst	r1, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:335
+  else
+  {
+    bitstatus = (uint8_t)Bit_RESET;
+  }
+  return bitstatus;
+}
+   4:	bf0c      	ite	eq
+   6:	2000      	moveq	r0, #0
+   8:	2001      	movne	r0, #1
+   a:	4770      	bx	lr
+Disassembly of section .text.GPIO_ReadOutputData:
+
+00000000 <GPIO_ReadOutputData>:
+GPIO_ReadOutputData():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:347
+uint16_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx)
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+    
+  return ((uint16_t)GPIOx->ODR);
+   0:	68c0      	ldr	r0, [r0, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:348
+}
+   2:	b280      	uxth	r0, r0
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.GPIO_SetBits:
+
+00000000 <GPIO_SetBits>:
+GPIO_SetBits():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:363
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  assert_param(IS_GPIO_PIN(GPIO_Pin));
+  
+  GPIOx->BSRR = GPIO_Pin;
+   0:	6101      	str	r1, [r0, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:364
+}
+   2:	4770      	bx	lr
+Disassembly of section .text.GPIO_ResetBits:
+
+00000000 <GPIO_ResetBits>:
+GPIO_ResetBits():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:379
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  assert_param(IS_GPIO_PIN(GPIO_Pin));
+  
+  GPIOx->BRR = GPIO_Pin;
+   0:	6141      	str	r1, [r0, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:380
+}
+   2:	4770      	bx	lr
+Disassembly of section .text.GPIO_WriteBit:
+
+00000000 <GPIO_WriteBit>:
+GPIO_WriteBit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:400
+  /* Check the parameters */
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  assert_param(IS_GET_GPIO_PIN(GPIO_Pin));
+  assert_param(IS_GPIO_BIT_ACTION(BitVal)); 
+  
+  if (BitVal != Bit_RESET)
+   0:	b10a      	cbz	r2, 6 <GPIO_WriteBit+0x6>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:402
+  {
+    GPIOx->BSRR = GPIO_Pin;
+   2:	6101      	str	r1, [r0, #16]
+   4:	e000      	b.n	8 <GPIO_WriteBit+0x8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:406
+  }
+  else
+  {
+    GPIOx->BRR = GPIO_Pin;
+   6:	6141      	str	r1, [r0, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:408
+  }
+}
+   8:	4770      	bx	lr
+   a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.GPIO_Write:
+
+00000000 <GPIO_Write>:
+GPIO_Write():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:421
+void GPIO_Write(GPIO_TypeDef* GPIOx, uint16_t PortVal)
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  
+  GPIOx->ODR = PortVal;
+   0:	60c1      	str	r1, [r0, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:422
+}
+   2:	4770      	bx	lr
+Disassembly of section .text.GPIO_PinLockConfig:
+
+00000000 <GPIO_PinLockConfig>:
+GPIO_PinLockConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:439
+  
+  /* Check the parameters */
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  assert_param(IS_GPIO_PIN(GPIO_Pin));
+  
+  tmp |= GPIO_Pin;
+   0:	f441 3380 	orr.w	r3, r1, #65536	; 0x10000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:441
+  /* Set LCKK bit */
+  GPIOx->LCKR = tmp;
+   4:	6183      	str	r3, [r0, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:443
+  /* Reset LCKK bit */
+  GPIOx->LCKR =  GPIO_Pin;
+   6:	6181      	str	r1, [r0, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:445
+  /* Set LCKK bit */
+  GPIOx->LCKR = tmp;
+   8:	6183      	str	r3, [r0, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:447
+  /* Read LCKK bit*/
+  tmp = GPIOx->LCKR;
+   a:	6983      	ldr	r3, [r0, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:449
+  /* Read LCKK bit*/
+  tmp = GPIOx->LCKR;
+   c:	6983      	ldr	r3, [r0, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:450
+}
+   e:	4770      	bx	lr
+Disassembly of section .text.GPIO_EventOutputConfig:
+
+00000000 <GPIO_EventOutputConfig>:
+GPIO_EventOutputConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:462
+  * @param  GPIO_PinSource: specifies the pin for the Event output.
+  *   This parameter can be GPIO_PinSourcex where x can be (0..15).
+  * @retval None
+  */
+void GPIO_EventOutputConfig(uint8_t GPIO_PortSource, uint8_t GPIO_PinSource)
+{
+   0:	b510      	push	{r4, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:468
+  uint32_t tmpreg = 0x00;
+  /* Check the parameters */
+  assert_param(IS_GPIO_EVENTOUT_PORT_SOURCE(GPIO_PortSource));
+  assert_param(IS_GPIO_PIN_SOURCE(GPIO_PinSource));
+    
+  tmpreg = AFIO->EVCR;
+   2:	4c05      	ldr	r4, [pc, #20]	(18 <GPIO_EventOutputConfig+0x18>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:470
+  /* Clear the PORT[6:4] and PIN[3:0] bits */
+  tmpreg &= EVCR_PORTPINCONFIG_MASK;
+   4:	f64f 7380 	movw	r3, #65408	; 0xff80
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:468
+  uint32_t tmpreg = 0x00;
+  /* Check the parameters */
+  assert_param(IS_GPIO_EVENTOUT_PORT_SOURCE(GPIO_PortSource));
+  assert_param(IS_GPIO_PIN_SOURCE(GPIO_PinSource));
+    
+  tmpreg = AFIO->EVCR;
+   8:	6822      	ldr	r2, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:471
+  /* Clear the PORT[6:4] and PIN[3:0] bits */
+  tmpreg &= EVCR_PORTPINCONFIG_MASK;
+  tmpreg |= (uint32_t)GPIO_PortSource << 0x04;
+   a:	ea41 1100 	orr.w	r1, r1, r0, lsl #4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:470
+  assert_param(IS_GPIO_EVENTOUT_PORT_SOURCE(GPIO_PortSource));
+  assert_param(IS_GPIO_PIN_SOURCE(GPIO_PinSource));
+    
+  tmpreg = AFIO->EVCR;
+  /* Clear the PORT[6:4] and PIN[3:0] bits */
+  tmpreg &= EVCR_PORTPINCONFIG_MASK;
+   e:	ea02 0303 	and.w	r3, r2, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:472
+  tmpreg |= (uint32_t)GPIO_PortSource << 0x04;
+  tmpreg |= GPIO_PinSource;
+  12:	4319      	orrs	r1, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:473
+  AFIO->EVCR = tmpreg;
+  14:	6021      	str	r1, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:474
+}
+  16:	bd10      	pop	{r4, pc}
+  18:	40010000 	.word	0x40010000
+Disassembly of section .text.GPIO_EventOutputCmd:
+
+00000000 <GPIO_EventOutputCmd>:
+GPIO_EventOutputCmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:487
+void GPIO_EventOutputCmd(FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  
+  *(__IO uint32_t *) EVCR_EVOE_BB = (uint32_t)NewState;
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <GPIO_EventOutputCmd+0x8>)
+   2:	6018      	str	r0, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:488
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+   8:	4220001c 	.word	0x4220001c
+Disassembly of section .text.GPIO_PinRemapConfig:
+
+00000000 <GPIO_PinRemapConfig>:
+GPIO_PinRemapConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:549
+
+  /* Check the parameters */
+  assert_param(IS_GPIO_REMAP(GPIO_Remap));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));  
+  
+  if((GPIO_Remap & 0x80000000) == 0x80000000)
+   0:	2800      	cmp	r0, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:551
+  {
+    tmpreg = AFIO->MAPR2;
+   2:	bfb4      	ite	lt
+   4:	4b1a      	ldrlt	r3, [pc, #104]	(70 <GPIO_PinRemapConfig+0x70>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:555
+  }
+  else
+  {
+    tmpreg = AFIO->MAPR;
+   6:	4b1a      	ldrge	r3, [pc, #104]	(70 <GPIO_PinRemapConfig+0x70>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:542
+  * @param  NewState: new state of the port pin remapping.
+  *   This parameter can be: ENABLE or DISABLE.
+  * @retval None
+  */
+void GPIO_PinRemapConfig(uint32_t GPIO_Remap, FunctionalState NewState)
+{
+   8:	b510      	push	{r4, lr}
+   a:	460c      	mov	r4, r1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:551
+  assert_param(IS_GPIO_REMAP(GPIO_Remap));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));  
+  
+  if((GPIO_Remap & 0x80000000) == 0x80000000)
+  {
+    tmpreg = AFIO->MAPR2;
+   c:	bfb4      	ite	lt
+   e:	69d9      	ldrlt	r1, [r3, #28]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:555
+  }
+  else
+  {
+    tmpreg = AFIO->MAPR;
+  10:	6859      	ldrge	r1, [r3, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:561
+  }
+
+  tmpmask = (GPIO_Remap & DBGAFR_POSITION_MASK) >> 0x10;
+  tmp = GPIO_Remap & LSB_MASK;
+
+  if ((GPIO_Remap & (DBGAFR_LOCATION_MASK | DBGAFR_NUMBITS_MASK)) == (DBGAFR_LOCATION_MASK | DBGAFR_NUMBITS_MASK))
+  12:	f400 1340 	and.w	r3, r0, #3145728	; 0x300000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:559
+  {
+    tmpreg = AFIO->MAPR;
+  }
+
+  tmpmask = (GPIO_Remap & DBGAFR_POSITION_MASK) >> 0x10;
+  tmp = GPIO_Remap & LSB_MASK;
+  16:	ea4f 4c00 	mov.w	ip, r0, lsl #16
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:561
+
+  if ((GPIO_Remap & (DBGAFR_LOCATION_MASK | DBGAFR_NUMBITS_MASK)) == (DBGAFR_LOCATION_MASK | DBGAFR_NUMBITS_MASK))
+  1a:	f5b3 1f40 	cmp.w	r3, #3145728	; 0x300000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:559
+  {
+    tmpreg = AFIO->MAPR;
+  }
+
+  tmpmask = (GPIO_Remap & DBGAFR_POSITION_MASK) >> 0x10;
+  tmp = GPIO_Remap & LSB_MASK;
+  1e:	ea4f 4c1c 	mov.w	ip, ip, lsr #16
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:561
+
+  if ((GPIO_Remap & (DBGAFR_LOCATION_MASK | DBGAFR_NUMBITS_MASK)) == (DBGAFR_LOCATION_MASK | DBGAFR_NUMBITS_MASK))
+  22:	d107      	bne.n	34 <GPIO_PinRemapConfig+0x34>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:564
+  {
+    tmpreg &= DBGAFR_SWJCFG_MASK;
+    AFIO->MAPR &= DBGAFR_SWJCFG_MASK;
+  24:	4a12      	ldr	r2, [pc, #72]	(70 <GPIO_PinRemapConfig+0x70>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:563
+  tmpmask = (GPIO_Remap & DBGAFR_POSITION_MASK) >> 0x10;
+  tmp = GPIO_Remap & LSB_MASK;
+
+  if ((GPIO_Remap & (DBGAFR_LOCATION_MASK | DBGAFR_NUMBITS_MASK)) == (DBGAFR_LOCATION_MASK | DBGAFR_NUMBITS_MASK))
+  {
+    tmpreg &= DBGAFR_SWJCFG_MASK;
+  26:	f021 6170 	bic.w	r1, r1, #251658240	; 0xf000000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:564
+    AFIO->MAPR &= DBGAFR_SWJCFG_MASK;
+  2a:	6853      	ldr	r3, [r2, #4]
+  2c:	f023 6370 	bic.w	r3, r3, #251658240	; 0xf000000
+  30:	6053      	str	r3, [r2, #4]
+  32:	e00f      	b.n	54 <GPIO_PinRemapConfig+0x54>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:566
+  }
+  else if ((GPIO_Remap & DBGAFR_NUMBITS_MASK) == DBGAFR_NUMBITS_MASK)
+  34:	f410 1f80 	tst.w	r0, #1048576	; 0x100000
+  38:	d004      	beq.n	44 <GPIO_PinRemapConfig+0x44>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:569
+  {
+    tmp1 = ((uint32_t)0x03) << tmpmask;
+    tmpreg &= ~tmp1;
+  3a:	f3c0 4203 	ubfx	r2, r0, #16, #4
+  3e:	2303      	movs	r3, #3
+  40:	4093      	lsls	r3, r2
+  42:	e003      	b.n	4c <GPIO_PinRemapConfig+0x4c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:574
+    tmpreg |= ~DBGAFR_SWJCFG_MASK;
+  }
+  else
+  {
+    tmpreg &= ~(tmp << ((GPIO_Remap >> 0x15)*0x10));
+  44:	0d43      	lsrs	r3, r0, #21
+  46:	011b      	lsls	r3, r3, #4
+  48:	fa0c f303 	lsl.w	r3, ip, r3
+  4c:	ea21 0303 	bic.w	r3, r1, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:575
+    tmpreg |= ~DBGAFR_SWJCFG_MASK;
+  50:	f043 6170 	orr.w	r1, r3, #251658240	; 0xf000000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:578
+  }
+
+  if (NewState != DISABLE)
+  54:	b124      	cbz	r4, 60 <GPIO_PinRemapConfig+0x60>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:580
+  {
+    tmpreg |= (tmp << ((GPIO_Remap >> 0x15)*0x10));
+  56:	0d43      	lsrs	r3, r0, #21
+  58:	011b      	lsls	r3, r3, #4
+  5a:	fa0c f303 	lsl.w	r3, ip, r3
+  5e:	4319      	orrs	r1, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:583
+  }
+
+  if((GPIO_Remap & 0x80000000) == 0x80000000)
+  60:	2800      	cmp	r0, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:585
+  {
+    AFIO->MAPR2 = tmpreg;
+  62:	bfb5      	itete	lt
+  64:	4b02      	ldrlt	r3, [pc, #8]	(70 <GPIO_PinRemapConfig+0x70>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:589
+  }
+  else
+  {
+    AFIO->MAPR = tmpreg;
+  66:	4b02      	ldrge	r3, [pc, #8]	(70 <GPIO_PinRemapConfig+0x70>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:585
+    tmpreg |= (tmp << ((GPIO_Remap >> 0x15)*0x10));
+  }
+
+  if((GPIO_Remap & 0x80000000) == 0x80000000)
+  {
+    AFIO->MAPR2 = tmpreg;
+  68:	61d9      	strlt	r1, [r3, #28]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:589
+  }
+  else
+  {
+    AFIO->MAPR = tmpreg;
+  6a:	6059      	strge	r1, [r3, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:591
+  }  
+}
+  6c:	bd10      	pop	{r4, pc}
+  6e:	46c0      	nop			(mov r8, r8)
+  70:	40010000 	.word	0x40010000
+Disassembly of section .text.GPIO_EXTILineConfig:
+
+00000000 <GPIO_EXTILineConfig>:
+GPIO_EXTILineConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:602
+  * @param  GPIO_PinSource: specifies the EXTI line to be configured.
+  *   This parameter can be GPIO_PinSourcex where x can be (0..15).
+  * @retval None
+  */
+void GPIO_EXTILineConfig(uint8_t GPIO_PortSource, uint8_t GPIO_PinSource)
+{
+   0:	b530      	push	{r4, r5, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:608
+  uint32_t tmp = 0x00;
+  /* Check the parameters */
+  assert_param(IS_GPIO_EXTI_PORT_SOURCE(GPIO_PortSource));
+  assert_param(IS_GPIO_PIN_SOURCE(GPIO_PinSource));
+  
+  tmp = ((uint32_t)0x0F) << (0x04 * (GPIO_PinSource & (uint8_t)0x03));
+   2:	f001 0503 	and.w	r5, r1, #3	; 0x3
+   6:	00ad      	lsls	r5, r5, #2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:609
+  AFIO->EXTICR[GPIO_PinSource >> 0x02] &= ~tmp;
+   8:	230f      	movs	r3, #15
+   a:	40ab      	lsls	r3, r5
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:610
+  AFIO->EXTICR[GPIO_PinSource >> 0x02] |= (((uint32_t)GPIO_PortSource) << (0x04 * (GPIO_PinSource & (uint8_t)0x03)));
+   c:	40a8      	lsls	r0, r5
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:609
+  /* Check the parameters */
+  assert_param(IS_GPIO_EXTI_PORT_SOURCE(GPIO_PortSource));
+  assert_param(IS_GPIO_PIN_SOURCE(GPIO_PinSource));
+  
+  tmp = ((uint32_t)0x0F) << (0x04 * (GPIO_PinSource & (uint8_t)0x03));
+  AFIO->EXTICR[GPIO_PinSource >> 0x02] &= ~tmp;
+   e:	4c07      	ldr	r4, [pc, #28]	(2c <GPIO_EXTILineConfig+0x2c>)
+  10:	0889      	lsrs	r1, r1, #2
+  12:	3102      	adds	r1, #2
+  14:	f854 2021 	ldr.w	r2, [r4, r1, lsl #2]
+  18:	ea22 0203 	bic.w	r2, r2, r3
+  1c:	f844 2021 	str.w	r2, [r4, r1, lsl #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:610
+  AFIO->EXTICR[GPIO_PinSource >> 0x02] |= (((uint32_t)GPIO_PortSource) << (0x04 * (GPIO_PinSource & (uint8_t)0x03)));
+  20:	f854 3021 	ldr.w	r3, [r4, r1, lsl #2]
+  24:	4318      	orrs	r0, r3
+  26:	f844 0021 	str.w	r0, [r4, r1, lsl #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:611
+}
+  2a:	bd30      	pop	{r4, r5, pc}
+  2c:	40010000 	.word	0x40010000
+Disassembly of section .text.GPIO_ETH_MediaInterfaceConfig:
+
+00000000 <GPIO_ETH_MediaInterfaceConfig>:
+GPIO_ETH_MediaInterfaceConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:627
+void GPIO_ETH_MediaInterfaceConfig(uint32_t GPIO_ETH_MediaInterface) 
+{ 
+  assert_param(IS_GPIO_ETH_MEDIA_INTERFACE(GPIO_ETH_MediaInterface)); 
+
+  /* Configure MII_RMII selection bit */ 
+  *(__IO uint32_t *) MAPR_MII_RMII_SEL_BB = GPIO_ETH_MediaInterface; 
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <GPIO_ETH_MediaInterfaceConfig+0x8>)
+   2:	6018      	str	r0, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:628
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+   8:	422000dc 	.word	0x422000dc
+Disassembly of section .text.GPIO_AFIODeInit:
+
+00000000 <GPIO_AFIODeInit>:
+GPIO_AFIODeInit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:160
+  * @param  None
+  * @retval None
+  */
+void GPIO_AFIODeInit(void)
+{
+  RCC_APB2PeriphResetCmd(RCC_APB2Periph_AFIO, ENABLE);
+   0:	2001      	movs	r0, #1
+   2:	4601      	mov	r1, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:159
+  *   and EXTI configuration) registers to their default reset values.
+  * @param  None
+  * @retval None
+  */
+void GPIO_AFIODeInit(void)
+{
+   4:	b510      	push	{r4, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:160
+  RCC_APB2PeriphResetCmd(RCC_APB2Periph_AFIO, ENABLE);
+   6:	f7ff fffe 	bl	0 <RCC_APB2PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:161
+  RCC_APB2PeriphResetCmd(RCC_APB2Periph_AFIO, DISABLE);
+   a:	2001      	movs	r0, #1
+   c:	2100      	movs	r1, #0
+   e:	f7ff fffe 	bl	0 <RCC_APB2PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:162
+}
+  12:	bd10      	pop	{r4, pc}
+Disassembly of section .text.GPIO_DeInit:
+
+00000000 <GPIO_DeInit>:
+GPIO_DeInit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:112
+void GPIO_DeInit(GPIO_TypeDef* GPIOx)
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  
+  if (GPIOx == GPIOA)
+   0:	4b22      	ldr	r3, [pc, #136]	(8c <GPIO_DeInit+0x8c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:108
+  * @brief  Deinitializes the GPIOx peripheral registers to their default reset values.
+  * @param  GPIOx: where x can be (A..G) to select the GPIO peripheral.
+  * @retval None
+  */
+void GPIO_DeInit(GPIO_TypeDef* GPIOx)
+{
+   2:	b510      	push	{r4, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:112
+  /* Check the parameters */
+  assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
+  
+  if (GPIOx == GPIOA)
+   4:	4298      	cmp	r0, r3
+   6:	d105      	bne.n	14 <GPIO_DeInit+0x14>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:114
+  {
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOA, ENABLE);
+   8:	2004      	movs	r0, #4
+   a:	2101      	movs	r1, #1
+   c:	f7ff fffe 	bl	0 <RCC_APB2PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:115
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOA, DISABLE);
+  10:	2004      	movs	r0, #4
+  12:	e036      	b.n	82 <GPIO_DeInit+0x82>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:117
+  }
+  else if (GPIOx == GPIOB)
+  14:	4b1e      	ldr	r3, [pc, #120]	(90 <GPIO_DeInit+0x90>)
+  16:	4298      	cmp	r0, r3
+  18:	d105      	bne.n	26 <GPIO_DeInit+0x26>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:119
+  {
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOB, ENABLE);
+  1a:	2008      	movs	r0, #8
+  1c:	2101      	movs	r1, #1
+  1e:	f7ff fffe 	bl	0 <RCC_APB2PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:120
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOB, DISABLE);
+  22:	2008      	movs	r0, #8
+  24:	e02d      	b.n	82 <GPIO_DeInit+0x82>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:122
+  }
+  else if (GPIOx == GPIOC)
+  26:	4b1b      	ldr	r3, [pc, #108]	(94 <GPIO_DeInit+0x94>)
+  28:	4298      	cmp	r0, r3
+  2a:	d105      	bne.n	38 <GPIO_DeInit+0x38>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:124
+  {
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOC, ENABLE);
+  2c:	2010      	movs	r0, #16
+  2e:	2101      	movs	r1, #1
+  30:	f7ff fffe 	bl	0 <RCC_APB2PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:125
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOC, DISABLE);
+  34:	2010      	movs	r0, #16
+  36:	e024      	b.n	82 <GPIO_DeInit+0x82>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:127
+  }
+  else if (GPIOx == GPIOD)
+  38:	4b17      	ldr	r3, [pc, #92]	(98 <GPIO_DeInit+0x98>)
+  3a:	4298      	cmp	r0, r3
+  3c:	d105      	bne.n	4a <GPIO_DeInit+0x4a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:129
+  {
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOD, ENABLE);
+  3e:	2020      	movs	r0, #32
+  40:	2101      	movs	r1, #1
+  42:	f7ff fffe 	bl	0 <RCC_APB2PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:130
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOD, DISABLE);
+  46:	2020      	movs	r0, #32
+  48:	e01b      	b.n	82 <GPIO_DeInit+0x82>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:132
+  }    
+  else if (GPIOx == GPIOE)
+  4a:	4b14      	ldr	r3, [pc, #80]	(9c <GPIO_DeInit+0x9c>)
+  4c:	4298      	cmp	r0, r3
+  4e:	d105      	bne.n	5c <GPIO_DeInit+0x5c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:134
+  {
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOE, ENABLE);
+  50:	2040      	movs	r0, #64
+  52:	2101      	movs	r1, #1
+  54:	f7ff fffe 	bl	0 <RCC_APB2PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:135
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOE, DISABLE);
+  58:	2040      	movs	r0, #64
+  5a:	e012      	b.n	82 <GPIO_DeInit+0x82>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:137
+  } 
+  else if (GPIOx == GPIOF)
+  5c:	4b10      	ldr	r3, [pc, #64]	(a0 <GPIO_DeInit+0xa0>)
+  5e:	4298      	cmp	r0, r3
+  60:	d105      	bne.n	6e <GPIO_DeInit+0x6e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:139
+  {
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOF, ENABLE);
+  62:	2080      	movs	r0, #128
+  64:	2101      	movs	r1, #1
+  66:	f7ff fffe 	bl	0 <RCC_APB2PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:140
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOF, DISABLE);
+  6a:	2080      	movs	r0, #128
+  6c:	e009      	b.n	82 <GPIO_DeInit+0x82>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:144
+  }
+  else
+  {
+    if (GPIOx == GPIOG)
+  6e:	4b0d      	ldr	r3, [pc, #52]	(a4 <GPIO_DeInit+0xa4>)
+  70:	4298      	cmp	r0, r3
+  72:	d109      	bne.n	88 <GPIO_DeInit+0x88>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:146
+    {
+      RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOG, ENABLE);
+  74:	f44f 7080 	mov.w	r0, #256	; 0x100
+  78:	2101      	movs	r1, #1
+  7a:	f7ff fffe 	bl	0 <RCC_APB2PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:147
+      RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOG, DISABLE);
+  7e:	f44f 7080 	mov.w	r0, #256	; 0x100
+  82:	2100      	movs	r1, #0
+  84:	f7ff fffe 	bl	0 <RCC_APB2PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_gpio.c:150
+    }
+  }
+}
+  88:	bd10      	pop	{r4, pc}
+  8a:	46c0      	nop			(mov r8, r8)
+  8c:	40010800 	.word	0x40010800
+  90:	40010c00 	.word	0x40010c00
+  94:	40011000 	.word	0x40011000
+  98:	40011400 	.word	0x40011400
+  9c:	40011800 	.word	0x40011800
+  a0:	40011c00 	.word	0x40011c00
+  a4:	40012000 	.word	0x40012000

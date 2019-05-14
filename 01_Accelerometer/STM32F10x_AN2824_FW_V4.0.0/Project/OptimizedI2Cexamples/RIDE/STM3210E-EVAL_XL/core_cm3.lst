@@ -1,0 +1,359 @@
+
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\core_cm3.o:     file format elf32-littlearm
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\core_cm3.o
+
+Disassembly of section .text.__get_PSP:
+
+00000000 <__get_PSP>:
+__get_PSP():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:447
+uint32_t __get_PSP(void) __attribute__( ( naked ) );
+uint32_t __get_PSP(void)
+{
+  uint32_t result=0;
+
+  __ASM volatile ("MRS %0, psp\n\t" 
+   0:	f3ef 8009 	mrs	r0, PSP
+   4:	4600      	mov	r0, r0
+   6:	4770      	bx	lr
+Disassembly of section .text.__set_PSP:
+
+00000000 <__set_PSP>:
+__set_PSP():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:464
+ * (process stack pointer) Cortex processor register
+ */
+void __set_PSP(uint32_t topOfProcStack) __attribute__( ( naked ) );
+void __set_PSP(uint32_t topOfProcStack)
+{
+  __ASM volatile ("MSR psp, %0\n\t"
+   0:	f380 8809 	msr	PSP, r0
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__get_MSP:
+
+00000000 <__get_MSP>:
+__get_MSP():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:481
+uint32_t __get_MSP(void) __attribute__( ( naked ) );
+uint32_t __get_MSP(void)
+{
+  uint32_t result=0;
+
+  __ASM volatile ("MRS %0, msp\n\t" 
+   0:	f3ef 8008 	mrs	r0, MSP
+   4:	4600      	mov	r0, r0
+   6:	4770      	bx	lr
+Disassembly of section .text.__set_MSP:
+
+00000000 <__set_MSP>:
+__set_MSP():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:498
+ * (main stack pointer) Cortex processor register
+ */
+void __set_MSP(uint32_t topOfMainStack) __attribute__( ( naked ) );
+void __set_MSP(uint32_t topOfMainStack)
+{
+  __ASM volatile ("MSR msp, %0\n\t"
+   0:	f380 8808 	msr	MSP, r0
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__get_BASEPRI:
+
+00000000 <__get_BASEPRI>:
+__get_BASEPRI():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:513
+ */
+uint32_t __get_BASEPRI(void)
+{
+  uint32_t result=0;
+  
+  __ASM volatile ("MRS %0, basepri_max" : "=r" (result) );
+   0:	f3ef 8012 	mrs	r0, BASEPRI_MASK
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:515
+  return(result);
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__set_BASEPRI:
+
+00000000 <__set_BASEPRI>:
+__set_BASEPRI():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:526
+ *
+ * Set the base priority register
+ */
+void __set_BASEPRI(uint32_t value)
+{
+  __ASM volatile ("MSR basepri, %0" : : "r" (value) );
+   0:	f380 8811 	msr	BASEPRI, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:527
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__get_PRIMASK:
+
+00000000 <__get_PRIMASK>:
+__get_PRIMASK():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:540
+ */
+uint32_t __get_PRIMASK(void)
+{
+  uint32_t result=0;
+
+  __ASM volatile ("MRS %0, primask" : "=r" (result) );
+   0:	f3ef 8010 	mrs	r0, PRIMASK
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:542
+  return(result);
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__set_PRIMASK:
+
+00000000 <__set_PRIMASK>:
+__set_PRIMASK():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:553
+ *
+ * Set the priority mask bit in the priority mask register
+ */
+void __set_PRIMASK(uint32_t priMask)
+{
+  __ASM volatile ("MSR primask, %0" : : "r" (priMask) );
+   0:	f380 8810 	msr	PRIMASK, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:554
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__get_FAULTMASK:
+
+00000000 <__get_FAULTMASK>:
+__get_FAULTMASK():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:567
+ */
+uint32_t __get_FAULTMASK(void)
+{
+  uint32_t result=0;
+  
+  __ASM volatile ("MRS %0, faultmask" : "=r" (result) );
+   0:	f3ef 8013 	mrs	r0, FAULTMASK
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:569
+  return(result);
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__set_FAULTMASK:
+
+00000000 <__set_FAULTMASK>:
+__set_FAULTMASK():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:580
+ *
+ * Set the fault mask register
+ */
+void __set_FAULTMASK(uint32_t faultMask)
+{
+  __ASM volatile ("MSR faultmask, %0" : : "r" (faultMask) );
+   0:	f380 8813 	msr	FAULTMASK, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:581
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__get_CONTROL:
+
+00000000 <__get_CONTROL>:
+__get_CONTROL():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:594
+ */
+uint32_t __get_CONTROL(void)
+{
+  uint32_t result=0;
+
+  __ASM volatile ("MRS %0, control" : "=r" (result) );
+   0:	f3ef 8014 	mrs	r0, CONTROL
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:596
+  return(result);
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__set_CONTROL:
+
+00000000 <__set_CONTROL>:
+__set_CONTROL():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:607
+ *
+ * Set the control register
+ */
+void __set_CONTROL(uint32_t control)
+{
+  __ASM volatile ("MSR control, %0" : : "r" (control) );
+   0:	f380 8814 	msr	CONTROL, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:608
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__REV:
+
+00000000 <__REV>:
+__REV():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:623
+ */
+uint32_t __REV(uint32_t value)
+{
+  uint32_t result=0;
+  
+  __ASM volatile ("rev %0, %1" : "=r" (result) : "r" (value) );
+   0:	ba00      	rev	r0, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:625
+  return(result);
+}
+   2:	4770      	bx	lr
+Disassembly of section .text.__REV16:
+
+00000000 <__REV16>:
+__REV16():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:639
+ */
+uint32_t __REV16(uint16_t value)
+{
+  uint32_t result=0;
+  
+  __ASM volatile ("rev16 %0, %1" : "=r" (result) : "r" (value) );
+   0:	ba40      	rev16	r0, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:641
+  return(result);
+}
+   2:	4770      	bx	lr
+Disassembly of section .text.__REVSH:
+
+00000000 <__REVSH>:
+__REVSH():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:655
+ */
+int32_t __REVSH(int16_t value)
+{
+  uint32_t result=0;
+  
+  __ASM volatile ("revsh %0, %1" : "=r" (result) : "r" (value) );
+   0:	bac0      	revsh	r0, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:657
+  return(result);
+}
+   2:	4770      	bx	lr
+Disassembly of section .text.__RBIT:
+
+00000000 <__RBIT>:
+__RBIT():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:671
+ */
+uint32_t __RBIT(uint32_t value)
+{
+  uint32_t result=0;
+  
+   __ASM volatile ("rbit %0, %1" : "=r" (result) : "r" (value) );
+   0:	fa90 f0a0 	rbit	r0, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:673
+   return(result);
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__LDREXB:
+
+00000000 <__LDREXB>:
+__LDREXB():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:687
+ */
+uint8_t __LDREXB(uint8_t *addr)
+{
+    uint8_t result=0;
+  
+   __ASM volatile ("ldrexb %0, [%1]" : "=r" (result) : "r" (addr) );
+   0:	e8d0 0f4f 	ldrexb	r0, [r0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:689
+   return(result);
+}
+   4:	b2c0      	uxtb	r0, r0
+   6:	4770      	bx	lr
+Disassembly of section .text.__LDREXH:
+
+00000000 <__LDREXH>:
+__LDREXH():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:703
+ */
+uint16_t __LDREXH(uint16_t *addr)
+{
+    uint16_t result=0;
+  
+   __ASM volatile ("ldrexh %0, [%1]" : "=r" (result) : "r" (addr) );
+   0:	e8d0 0f5f 	ldrexh	r0, [r0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:705
+   return(result);
+}
+   4:	b280      	uxth	r0, r0
+   6:	4770      	bx	lr
+Disassembly of section .text.__LDREXW:
+
+00000000 <__LDREXW>:
+__LDREXW():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:719
+ */
+uint32_t __LDREXW(uint32_t *addr)
+{
+    uint32_t result=0;
+  
+   __ASM volatile ("ldrex %0, [%1]" : "=r" (result) : "r" (addr) );
+   0:	e850 0f00 	ldrex	r0, [r0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:721
+   return(result);
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.__STREXB:
+
+00000000 <__STREXB>:
+__STREXB():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:736
+ */
+uint32_t __STREXB(uint8_t value, uint8_t *addr)
+{
+   uint32_t result=0;
+  
+   __ASM volatile ("strexb %0, %2, [%1]" : "=r" (result) : "r" (addr), "r" (value) );
+   0:	e8c1 0f41 	strexb	r1, r0, [r1]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:738
+   return(result);
+}
+   4:	4608      	mov	r0, r1
+   6:	4770      	bx	lr
+Disassembly of section .text.__STREXH:
+
+00000000 <__STREXH>:
+__STREXH():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:753
+ */
+uint32_t __STREXH(uint16_t value, uint16_t *addr)
+{
+   uint32_t result=0;
+  
+   __ASM volatile ("strexh %0, %2, [%1]" : "=r" (result) : "r" (addr), "r" (value) );
+   0:	e8c1 0f51 	strexh	r1, r0, [r1]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:755
+   return(result);
+}
+   4:	4608      	mov	r0, r1
+   6:	4770      	bx	lr
+Disassembly of section .text.__STREXW:
+
+00000000 <__STREXW>:
+__STREXW():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:770
+ */
+uint32_t __STREXW(uint32_t value, uint32_t *addr)
+{
+   uint32_t result=0;
+  
+   __ASM volatile ("strex %0, %2, [%1]" : "=r" (result) : "r" (addr), "r" (value) );
+   0:	e841 0100 	strex	r1, r0, [r1]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\CMSIS\CM3\CoreSupport/core_cm3.c:772
+   return(result);
+}
+   4:	4608      	mov	r0, r1
+   6:	4770      	bx	lr

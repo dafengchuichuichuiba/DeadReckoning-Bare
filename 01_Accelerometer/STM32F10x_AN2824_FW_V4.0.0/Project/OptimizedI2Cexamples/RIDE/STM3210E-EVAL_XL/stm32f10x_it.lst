@@ -1,0 +1,1306 @@
+
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\stm32f10x_it.o:     file format elf32-littlearm
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\stm32f10x_it.o
+
+Disassembly of section .text.NMI_Handler:
+
+00000000 <NMI_Handler>:
+NMI_Handler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:64
+  * @param  None
+  * @retval : None
+  */
+void NMI_Handler(void)
+{
+}
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.HardFault_Handler:
+
+00000000 <HardFault_Handler>:
+HardFault_Handler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:72
+  * @brief  This function handles Hard Fault exception.
+  * @param  None
+  * @retval : None
+  */
+void HardFault_Handler(void)
+{
+   0:	e7fe      	b.n	0 <HardFault_Handler>
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.MemManage_Handler:
+
+00000000 <MemManage_Handler>:
+MemManage_Handler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:85
+  * @brief  This function handles Memory Manage exception.
+  * @param  None
+  * @retval : None
+  */
+void MemManage_Handler(void)
+{
+   0:	e7fe      	b.n	0 <MemManage_Handler>
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.BusFault_Handler:
+
+00000000 <BusFault_Handler>:
+BusFault_Handler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:98
+  * @brief  This function handles Bus Fault exception.
+  * @param  None
+  * @retval : None
+  */
+void BusFault_Handler(void)
+{
+   0:	e7fe      	b.n	0 <BusFault_Handler>
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.UsageFault_Handler:
+
+00000000 <UsageFault_Handler>:
+UsageFault_Handler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:111
+  * @brief  This function handles Usage Fault exception.
+  * @param  None
+  * @retval : None
+  */
+void UsageFault_Handler(void)
+{
+   0:	e7fe      	b.n	0 <UsageFault_Handler>
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.SVC_Handler:
+
+00000000 <SVC_Handler>:
+SVC_Handler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:125
+  * @param  None
+  * @retval : None
+  */
+void SVC_Handler(void)
+{
+}
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.DebugMon_Handler:
+
+00000000 <DebugMon_Handler>:
+DebugMon_Handler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:134
+  * @param  None
+  * @retval : None
+  */
+void DebugMon_Handler(void)
+{
+}
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.PendSV_Handler:
+
+00000000 <PendSV_Handler>:
+PendSV_Handler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:143
+  * @param  None
+  * @retval : None
+  */
+void PendSV_Handler(void)
+{
+}
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.SysTick_Handler:
+
+00000000 <SysTick_Handler>:
+SysTick_Handler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:152
+  * @param  None
+  * @retval : None
+  */
+void SysTick_Handler(void)
+{
+}
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C1_EV_IRQHandler:
+
+00000000 <I2C1_EV_IRQHandler>:
+I2C1_EV_IRQHandler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:169
+  * @brief  This function handles I2C1 Event interrupt request.
+  * @param  None
+  * @retval : None
+  */
+void I2C1_EV_IRQHandler(void)
+{
+   0:	b513      	push	{r0, r1, r4, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:171
+
+    __IO uint32_t SR1Register =0;
+   2:	2300      	movs	r3, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:197
+        /* Clear ADDR by reading SR2 register */
+        SR2Register = I2C1->SR2;
+    }
+#else
+    /* Read the I2C1 SR1 and SR2 status registers */
+    SR1Register = I2C1->SR1;
+   4:	4a6d      	ldr	r2, [pc, #436]	(1bc <I2C1_EV_IRQHandler+0x1bc>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:171
+  * @retval : None
+  */
+void I2C1_EV_IRQHandler(void)
+{
+
+    __IO uint32_t SR1Register =0;
+   6:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:172
+    __IO uint32_t SR2Register =0;
+   8:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:197
+        /* Clear ADDR by reading SR2 register */
+        SR2Register = I2C1->SR2;
+    }
+#else
+    /* Read the I2C1 SR1 and SR2 status registers */
+    SR1Register = I2C1->SR1;
+   a:	8a93      	ldrh	r3, [r2, #20]
+   c:	b29b      	uxth	r3, r3
+   e:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:198
+    SR2Register = I2C1->SR2;
+  10:	8b13      	ldrh	r3, [r2, #24]
+  12:	b29b      	uxth	r3, r3
+  14:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:201
+
+    /* If I2C1 is slave (MSL flag = 0) */
+    if ((SR2Register &0x0001) != 0x0001)
+  16:	9b00      	ldr	r3, [sp, #0]
+  18:	f013 0201 	ands.w	r2, r3, #1	; 0x1
+  1c:	d135      	bne.n	8a <I2C1_EV_IRQHandler+0x8a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:204
+    {
+        /* If ADDR = 1: EV1 */
+        if ((SR1Register & 0x0002) == 0x0002)
+  1e:	9b01      	ldr	r3, [sp, #4]
+  20:	f013 0f02 	tst.w	r3, #2	; 0x2
+  24:	d004      	beq.n	30 <I2C1_EV_IRQHandler+0x30>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:211
+            /* Clear SR1Register and SR2Register variables to prepare for next IT */
+            SR1Register = 0;
+            SR2Register = 0;
+            /* Initialize the transmit/receive counters for next transmission/reception
+            using Interrupt  */
+            Tx_Idx1 = 0;
+  26:	4b66      	ldr	r3, [pc, #408]	(1c0 <I2C1_EV_IRQHandler+0x1c0>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:207
+    {
+        /* If ADDR = 1: EV1 */
+        if ((SR1Register & 0x0002) == 0x0002)
+        {
+            /* Clear SR1Register and SR2Register variables to prepare for next IT */
+            SR1Register = 0;
+  28:	9201      	str	r2, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:208
+            SR2Register = 0;
+  2a:	9200      	str	r2, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:211
+            /* Initialize the transmit/receive counters for next transmission/reception
+            using Interrupt  */
+            Tx_Idx1 = 0;
+  2c:	701a      	strb	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:212
+            Rx_Idx1 = 0;
+  2e:	705a      	strb	r2, [r3, #1]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:215
+        }
+        /* If TXE = 1: EV3 */
+        if ((SR1Register & 0x0080) == 0x0080)
+  30:	9b01      	ldr	r3, [sp, #4]
+  32:	f013 0f80 	tst.w	r3, #128	; 0x80
+  36:	d00b      	beq.n	50 <I2C1_EV_IRQHandler+0x50>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:218
+        {
+            /* Write data in data register */
+            I2C1->DR = Buffer_Tx1[Tx_Idx1++];
+  38:	4861      	ldr	r0, [pc, #388]	(1c0 <I2C1_EV_IRQHandler+0x1c0>)
+  3a:	4a62      	ldr	r2, [pc, #392]	(1c4 <I2C1_EV_IRQHandler+0x1c4>)
+  3c:	7803      	ldrb	r3, [r0, #0]
+  3e:	5cd1      	ldrb	r1, [r2, r3]
+  40:	4a5e      	ldr	r2, [pc, #376]	(1bc <I2C1_EV_IRQHandler+0x1bc>)
+  42:	3301      	adds	r3, #1
+  44:	b2db      	uxtb	r3, r3
+  46:	8211      	strh	r1, [r2, #16]
+  48:	7003      	strb	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:219
+            SR1Register = 0;
+  4a:	2300      	movs	r3, #0
+  4c:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:220
+            SR2Register = 0;
+  4e:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:223
+        }
+        /* If RXNE = 1: EV2 */
+        if ((SR1Register & 0x0040) == 0x0040)
+  50:	9b01      	ldr	r3, [sp, #4]
+  52:	f013 0f40 	tst.w	r3, #64	; 0x40
+  56:	d00b      	beq.n	70 <I2C1_EV_IRQHandler+0x70>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:226
+        {
+            /* Read data from data register */
+            Buffer_Rx1[Rx_Idx1++] = I2C1->DR;
+  58:	4859      	ldr	r0, [pc, #356]	(1c0 <I2C1_EV_IRQHandler+0x1c0>)
+  5a:	4a58      	ldr	r2, [pc, #352]	(1bc <I2C1_EV_IRQHandler+0x1bc>)
+  5c:	7843      	ldrb	r3, [r0, #1]
+  5e:	8a11      	ldrh	r1, [r2, #16]
+  60:	4a59      	ldr	r2, [pc, #356]	(1c8 <I2C1_EV_IRQHandler+0x1c8>)
+  62:	54d1      	strb	r1, [r2, r3]
+  64:	3301      	adds	r3, #1
+  66:	b2db      	uxtb	r3, r3
+  68:	7043      	strb	r3, [r0, #1]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:227
+            SR1Register = 0;
+  6a:	2300      	movs	r3, #0
+  6c:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:228
+            SR2Register = 0;
+  6e:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:232
+
+        }
+        /* If STOPF =1: EV4 (Slave has detected a STOP condition on the bus */
+        if (( SR1Register & 0x0010) == 0x0010)
+  70:	9b01      	ldr	r3, [sp, #4]
+  72:	f013 0f10 	tst.w	r3, #16	; 0x10
+  76:	d008      	beq.n	8a <I2C1_EV_IRQHandler+0x8a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:234
+        {
+            I2C1->CR1 |= CR1_PE_Set;
+  78:	4b50      	ldr	r3, [pc, #320]	(1bc <I2C1_EV_IRQHandler+0x1bc>)
+  7a:	881a      	ldrh	r2, [r3, #0]
+  7c:	b292      	uxth	r2, r2
+  7e:	f042 0201 	orr.w	r2, r2, #1	; 0x1
+  82:	801a      	strh	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:235
+            SR1Register = 0;
+  84:	2300      	movs	r3, #0
+  86:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:236
+            SR2Register = 0;
+  88:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:244
+    } /* End slave mode */
+
+#endif
+
+    /* If SB = 1, I2C1 master sent a START on the bus: EV5) */
+    if ((SR1Register &0x0001) == 0x0001)
+  8a:	9b01      	ldr	r3, [sp, #4]
+  8c:	f013 0f01 	tst.w	r3, #1	; 0x1
+  90:	d006      	beq.n	a0 <I2C1_EV_IRQHandler+0xa0>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:249
+    {
+
+        /* Send the slave address for transmssion or for reception (according to the configured value
+            in the write master write routine */
+        I2C1->DR = Address;
+  92:	4b4e      	ldr	r3, [pc, #312]	(1cc <I2C1_EV_IRQHandler+0x1cc>)
+  94:	781a      	ldrb	r2, [r3, #0]
+  96:	4b49      	ldr	r3, [pc, #292]	(1bc <I2C1_EV_IRQHandler+0x1bc>)
+  98:	821a      	strh	r2, [r3, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:250
+        SR1Register = 0;
+  9a:	2300      	movs	r3, #0
+  9c:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:251
+        SR2Register = 0;
+  9e:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:255
+    }
+    /* If I2C1 is Master (MSL flag = 1) */
+
+    if ((SR2Register &0x0001) == 0x0001)
+  a0:	9b00      	ldr	r3, [sp, #0]
+  a2:	f013 0f01 	tst.w	r3, #1	; 0x1
+  a6:	f000 8087 	beq.w	1b8 <I2C1_EV_IRQHandler+0x1b8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:258
+    {
+        /* If ADDR = 1, EV6 */
+        if ((SR1Register &0x0002) == 0x0002)
+  aa:	9b01      	ldr	r3, [sp, #4]
+  ac:	f013 0f02 	tst.w	r3, #2	; 0x2
+  b0:	d02d      	beq.n	10e <I2C1_EV_IRQHandler+0x10e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:261
+        {
+            /* Write the first data in case the Master is Transmitter */
+            if (I2CDirection == I2C_DIRECTION_TX)
+  b2:	4b47      	ldr	r3, [pc, #284]	(1d0 <I2C1_EV_IRQHandler+0x1d0>)
+  b4:	4942      	ldr	r1, [pc, #264]	(1c0 <I2C1_EV_IRQHandler+0x1c0>)
+  b6:	681b      	ldr	r3, [r3, #0]
+  b8:	4c46      	ldr	r4, [pc, #280]	(1d4 <I2C1_EV_IRQHandler+0x1d4>)
+  ba:	b9a3      	cbnz	r3, e6 <I2C1_EV_IRQHandler+0xe6>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:264
+            {
+                /* Initialize the Transmit counter */
+                Tx_Idx1 = 0;
+  bc:	700b      	strb	r3, [r1, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:266
+                /* Write the first data in the data register */
+                I2C1->DR = Buffer_Tx1[Tx_Idx1++];
+  be:	780b      	ldrb	r3, [r1, #0]
+  c0:	4a40      	ldr	r2, [pc, #256]	(1c4 <I2C1_EV_IRQHandler+0x1c4>)
+  c2:	483e      	ldr	r0, [pc, #248]	(1bc <I2C1_EV_IRQHandler+0x1bc>)
+  c4:	5cd2      	ldrb	r2, [r2, r3]
+  c6:	3301      	adds	r3, #1
+  c8:	b2db      	uxtb	r3, r3
+  ca:	8202      	strh	r2, [r0, #16]
+  cc:	700b      	strb	r3, [r1, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:268
+                /* Decrement the number of bytes to be written */
+                NumbOfBytes1--;
+  ce:	6823      	ldr	r3, [r4, #0]
+  d0:	3b01      	subs	r3, #1
+  d2:	6023      	str	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:271
+                /* If no further data to be sent, disable the I2C BUF IT
+                in order to not have a TxE  interrupt */
+                if (NumbOfBytes1 == 0)
+  d4:	6823      	ldr	r3, [r4, #0]
+  d6:	b9bb      	cbnz	r3, 108 <I2C1_EV_IRQHandler+0x108>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:273
+                {
+                    I2C1->CR2 &= (uint16_t)~I2C_IT_BUF;
+  d8:	8883      	ldrh	r3, [r0, #4]
+  da:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+  de:	041b      	lsls	r3, r3, #16
+  e0:	0c1b      	lsrs	r3, r3, #16
+  e2:	8083      	strh	r3, [r0, #4]
+  e4:	e010      	b.n	108 <I2C1_EV_IRQHandler+0x108>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:282
+            /* Master Receiver */
+            else
+
+            {
+                /* Initialize Receive counter */
+                Rx_Idx1 = 0;
+  e6:	2300      	movs	r3, #0
+  e8:	704b      	strb	r3, [r1, #1]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:286
+                /* At this stage, ADDR is cleared because both SR1 and SR2 were read.*/
+                /* EV6_1: used for single byte reception. The ACK disable and the STOP
+                Programming should be done just after ADDR is cleared. */
+                if (NumbOfBytes1 == 1)
+  ea:	6823      	ldr	r3, [r4, #0]
+  ec:	2b01      	cmp	r3, #1
+  ee:	d10b      	bne.n	108 <I2C1_EV_IRQHandler+0x108>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:289
+                {
+                    /* Clear ACK */
+                    I2C1->CR1 &= CR1_ACK_Reset;
+  f0:	4b32      	ldr	r3, [pc, #200]	(1bc <I2C1_EV_IRQHandler+0x1bc>)
+  f2:	881a      	ldrh	r2, [r3, #0]
+  f4:	f422 6280 	bic.w	r2, r2, #1024	; 0x400
+  f8:	0412      	lsls	r2, r2, #16
+  fa:	0c12      	lsrs	r2, r2, #16
+  fc:	801a      	strh	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:291
+                    /* Program the STOP */
+                    I2C1->CR1 |= CR1_STOP_Set;
+  fe:	881a      	ldrh	r2, [r3, #0]
+ 100:	b292      	uxth	r2, r2
+ 102:	f442 7200 	orr.w	r2, r2, #512	; 0x200
+ 106:	801a      	strh	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:294
+                }
+            }
+            SR1Register = 0;
+ 108:	2300      	movs	r3, #0
+ 10a:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:295
+            SR2Register = 0;
+ 10c:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:300
+
+        }
+        /* Master transmits the remaing data: from data2 until the last one.  */
+        /* If TXE is set */
+        if ((SR1Register &0x0084) == 0x0080)
+ 10e:	9b01      	ldr	r3, [sp, #4]
+ 110:	f003 0384 	and.w	r3, r3, #132	; 0x84
+ 114:	2b80      	cmp	r3, #128
+ 116:	d119      	bne.n	14c <I2C1_EV_IRQHandler+0x14c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:303
+        {
+            /* If there is still data to write */
+            if (NumbOfBytes1!=0)
+ 118:	482e      	ldr	r0, [pc, #184]	(1d4 <I2C1_EV_IRQHandler+0x1d4>)
+ 11a:	6803      	ldr	r3, [r0, #0]
+ 11c:	b19b      	cbz	r3, 146 <I2C1_EV_IRQHandler+0x146>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:306
+            {
+                /* Write the data in DR register */
+                I2C1->DR = Buffer_Tx1[Tx_Idx1++];
+ 11e:	4928      	ldr	r1, [pc, #160]	(1c0 <I2C1_EV_IRQHandler+0x1c0>)
+ 120:	4a28      	ldr	r2, [pc, #160]	(1c4 <I2C1_EV_IRQHandler+0x1c4>)
+ 122:	780b      	ldrb	r3, [r1, #0]
+ 124:	4c25      	ldr	r4, [pc, #148]	(1bc <I2C1_EV_IRQHandler+0x1bc>)
+ 126:	5cd2      	ldrb	r2, [r2, r3]
+ 128:	3301      	adds	r3, #1
+ 12a:	b2db      	uxtb	r3, r3
+ 12c:	8222      	strh	r2, [r4, #16]
+ 12e:	700b      	strb	r3, [r1, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:308
+                /* Decrment the number of data to be written */
+                NumbOfBytes1--;
+ 130:	6803      	ldr	r3, [r0, #0]
+ 132:	3b01      	subs	r3, #1
+ 134:	6003      	str	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:311
+                /* If  no data remains to write, disable the BUF IT in order
+                to not have again a TxE interrupt. */
+                if (NumbOfBytes1 == 0)
+ 136:	6803      	ldr	r3, [r0, #0]
+ 138:	b92b      	cbnz	r3, 146 <I2C1_EV_IRQHandler+0x146>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:314
+                {
+                    /* Disable the BUF IT */
+                    I2C1->CR2 &= (uint16_t)~I2C_IT_BUF;
+ 13a:	88a3      	ldrh	r3, [r4, #4]
+ 13c:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+ 140:	041b      	lsls	r3, r3, #16
+ 142:	0c1b      	lsrs	r3, r3, #16
+ 144:	80a3      	strh	r3, [r4, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:317
+                }
+            }
+            SR1Register = 0;
+ 146:	2300      	movs	r3, #0
+ 148:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:318
+            SR2Register = 0;
+ 14a:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:321
+        }
+        /* If BTF and TXE are set (EV8_2), program the STOP */
+        if ((SR1Register &0x0084) == 0x0084)
+ 14c:	9b01      	ldr	r3, [sp, #4]
+ 14e:	f003 0384 	and.w	r3, r3, #132	; 0x84
+ 152:	2b84      	cmp	r3, #132
+ 154:	d10e      	bne.n	174 <I2C1_EV_IRQHandler+0x174>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:325
+        {
+
+            /* Program the STOP */
+            I2C1->CR1 |= CR1_STOP_Set;
+ 156:	4a19      	ldr	r2, [pc, #100]	(1bc <I2C1_EV_IRQHandler+0x1bc>)
+ 158:	8813      	ldrh	r3, [r2, #0]
+ 15a:	b29b      	uxth	r3, r3
+ 15c:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 160:	8013      	strh	r3, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:327
+            /* Disable EVT IT In order to not have again a BTF IT */
+            I2C1->CR2 &= (uint16_t)~I2C_IT_EVT;
+ 162:	8893      	ldrh	r3, [r2, #4]
+ 164:	f423 7300 	bic.w	r3, r3, #512	; 0x200
+ 168:	041b      	lsls	r3, r3, #16
+ 16a:	0c1b      	lsrs	r3, r3, #16
+ 16c:	8093      	strh	r3, [r2, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:328
+            SR1Register = 0;
+ 16e:	2300      	movs	r3, #0
+ 170:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:329
+            SR2Register = 0;
+ 172:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:332
+        }
+        /* If RXNE is set */
+        if ((SR1Register &0x0040) == 0x0040)
+ 174:	9b01      	ldr	r3, [sp, #4]
+ 176:	f013 0f40 	tst.w	r3, #64	; 0x40
+ 17a:	d01d      	beq.n	1b8 <I2C1_EV_IRQHandler+0x1b8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:335
+        {
+            /* Read the data register */
+            Buffer_Rx1[Rx_Idx1++] = I2C1->DR;
+ 17c:	4810      	ldr	r0, [pc, #64]	(1c0 <I2C1_EV_IRQHandler+0x1c0>)
+ 17e:	4c0f      	ldr	r4, [pc, #60]	(1bc <I2C1_EV_IRQHandler+0x1bc>)
+ 180:	7843      	ldrb	r3, [r0, #1]
+ 182:	4a11      	ldr	r2, [pc, #68]	(1c8 <I2C1_EV_IRQHandler+0x1c8>)
+ 184:	8a21      	ldrh	r1, [r4, #16]
+ 186:	54d1      	strb	r1, [r2, r3]
+ 188:	3301      	adds	r3, #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:337
+            /* Decrement the number of bytes to be read */
+            NumbOfBytes1--;
+ 18a:	4a12      	ldr	r2, [pc, #72]	(1d4 <I2C1_EV_IRQHandler+0x1d4>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:335
+        }
+        /* If RXNE is set */
+        if ((SR1Register &0x0040) == 0x0040)
+        {
+            /* Read the data register */
+            Buffer_Rx1[Rx_Idx1++] = I2C1->DR;
+ 18c:	b2db      	uxtb	r3, r3
+ 18e:	7043      	strb	r3, [r0, #1]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:337
+            /* Decrement the number of bytes to be read */
+            NumbOfBytes1--;
+ 190:	6813      	ldr	r3, [r2, #0]
+ 192:	3b01      	subs	r3, #1
+ 194:	6013      	str	r3, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:339
+            /* If it remains only one byte to read, disable ACK and program the STOP (EV7_1) */
+            if (NumbOfBytes1 == 1)
+ 196:	6813      	ldr	r3, [r2, #0]
+ 198:	2b01      	cmp	r3, #1
+ 19a:	d10a      	bne.n	1b2 <I2C1_EV_IRQHandler+0x1b2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:342
+            {
+                /* Clear ACK */
+                I2C1->CR1 &= CR1_ACK_Reset;
+ 19c:	8823      	ldrh	r3, [r4, #0]
+ 19e:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+ 1a2:	041b      	lsls	r3, r3, #16
+ 1a4:	0c1b      	lsrs	r3, r3, #16
+ 1a6:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:344
+                /* Program the STOP */
+                I2C1->CR1 |= CR1_STOP_Set;
+ 1a8:	8823      	ldrh	r3, [r4, #0]
+ 1aa:	b29b      	uxth	r3, r3
+ 1ac:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 1b0:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:346
+            }
+            SR1Register = 0;
+ 1b2:	2300      	movs	r3, #0
+ 1b4:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:347
+            SR2Register = 0;
+ 1b6:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:353
+        }
+
+    }
+
+
+}
+ 1b8:	bd1c      	pop	{r2, r3, r4, pc}
+ 1ba:	46c0      	nop			(mov r8, r8)
+ 1bc:	40005400 	.word	0x40005400
+	...
+Disassembly of section .text.I2C2_EV_IRQHandler:
+
+00000000 <I2C2_EV_IRQHandler>:
+I2C2_EV_IRQHandler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:365
+  * @brief  This function handles I2C1 Event interrupt request.
+  * @param  None
+  * @retval : None
+  */
+void I2C2_EV_IRQHandler(void)
+{
+   0:	b513      	push	{r0, r1, r4, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:367
+
+    __IO uint32_t SR1Register =0;
+   2:	2300      	movs	r3, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:393
+        /* Clear ADDR by reading SR2 register */
+        SR2Register = I2C2->SR2;
+    }
+#else
+    /* Read the I2C1 SR1 and SR2 status registers */
+    SR1Register = I2C2->SR1;
+   4:	4a6d      	ldr	r2, [pc, #436]	(1bc <I2C2_EV_IRQHandler+0x1bc>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:367
+  * @retval : None
+  */
+void I2C2_EV_IRQHandler(void)
+{
+
+    __IO uint32_t SR1Register =0;
+   6:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:368
+    __IO uint32_t SR2Register =0;
+   8:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:393
+        /* Clear ADDR by reading SR2 register */
+        SR2Register = I2C2->SR2;
+    }
+#else
+    /* Read the I2C1 SR1 and SR2 status registers */
+    SR1Register = I2C2->SR1;
+   a:	8a93      	ldrh	r3, [r2, #20]
+   c:	b29b      	uxth	r3, r3
+   e:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:394
+    SR2Register = I2C2->SR2;
+  10:	8b13      	ldrh	r3, [r2, #24]
+  12:	b29b      	uxth	r3, r3
+  14:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:397
+
+    /* If I2C2 is slave (MSL flag = 0) */
+    if ((SR2Register &0x0001) != 0x0001)
+  16:	9b00      	ldr	r3, [sp, #0]
+  18:	f013 0201 	ands.w	r2, r3, #1	; 0x1
+  1c:	d135      	bne.n	8a <I2C2_EV_IRQHandler+0x8a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:400
+    {
+        /* If ADDR = 1: EV1 */
+        if ((SR1Register & 0x0002) == 0x0002)
+  1e:	9b01      	ldr	r3, [sp, #4]
+  20:	f013 0f02 	tst.w	r3, #2	; 0x2
+  24:	d004      	beq.n	30 <I2C2_EV_IRQHandler+0x30>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:407
+            /* Clear SR1Register SR2Register variables to prepare for next IT*/
+            SR1Register = 0;
+            SR2Register = 0;
+            /* Initialize the transmit/receive counters for next transmission/reception
+            using Interrupt  */
+            Tx_Idx2 = 0;
+  26:	4b66      	ldr	r3, [pc, #408]	(1c0 <I2C2_EV_IRQHandler+0x1c0>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:403
+    {
+        /* If ADDR = 1: EV1 */
+        if ((SR1Register & 0x0002) == 0x0002)
+        {
+            /* Clear SR1Register SR2Register variables to prepare for next IT*/
+            SR1Register = 0;
+  28:	9201      	str	r2, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:404
+            SR2Register = 0;
+  2a:	9200      	str	r2, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:407
+            /* Initialize the transmit/receive counters for next transmission/reception
+            using Interrupt  */
+            Tx_Idx2 = 0;
+  2c:	709a      	strb	r2, [r3, #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:408
+            Rx_Idx2 = 0;
+  2e:	70da      	strb	r2, [r3, #3]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:411
+        }
+        /* If TXE = 1: EV3 */
+        if ((SR1Register & 0x0080) == 0x0080)
+  30:	9b01      	ldr	r3, [sp, #4]
+  32:	f013 0f80 	tst.w	r3, #128	; 0x80
+  36:	d00b      	beq.n	50 <I2C2_EV_IRQHandler+0x50>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:414
+        {
+            /* Write data in data register */
+            I2C2->DR = Buffer_Tx2[Tx_Idx2++];
+  38:	4861      	ldr	r0, [pc, #388]	(1c0 <I2C2_EV_IRQHandler+0x1c0>)
+  3a:	4a62      	ldr	r2, [pc, #392]	(1c4 <I2C2_EV_IRQHandler+0x1c4>)
+  3c:	7883      	ldrb	r3, [r0, #2]
+  3e:	5cd1      	ldrb	r1, [r2, r3]
+  40:	4a5e      	ldr	r2, [pc, #376]	(1bc <I2C2_EV_IRQHandler+0x1bc>)
+  42:	3301      	adds	r3, #1
+  44:	b2db      	uxtb	r3, r3
+  46:	8211      	strh	r1, [r2, #16]
+  48:	7083      	strb	r3, [r0, #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:415
+            SR1Register = 0;
+  4a:	2300      	movs	r3, #0
+  4c:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:416
+            SR2Register = 0;
+  4e:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:419
+        }
+        /* If RXNE = 1: EV2 */
+        if ((SR1Register & 0x0040) == 0x0040)
+  50:	9b01      	ldr	r3, [sp, #4]
+  52:	f013 0f40 	tst.w	r3, #64	; 0x40
+  56:	d00b      	beq.n	70 <I2C2_EV_IRQHandler+0x70>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:422
+        {
+            /* Read data from data register */
+            Buffer_Rx2[Rx_Idx2++] = I2C2->DR;
+  58:	4859      	ldr	r0, [pc, #356]	(1c0 <I2C2_EV_IRQHandler+0x1c0>)
+  5a:	4a58      	ldr	r2, [pc, #352]	(1bc <I2C2_EV_IRQHandler+0x1bc>)
+  5c:	78c3      	ldrb	r3, [r0, #3]
+  5e:	8a11      	ldrh	r1, [r2, #16]
+  60:	4a59      	ldr	r2, [pc, #356]	(1c8 <I2C2_EV_IRQHandler+0x1c8>)
+  62:	54d1      	strb	r1, [r2, r3]
+  64:	3301      	adds	r3, #1
+  66:	b2db      	uxtb	r3, r3
+  68:	70c3      	strb	r3, [r0, #3]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:423
+            SR1Register = 0;
+  6a:	2300      	movs	r3, #0
+  6c:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:424
+            SR2Register = 0;
+  6e:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:428
+
+        }
+        /* If STOPF =1: EV4 (Slave has detected a STOP condition on the bus */
+        if (( SR1Register & 0x0010) == 0x0010)
+  70:	9b01      	ldr	r3, [sp, #4]
+  72:	f013 0f10 	tst.w	r3, #16	; 0x10
+  76:	d008      	beq.n	8a <I2C2_EV_IRQHandler+0x8a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:430
+        {
+            I2C2->CR1 |= CR1_PE_Set;
+  78:	4b50      	ldr	r3, [pc, #320]	(1bc <I2C2_EV_IRQHandler+0x1bc>)
+  7a:	881a      	ldrh	r2, [r3, #0]
+  7c:	b292      	uxth	r2, r2
+  7e:	f042 0201 	orr.w	r2, r2, #1	; 0x1
+  82:	801a      	strh	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:431
+            SR1Register = 0;
+  84:	2300      	movs	r3, #0
+  86:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:432
+            SR2Register = 0;
+  88:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:439
+    } /* End slave mode */
+
+#endif
+
+    /* If SB = 1, I2C1 master sent a START on the bus: EV5) */
+    if ((SR1Register &0x0001) == 0x0001)
+  8a:	9b01      	ldr	r3, [sp, #4]
+  8c:	f013 0f01 	tst.w	r3, #1	; 0x1
+  90:	d006      	beq.n	a0 <I2C2_EV_IRQHandler+0xa0>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:444
+    {
+
+        /* Send the slave address for transmssion or for reception (according to the configured value
+            in the write master write routine */
+        I2C2->DR = Address;
+  92:	4b4e      	ldr	r3, [pc, #312]	(1cc <I2C2_EV_IRQHandler+0x1cc>)
+  94:	781a      	ldrb	r2, [r3, #0]
+  96:	4b49      	ldr	r3, [pc, #292]	(1bc <I2C2_EV_IRQHandler+0x1bc>)
+  98:	821a      	strh	r2, [r3, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:445
+        SR1Register = 0;
+  9a:	2300      	movs	r3, #0
+  9c:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:446
+        SR2Register = 0;
+  9e:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:450
+    }
+    /* If I2C2 is Master (MSL flag = 1) */
+
+    if ((SR2Register &0x0001) == 0x0001)
+  a0:	9b00      	ldr	r3, [sp, #0]
+  a2:	f013 0f01 	tst.w	r3, #1	; 0x1
+  a6:	f000 8087 	beq.w	1b8 <I2C2_EV_IRQHandler+0x1b8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:453
+    {
+        /* If ADDR = 1, EV6 */
+        if ((SR1Register &0x0002) == 0x0002)
+  aa:	9b01      	ldr	r3, [sp, #4]
+  ac:	f013 0f02 	tst.w	r3, #2	; 0x2
+  b0:	d02d      	beq.n	10e <I2C2_EV_IRQHandler+0x10e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:456
+        {
+            /* Write the first data in case the Master is Transmitter */
+            if (I2CDirection == I2C_DIRECTION_TX)
+  b2:	4b47      	ldr	r3, [pc, #284]	(1d0 <I2C2_EV_IRQHandler+0x1d0>)
+  b4:	4942      	ldr	r1, [pc, #264]	(1c0 <I2C2_EV_IRQHandler+0x1c0>)
+  b6:	681b      	ldr	r3, [r3, #0]
+  b8:	4c46      	ldr	r4, [pc, #280]	(1d4 <I2C2_EV_IRQHandler+0x1d4>)
+  ba:	b9a3      	cbnz	r3, e6 <I2C2_EV_IRQHandler+0xe6>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:459
+            {
+                /* Initialize the Transmit counter */
+                Tx_Idx2 = 0;
+  bc:	708b      	strb	r3, [r1, #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:461
+                /* Write the first data in the data register */
+                I2C2->DR = Buffer_Tx1[Tx_Idx2++];
+  be:	788b      	ldrb	r3, [r1, #2]
+  c0:	4a45      	ldr	r2, [pc, #276]	(1d8 <I2C2_EV_IRQHandler+0x1d8>)
+  c2:	483e      	ldr	r0, [pc, #248]	(1bc <I2C2_EV_IRQHandler+0x1bc>)
+  c4:	5cd2      	ldrb	r2, [r2, r3]
+  c6:	3301      	adds	r3, #1
+  c8:	b2db      	uxtb	r3, r3
+  ca:	8202      	strh	r2, [r0, #16]
+  cc:	708b      	strb	r3, [r1, #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:463
+                /* Decrement the number of bytes to be written */
+                NumbOfBytes2--;
+  ce:	6823      	ldr	r3, [r4, #0]
+  d0:	3b01      	subs	r3, #1
+  d2:	6023      	str	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:466
+                /* If no further data to be sent, disable the I2C BUF IT
+                in order to not have a TxE  interrupt */
+                if (NumbOfBytes2 == 0)
+  d4:	6823      	ldr	r3, [r4, #0]
+  d6:	b9bb      	cbnz	r3, 108 <I2C2_EV_IRQHandler+0x108>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:468
+                {
+                    I2C2->CR2 &= (uint16_t)~I2C_IT_BUF;
+  d8:	8883      	ldrh	r3, [r0, #4]
+  da:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+  de:	041b      	lsls	r3, r3, #16
+  e0:	0c1b      	lsrs	r3, r3, #16
+  e2:	8083      	strh	r3, [r0, #4]
+  e4:	e010      	b.n	108 <I2C2_EV_IRQHandler+0x108>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:477
+            /* Master Receiver */
+            else
+
+            {
+                /* Initialize Receive counter */
+                Rx_Idx2 = 0;
+  e6:	2300      	movs	r3, #0
+  e8:	70cb      	strb	r3, [r1, #3]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:481
+                /* At this stage, ADDR is cleared because both SR1 and SR2 were read.*/
+                /* EV6_1: used for single byte reception. The ACK disable and the STOP
+                Programming should be done just after ADDR is cleared. */
+                if (NumbOfBytes2 == 1)
+  ea:	6823      	ldr	r3, [r4, #0]
+  ec:	2b01      	cmp	r3, #1
+  ee:	d10b      	bne.n	108 <I2C2_EV_IRQHandler+0x108>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:484
+                {
+                    /* Clear ACK */
+                    I2C2->CR1 &= CR1_ACK_Reset;
+  f0:	4b32      	ldr	r3, [pc, #200]	(1bc <I2C2_EV_IRQHandler+0x1bc>)
+  f2:	881a      	ldrh	r2, [r3, #0]
+  f4:	f422 6280 	bic.w	r2, r2, #1024	; 0x400
+  f8:	0412      	lsls	r2, r2, #16
+  fa:	0c12      	lsrs	r2, r2, #16
+  fc:	801a      	strh	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:486
+                    /* Program the STOP */
+                    I2C2->CR1 |= CR1_STOP_Set;
+  fe:	881a      	ldrh	r2, [r3, #0]
+ 100:	b292      	uxth	r2, r2
+ 102:	f442 7200 	orr.w	r2, r2, #512	; 0x200
+ 106:	801a      	strh	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:489
+                }
+            }
+            SR1Register = 0;
+ 108:	2300      	movs	r3, #0
+ 10a:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:490
+            SR2Register = 0;
+ 10c:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:495
+
+        }
+        /* Master transmits the remaing data: from data2 until the last one.  */
+        /* If TXE is set */
+        if ((SR1Register &0x0084) == 0x0080)
+ 10e:	9b01      	ldr	r3, [sp, #4]
+ 110:	f003 0384 	and.w	r3, r3, #132	; 0x84
+ 114:	2b80      	cmp	r3, #128
+ 116:	d119      	bne.n	14c <I2C2_EV_IRQHandler+0x14c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:498
+        {
+            /* If there is still data to write */
+            if (NumbOfBytes2!=0)
+ 118:	482e      	ldr	r0, [pc, #184]	(1d4 <I2C2_EV_IRQHandler+0x1d4>)
+ 11a:	6803      	ldr	r3, [r0, #0]
+ 11c:	b19b      	cbz	r3, 146 <I2C2_EV_IRQHandler+0x146>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:501
+            {
+                /* Write the data in DR register */
+                I2C2->DR = Buffer_Tx2[Tx_Idx2++];
+ 11e:	4928      	ldr	r1, [pc, #160]	(1c0 <I2C2_EV_IRQHandler+0x1c0>)
+ 120:	4a28      	ldr	r2, [pc, #160]	(1c4 <I2C2_EV_IRQHandler+0x1c4>)
+ 122:	788b      	ldrb	r3, [r1, #2]
+ 124:	4c25      	ldr	r4, [pc, #148]	(1bc <I2C2_EV_IRQHandler+0x1bc>)
+ 126:	5cd2      	ldrb	r2, [r2, r3]
+ 128:	3301      	adds	r3, #1
+ 12a:	b2db      	uxtb	r3, r3
+ 12c:	8222      	strh	r2, [r4, #16]
+ 12e:	708b      	strb	r3, [r1, #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:503
+                /* Decrment the number of data to be written */
+                NumbOfBytes2--;
+ 130:	6803      	ldr	r3, [r0, #0]
+ 132:	3b01      	subs	r3, #1
+ 134:	6003      	str	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:506
+                /* If  no data remains to write, disable the BUF IT in order
+                to not have again a TxE interrupt. */
+                if (NumbOfBytes2 == 0)
+ 136:	6803      	ldr	r3, [r0, #0]
+ 138:	b92b      	cbnz	r3, 146 <I2C2_EV_IRQHandler+0x146>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:509
+                {
+                    /* Disable the BUF IT */
+                    I2C2->CR2 &= (uint16_t)~I2C_IT_BUF;
+ 13a:	88a3      	ldrh	r3, [r4, #4]
+ 13c:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+ 140:	041b      	lsls	r3, r3, #16
+ 142:	0c1b      	lsrs	r3, r3, #16
+ 144:	80a3      	strh	r3, [r4, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:512
+                }
+            }
+            SR1Register = 0;
+ 146:	2300      	movs	r3, #0
+ 148:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:513
+            SR2Register = 0;
+ 14a:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:516
+        }
+        /* If BTF and TXE are set (EV8_2), program the STOP */
+        if ((SR1Register &0x0084) == 0x0084)
+ 14c:	9b01      	ldr	r3, [sp, #4]
+ 14e:	f003 0384 	and.w	r3, r3, #132	; 0x84
+ 152:	2b84      	cmp	r3, #132
+ 154:	d10e      	bne.n	174 <I2C2_EV_IRQHandler+0x174>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:520
+        {
+
+            /* Program the STOP */
+            I2C2->CR1 |= CR1_STOP_Set;
+ 156:	4a19      	ldr	r2, [pc, #100]	(1bc <I2C2_EV_IRQHandler+0x1bc>)
+ 158:	8813      	ldrh	r3, [r2, #0]
+ 15a:	b29b      	uxth	r3, r3
+ 15c:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 160:	8013      	strh	r3, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:522
+            /* Disable EVT IT In order to not have again a BTF IT */
+            I2C2->CR2 &= (uint16_t)~I2C_IT_EVT;
+ 162:	8893      	ldrh	r3, [r2, #4]
+ 164:	f423 7300 	bic.w	r3, r3, #512	; 0x200
+ 168:	041b      	lsls	r3, r3, #16
+ 16a:	0c1b      	lsrs	r3, r3, #16
+ 16c:	8093      	strh	r3, [r2, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:523
+            SR1Register = 0;
+ 16e:	2300      	movs	r3, #0
+ 170:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:524
+            SR2Register = 0;
+ 172:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:527
+        }
+        /* If RXNE is set */
+        if ((SR1Register &0x0040) == 0x0040)
+ 174:	9b01      	ldr	r3, [sp, #4]
+ 176:	f013 0f40 	tst.w	r3, #64	; 0x40
+ 17a:	d01d      	beq.n	1b8 <I2C2_EV_IRQHandler+0x1b8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:530
+        {
+            /* Read the data register */
+            Buffer_Rx2[Rx_Idx2++] = I2C2->DR;
+ 17c:	4810      	ldr	r0, [pc, #64]	(1c0 <I2C2_EV_IRQHandler+0x1c0>)
+ 17e:	4c0f      	ldr	r4, [pc, #60]	(1bc <I2C2_EV_IRQHandler+0x1bc>)
+ 180:	78c3      	ldrb	r3, [r0, #3]
+ 182:	4a11      	ldr	r2, [pc, #68]	(1c8 <I2C2_EV_IRQHandler+0x1c8>)
+ 184:	8a21      	ldrh	r1, [r4, #16]
+ 186:	54d1      	strb	r1, [r2, r3]
+ 188:	3301      	adds	r3, #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:532
+            /* Decrement the number of bytes to be read */
+            NumbOfBytes2--;
+ 18a:	4a12      	ldr	r2, [pc, #72]	(1d4 <I2C2_EV_IRQHandler+0x1d4>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:530
+        }
+        /* If RXNE is set */
+        if ((SR1Register &0x0040) == 0x0040)
+        {
+            /* Read the data register */
+            Buffer_Rx2[Rx_Idx2++] = I2C2->DR;
+ 18c:	b2db      	uxtb	r3, r3
+ 18e:	70c3      	strb	r3, [r0, #3]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:532
+            /* Decrement the number of bytes to be read */
+            NumbOfBytes2--;
+ 190:	6813      	ldr	r3, [r2, #0]
+ 192:	3b01      	subs	r3, #1
+ 194:	6013      	str	r3, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:535
+
+            /* If it remains only one byte to read, disable ACK and program the STOP (EV7_1) */
+            if (NumbOfBytes2 == 1)
+ 196:	6813      	ldr	r3, [r2, #0]
+ 198:	2b01      	cmp	r3, #1
+ 19a:	d10a      	bne.n	1b2 <I2C2_EV_IRQHandler+0x1b2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:538
+            {
+                /* Clear ACK */
+                I2C2->CR1 &= CR1_ACK_Reset;
+ 19c:	8823      	ldrh	r3, [r4, #0]
+ 19e:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+ 1a2:	041b      	lsls	r3, r3, #16
+ 1a4:	0c1b      	lsrs	r3, r3, #16
+ 1a6:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:540
+                /* Program the STOP */
+                I2C2->CR1 |= CR1_STOP_Set;
+ 1a8:	8823      	ldrh	r3, [r4, #0]
+ 1aa:	b29b      	uxth	r3, r3
+ 1ac:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 1b0:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:542
+            }
+            SR1Register = 0;
+ 1b2:	2300      	movs	r3, #0
+ 1b4:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:543
+            SR2Register = 0;
+ 1b6:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:551
+
+
+    }
+
+
+}
+ 1b8:	bd1c      	pop	{r2, r3, r4, pc}
+ 1ba:	46c0      	nop			(mov r8, r8)
+ 1bc:	40005800 	.word	0x40005800
+	...
+Disassembly of section .text.I2C2_ER_IRQHandler:
+
+00000000 <I2C2_ER_IRQHandler>:
+I2C2_ER_IRQHandler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:562
+  * @brief  This function handles I2C2 Error interrupt request.
+  * @param  None
+  * @retval : None
+  */
+void I2C2_ER_IRQHandler(void)
+{
+   0:	b082      	sub	sp, #8
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:564
+
+    __IO uint32_t SR1Register =0;
+   2:	2100      	movs	r1, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:567
+
+    /* Read the I2C1 status register */
+    SR1Register = I2C2->SR1;
+   4:	4a1c      	ldr	r2, [pc, #112]	(78 <I2C2_ER_IRQHandler+0x78>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:564
+  * @retval : None
+  */
+void I2C2_ER_IRQHandler(void)
+{
+
+    __IO uint32_t SR1Register =0;
+   6:	9101      	str	r1, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:567
+
+    /* Read the I2C1 status register */
+    SR1Register = I2C2->SR1;
+   8:	8a93      	ldrh	r3, [r2, #20]
+   a:	b29b      	uxth	r3, r3
+   c:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:569
+    /* If AF = 1 */
+    if ((SR1Register & 0x0400) == 0x0400)
+   e:	9b01      	ldr	r3, [sp, #4]
+  10:	f413 6f80 	tst.w	r3, #1024	; 0x400
+  14:	d006      	beq.n	24 <I2C2_ER_IRQHandler+0x24>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:571
+    {
+        I2C2->SR1 &= 0xFBFF;
+  16:	8a93      	ldrh	r3, [r2, #20]
+  18:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+  1c:	041b      	lsls	r3, r3, #16
+  1e:	0c1b      	lsrs	r3, r3, #16
+  20:	8293      	strh	r3, [r2, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:572
+        SR1Register = 0;
+  22:	9101      	str	r1, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:575
+    }
+    /* If ARLO = 1 */
+    if ((SR1Register & 0x0200) == 0x0200)
+  24:	9b01      	ldr	r3, [sp, #4]
+  26:	f413 7f00 	tst.w	r3, #512	; 0x200
+  2a:	d008      	beq.n	3e <I2C2_ER_IRQHandler+0x3e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:577
+    {
+        I2C2->SR1 &= 0xFBFF;
+  2c:	4b12      	ldr	r3, [pc, #72]	(78 <I2C2_ER_IRQHandler+0x78>)
+  2e:	8a9a      	ldrh	r2, [r3, #20]
+  30:	f422 6280 	bic.w	r2, r2, #1024	; 0x400
+  34:	0412      	lsls	r2, r2, #16
+  36:	0c12      	lsrs	r2, r2, #16
+  38:	829a      	strh	r2, [r3, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:578
+        SR1Register = 0;
+  3a:	2300      	movs	r3, #0
+  3c:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:581
+    }
+    /* If BERR = 1 */
+    if ((SR1Register & 0x0100) == 0x0100)
+  3e:	9b01      	ldr	r3, [sp, #4]
+  40:	f413 7f80 	tst.w	r3, #256	; 0x100
+  44:	d008      	beq.n	58 <I2C2_ER_IRQHandler+0x58>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:583
+    {
+        I2C2->SR1 &= 0xFEFF;
+  46:	4b0c      	ldr	r3, [pc, #48]	(78 <I2C2_ER_IRQHandler+0x78>)
+  48:	8a9a      	ldrh	r2, [r3, #20]
+  4a:	f422 7280 	bic.w	r2, r2, #256	; 0x100
+  4e:	0412      	lsls	r2, r2, #16
+  50:	0c12      	lsrs	r2, r2, #16
+  52:	829a      	strh	r2, [r3, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:584
+        SR1Register = 0;
+  54:	2300      	movs	r3, #0
+  56:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:589
+    }
+
+    /* If OVR = 1 */
+
+    if ((SR1Register & 0x0800) == 0x0800)
+  58:	9b01      	ldr	r3, [sp, #4]
+  5a:	f413 6f00 	tst.w	r3, #2048	; 0x800
+  5e:	d008      	beq.n	72 <I2C2_ER_IRQHandler+0x72>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:591
+    {
+        I2C2->SR1 &= 0xF7FF;
+  60:	4b05      	ldr	r3, [pc, #20]	(78 <I2C2_ER_IRQHandler+0x78>)
+  62:	8a9a      	ldrh	r2, [r3, #20]
+  64:	f422 6200 	bic.w	r2, r2, #2048	; 0x800
+  68:	0412      	lsls	r2, r2, #16
+  6a:	0c12      	lsrs	r2, r2, #16
+  6c:	829a      	strh	r2, [r3, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:592
+        SR1Register = 0;
+  6e:	2300      	movs	r3, #0
+  70:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:594
+    }
+}
+  72:	b002      	add	sp, #8
+  74:	4770      	bx	lr
+  76:	46c0      	nop			(mov r8, r8)
+  78:	40005800 	.word	0x40005800
+Disassembly of section .text.I2C1_ER_IRQHandler:
+
+00000000 <I2C1_ER_IRQHandler>:
+I2C1_ER_IRQHandler():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:604
+  * @brief  This function handles I2C1 Error interrupt request.
+  * @param  None
+  * @retval : None
+  */
+void I2C1_ER_IRQHandler(void)
+{
+   0:	b082      	sub	sp, #8
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:606
+
+    __IO uint32_t SR1Register =0;
+   2:	2100      	movs	r1, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:609
+
+    /* Read the I2C1 status register */
+    SR1Register = I2C1->SR1;
+   4:	4a1c      	ldr	r2, [pc, #112]	(78 <I2C1_ER_IRQHandler+0x78>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:606
+  * @retval : None
+  */
+void I2C1_ER_IRQHandler(void)
+{
+
+    __IO uint32_t SR1Register =0;
+   6:	9101      	str	r1, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:609
+
+    /* Read the I2C1 status register */
+    SR1Register = I2C1->SR1;
+   8:	8a93      	ldrh	r3, [r2, #20]
+   a:	b29b      	uxth	r3, r3
+   c:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:611
+    /* If AF = 1 */
+    if ((SR1Register & 0x0400) == 0x0400)
+   e:	9b01      	ldr	r3, [sp, #4]
+  10:	f413 6f80 	tst.w	r3, #1024	; 0x400
+  14:	d006      	beq.n	24 <I2C1_ER_IRQHandler+0x24>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:613
+    {
+        I2C1->SR1 &= 0xFBFF;
+  16:	8a93      	ldrh	r3, [r2, #20]
+  18:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+  1c:	041b      	lsls	r3, r3, #16
+  1e:	0c1b      	lsrs	r3, r3, #16
+  20:	8293      	strh	r3, [r2, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:614
+        SR1Register = 0;
+  22:	9101      	str	r1, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:617
+    }
+    /* If ARLO = 1 */
+    if ((SR1Register & 0x0200) == 0x0200)
+  24:	9b01      	ldr	r3, [sp, #4]
+  26:	f413 7f00 	tst.w	r3, #512	; 0x200
+  2a:	d008      	beq.n	3e <I2C1_ER_IRQHandler+0x3e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:619
+    {
+        I2C1->SR1 &= 0xFBFF;
+  2c:	4b12      	ldr	r3, [pc, #72]	(78 <I2C1_ER_IRQHandler+0x78>)
+  2e:	8a9a      	ldrh	r2, [r3, #20]
+  30:	f422 6280 	bic.w	r2, r2, #1024	; 0x400
+  34:	0412      	lsls	r2, r2, #16
+  36:	0c12      	lsrs	r2, r2, #16
+  38:	829a      	strh	r2, [r3, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:620
+        SR1Register = 0;
+  3a:	2300      	movs	r3, #0
+  3c:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:623
+    }
+    /* If BERR = 1 */
+    if ((SR1Register & 0x0100) == 0x0100)
+  3e:	9b01      	ldr	r3, [sp, #4]
+  40:	f413 7f80 	tst.w	r3, #256	; 0x100
+  44:	d008      	beq.n	58 <I2C1_ER_IRQHandler+0x58>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:625
+    {
+        I2C1->SR1 &= 0xFEFF;
+  46:	4b0c      	ldr	r3, [pc, #48]	(78 <I2C1_ER_IRQHandler+0x78>)
+  48:	8a9a      	ldrh	r2, [r3, #20]
+  4a:	f422 7280 	bic.w	r2, r2, #256	; 0x100
+  4e:	0412      	lsls	r2, r2, #16
+  50:	0c12      	lsrs	r2, r2, #16
+  52:	829a      	strh	r2, [r3, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:626
+        SR1Register = 0;
+  54:	2300      	movs	r3, #0
+  56:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:631
+    }
+
+    /* If OVR = 1 */
+
+    if ((SR1Register & 0x0800) == 0x0800)
+  58:	9b01      	ldr	r3, [sp, #4]
+  5a:	f413 6f00 	tst.w	r3, #2048	; 0x800
+  5e:	d008      	beq.n	72 <I2C1_ER_IRQHandler+0x72>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:633
+    {
+        I2C1->SR1 &= 0xF7FF;
+  60:	4b05      	ldr	r3, [pc, #20]	(78 <I2C1_ER_IRQHandler+0x78>)
+  62:	8a9a      	ldrh	r2, [r3, #20]
+  64:	f422 6200 	bic.w	r2, r2, #2048	; 0x800
+  68:	0412      	lsls	r2, r2, #16
+  6a:	0c12      	lsrs	r2, r2, #16
+  6c:	829a      	strh	r2, [r3, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:634
+        SR1Register = 0;
+  6e:	2300      	movs	r3, #0
+  70:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/stm32f10x_it.c:636
+    }
+}
+  72:	b002      	add	sp, #8
+  74:	4770      	bx	lr
+  76:	46c0      	nop			(mov r8, r8)
+  78:	40005400 	.word	0x40005400

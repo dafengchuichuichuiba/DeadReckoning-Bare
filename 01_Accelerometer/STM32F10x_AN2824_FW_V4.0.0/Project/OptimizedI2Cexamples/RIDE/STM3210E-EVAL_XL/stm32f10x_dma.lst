@@ -1,0 +1,623 @@
+
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\stm32f10x_dma.o:     file format elf32-littlearm
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\stm32f10x_dma.o
+
+Disassembly of section .text.DMA_DeInit:
+
+00000000 <DMA_DeInit>:
+DMA_DeInit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:115
+void DMA_DeInit(DMA_Channel_TypeDef* DMAy_Channelx)
+{
+  /* Check the parameters */
+  assert_param(IS_DMA_ALL_PERIPH(DMAy_Channelx));
+  /* Disable the selected DMAy Channelx */
+  DMAy_Channelx->CCR &= CCR_ENABLE_Reset;
+   0:	6803      	ldr	r3, [r0, #0]
+   2:	f023 0301 	bic.w	r3, r3, #1	; 0x1
+   6:	6003      	str	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:117
+  /* Reset DMAy Channelx control register */
+  DMAy_Channelx->CCR  = 0;
+   8:	2300      	movs	r3, #0
+   a:	6003      	str	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:120
+  
+  /* Reset DMAy Channelx remaining bytes register */
+  DMAy_Channelx->CNDTR = 0;
+   c:	6043      	str	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:123
+  
+  /* Reset DMAy Channelx peripheral address register */
+  DMAy_Channelx->CPAR  = 0;
+   e:	6083      	str	r3, [r0, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:126
+  
+  /* Reset DMAy Channelx memory address register */
+  DMAy_Channelx->CMAR = 0;
+  10:	60c3      	str	r3, [r0, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:128
+  
+  if (DMAy_Channelx == DMA1_Channel1)
+  12:	4b29      	ldr	r3, [pc, #164]	(b8 <DMA_DeInit+0xb8>)
+  14:	4298      	cmp	r0, r3
+  16:	d101      	bne.n	1c <DMA_DeInit+0x1c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:131
+  {
+    /* Reset interrupt pending bits for DMA1 Channel1 */
+    DMA1->IFCR |= DMA1_Channel1_IT_Mask;
+  18:	4a28      	ldr	r2, [pc, #160]	(bc <DMA_DeInit+0xbc>)
+  1a:	e027      	b.n	6c <DMA_DeInit+0x6c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:133
+  }
+  else if (DMAy_Channelx == DMA1_Channel2)
+  1c:	4b28      	ldr	r3, [pc, #160]	(c0 <DMA_DeInit+0xc0>)
+  1e:	4298      	cmp	r0, r3
+  20:	d101      	bne.n	26 <DMA_DeInit+0x26>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:136
+  {
+    /* Reset interrupt pending bits for DMA1 Channel2 */
+    DMA1->IFCR |= DMA1_Channel2_IT_Mask;
+  22:	4a26      	ldr	r2, [pc, #152]	(bc <DMA_DeInit+0xbc>)
+  24:	e02a      	b.n	7c <DMA_DeInit+0x7c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:138
+  }
+  else if (DMAy_Channelx == DMA1_Channel3)
+  26:	4b27      	ldr	r3, [pc, #156]	(c4 <DMA_DeInit+0xc4>)
+  28:	4298      	cmp	r0, r3
+  2a:	d101      	bne.n	30 <DMA_DeInit+0x30>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:141
+  {
+    /* Reset interrupt pending bits for DMA1 Channel3 */
+    DMA1->IFCR |= DMA1_Channel3_IT_Mask;
+  2c:	4a23      	ldr	r2, [pc, #140]	(bc <DMA_DeInit+0xbc>)
+  2e:	e02d      	b.n	8c <DMA_DeInit+0x8c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:143
+  }
+  else if (DMAy_Channelx == DMA1_Channel4)
+  30:	4b25      	ldr	r3, [pc, #148]	(c8 <DMA_DeInit+0xc8>)
+  32:	4298      	cmp	r0, r3
+  34:	d101      	bne.n	3a <DMA_DeInit+0x3a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:146
+  {
+    /* Reset interrupt pending bits for DMA1 Channel4 */
+    DMA1->IFCR |= DMA1_Channel4_IT_Mask;
+  36:	4a21      	ldr	r2, [pc, #132]	(bc <DMA_DeInit+0xbc>)
+  38:	e030      	b.n	9c <DMA_DeInit+0x9c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:148
+  }
+  else if (DMAy_Channelx == DMA1_Channel5)
+  3a:	4b24      	ldr	r3, [pc, #144]	(cc <DMA_DeInit+0xcc>)
+  3c:	4298      	cmp	r0, r3
+  3e:	d101      	bne.n	44 <DMA_DeInit+0x44>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:151
+  {
+    /* Reset interrupt pending bits for DMA1 Channel5 */
+    DMA1->IFCR |= DMA1_Channel5_IT_Mask;
+  40:	4a1e      	ldr	r2, [pc, #120]	(bc <DMA_DeInit+0xbc>)
+  42:	e033      	b.n	ac <DMA_DeInit+0xac>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:153
+  }
+  else if (DMAy_Channelx == DMA1_Channel6)
+  44:	4b22      	ldr	r3, [pc, #136]	(d0 <DMA_DeInit+0xd0>)
+  46:	4298      	cmp	r0, r3
+  48:	d104      	bne.n	54 <DMA_DeInit+0x54>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:156
+  {
+    /* Reset interrupt pending bits for DMA1 Channel6 */
+    DMA1->IFCR |= DMA1_Channel6_IT_Mask;
+  4a:	4a1c      	ldr	r2, [pc, #112]	(bc <DMA_DeInit+0xbc>)
+  4c:	6853      	ldr	r3, [r2, #4]
+  4e:	f443 0370 	orr.w	r3, r3, #15728640	; 0xf00000
+  52:	e02e      	b.n	b2 <DMA_DeInit+0xb2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:158
+  }
+  else if (DMAy_Channelx == DMA1_Channel7)
+  54:	4b1f      	ldr	r3, [pc, #124]	(d4 <DMA_DeInit+0xd4>)
+  56:	4298      	cmp	r0, r3
+  58:	d104      	bne.n	64 <DMA_DeInit+0x64>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:161
+  {
+    /* Reset interrupt pending bits for DMA1 Channel7 */
+    DMA1->IFCR |= DMA1_Channel7_IT_Mask;
+  5a:	4a18      	ldr	r2, [pc, #96]	(bc <DMA_DeInit+0xbc>)
+  5c:	6853      	ldr	r3, [r2, #4]
+  5e:	f043 6370 	orr.w	r3, r3, #251658240	; 0xf000000
+  62:	e026      	b.n	b2 <DMA_DeInit+0xb2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:163
+  }
+  else if (DMAy_Channelx == DMA2_Channel1)
+  64:	4b1c      	ldr	r3, [pc, #112]	(d8 <DMA_DeInit+0xd8>)
+  66:	4298      	cmp	r0, r3
+  68:	d104      	bne.n	74 <DMA_DeInit+0x74>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:166
+  {
+    /* Reset interrupt pending bits for DMA2 Channel1 */
+    DMA2->IFCR |= DMA2_Channel1_IT_Mask;
+  6a:	4a1c      	ldr	r2, [pc, #112]	(dc <DMA_DeInit+0xdc>)
+  6c:	6853      	ldr	r3, [r2, #4]
+  6e:	f043 030f 	orr.w	r3, r3, #15	; 0xf
+  72:	e01e      	b.n	b2 <DMA_DeInit+0xb2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:168
+  }
+  else if (DMAy_Channelx == DMA2_Channel2)
+  74:	4b1a      	ldr	r3, [pc, #104]	(e0 <DMA_DeInit+0xe0>)
+  76:	4298      	cmp	r0, r3
+  78:	d104      	bne.n	84 <DMA_DeInit+0x84>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:171
+  {
+    /* Reset interrupt pending bits for DMA2 Channel2 */
+    DMA2->IFCR |= DMA2_Channel2_IT_Mask;
+  7a:	4a18      	ldr	r2, [pc, #96]	(dc <DMA_DeInit+0xdc>)
+  7c:	6853      	ldr	r3, [r2, #4]
+  7e:	f043 03f0 	orr.w	r3, r3, #240	; 0xf0
+  82:	e016      	b.n	b2 <DMA_DeInit+0xb2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:173
+  }
+  else if (DMAy_Channelx == DMA2_Channel3)
+  84:	4b17      	ldr	r3, [pc, #92]	(e4 <DMA_DeInit+0xe4>)
+  86:	4298      	cmp	r0, r3
+  88:	d104      	bne.n	94 <DMA_DeInit+0x94>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:176
+  {
+    /* Reset interrupt pending bits for DMA2 Channel3 */
+    DMA2->IFCR |= DMA2_Channel3_IT_Mask;
+  8a:	4a14      	ldr	r2, [pc, #80]	(dc <DMA_DeInit+0xdc>)
+  8c:	6853      	ldr	r3, [r2, #4]
+  8e:	f443 6370 	orr.w	r3, r3, #3840	; 0xf00
+  92:	e00e      	b.n	b2 <DMA_DeInit+0xb2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:178
+  }
+  else if (DMAy_Channelx == DMA2_Channel4)
+  94:	4b14      	ldr	r3, [pc, #80]	(e8 <DMA_DeInit+0xe8>)
+  96:	4298      	cmp	r0, r3
+  98:	d104      	bne.n	a4 <DMA_DeInit+0xa4>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:181
+  {
+    /* Reset interrupt pending bits for DMA2 Channel4 */
+    DMA2->IFCR |= DMA2_Channel4_IT_Mask;
+  9a:	4a10      	ldr	r2, [pc, #64]	(dc <DMA_DeInit+0xdc>)
+  9c:	6853      	ldr	r3, [r2, #4]
+  9e:	f443 4370 	orr.w	r3, r3, #61440	; 0xf000
+  a2:	e006      	b.n	b2 <DMA_DeInit+0xb2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:185
+  }
+  else
+  { 
+    if (DMAy_Channelx == DMA2_Channel5)
+  a4:	4b11      	ldr	r3, [pc, #68]	(ec <DMA_DeInit+0xec>)
+  a6:	4298      	cmp	r0, r3
+  a8:	d104      	bne.n	b4 <DMA_DeInit+0xb4>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:188
+    {
+      /* Reset interrupt pending bits for DMA2 Channel5 */
+      DMA2->IFCR |= DMA2_Channel5_IT_Mask;
+  aa:	4a0c      	ldr	r2, [pc, #48]	(dc <DMA_DeInit+0xdc>)
+  ac:	6853      	ldr	r3, [r2, #4]
+  ae:	f443 2370 	orr.w	r3, r3, #983040	; 0xf0000
+  b2:	6053      	str	r3, [r2, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:191
+    }
+  }
+}
+  b4:	4770      	bx	lr
+  b6:	46c0      	nop			(mov r8, r8)
+  b8:	40020008 	.word	0x40020008
+  bc:	40020000 	.word	0x40020000
+  c0:	4002001c 	.word	0x4002001c
+  c4:	40020030 	.word	0x40020030
+  c8:	40020044 	.word	0x40020044
+  cc:	40020058 	.word	0x40020058
+  d0:	4002006c 	.word	0x4002006c
+  d4:	40020080 	.word	0x40020080
+  d8:	40020408 	.word	0x40020408
+  dc:	40020400 	.word	0x40020400
+  e0:	4002041c 	.word	0x4002041c
+  e4:	40020430 	.word	0x40020430
+  e8:	40020444 	.word	0x40020444
+  ec:	40020458 	.word	0x40020458
+Disassembly of section .text.DMA_Init:
+
+00000000 <DMA_Init>:
+DMA_Init():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:232
+  /* Set MINC bit according to DMA_MemoryInc value */
+  /* Set PSIZE bits according to DMA_PeripheralDataSize value */
+  /* Set MSIZE bits according to DMA_MemoryDataSize value */
+  /* Set PL bits according to DMA_Priority value */
+  /* Set the MEM2MEM bit according to DMA_M2M value */
+  tmpreg |= DMA_InitStruct->DMA_DIR | DMA_InitStruct->DMA_Mode |
+   0:	688a      	ldr	r2, [r1, #8]
+   2:	6a0b      	ldr	r3, [r1, #32]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:203
+  * @param  DMA_InitStruct: pointer to a DMA_InitTypeDef structure that
+  *   contains the configuration information for the specified DMA Channel.
+  * @retval None
+  */
+void DMA_Init(DMA_Channel_TypeDef* DMAy_Channelx, DMA_InitTypeDef* DMA_InitStruct)
+{
+   4:	b510      	push	{r4, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:232
+  /* Set MINC bit according to DMA_MemoryInc value */
+  /* Set PSIZE bits according to DMA_PeripheralDataSize value */
+  /* Set MSIZE bits according to DMA_MemoryDataSize value */
+  /* Set PL bits according to DMA_Priority value */
+  /* Set the MEM2MEM bit according to DMA_M2M value */
+  tmpreg |= DMA_InitStruct->DMA_DIR | DMA_InitStruct->DMA_Mode |
+   6:	4313      	orrs	r3, r2
+   8:	690a      	ldr	r2, [r1, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:220
+  assert_param(IS_DMA_PRIORITY(DMA_InitStruct->DMA_Priority));
+  assert_param(IS_DMA_M2M_STATE(DMA_InitStruct->DMA_M2M));
+
+/*--------------------------- DMAy Channelx CCR Configuration -----------------*/
+  /* Get the DMAy_Channelx CCR value */
+  tmpreg = DMAy_Channelx->CCR;
+   a:	6804      	ldr	r4, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:232
+  /* Set MINC bit according to DMA_MemoryInc value */
+  /* Set PSIZE bits according to DMA_PeripheralDataSize value */
+  /* Set MSIZE bits according to DMA_MemoryDataSize value */
+  /* Set PL bits according to DMA_Priority value */
+  /* Set the MEM2MEM bit according to DMA_M2M value */
+  tmpreg |= DMA_InitStruct->DMA_DIR | DMA_InitStruct->DMA_Mode |
+   c:	4313      	orrs	r3, r2
+   e:	694a      	ldr	r2, [r1, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:222
+
+/*--------------------------- DMAy Channelx CCR Configuration -----------------*/
+  /* Get the DMAy_Channelx CCR value */
+  tmpreg = DMAy_Channelx->CCR;
+  /* Clear MEM2MEM, PL, MSIZE, PSIZE, MINC, PINC, CIRC and DIR bits */
+  tmpreg &= CCR_CLEAR_Mask;
+  10:	f424 44fe 	bic.w	r4, r4, #32512	; 0x7f00
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:232
+  /* Set MINC bit according to DMA_MemoryInc value */
+  /* Set PSIZE bits according to DMA_PeripheralDataSize value */
+  /* Set MSIZE bits according to DMA_MemoryDataSize value */
+  /* Set PL bits according to DMA_Priority value */
+  /* Set the MEM2MEM bit according to DMA_M2M value */
+  tmpreg |= DMA_InitStruct->DMA_DIR | DMA_InitStruct->DMA_Mode |
+  14:	4313      	orrs	r3, r2
+  16:	698a      	ldr	r2, [r1, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:222
+
+/*--------------------------- DMAy Channelx CCR Configuration -----------------*/
+  /* Get the DMAy_Channelx CCR value */
+  tmpreg = DMAy_Channelx->CCR;
+  /* Clear MEM2MEM, PL, MSIZE, PSIZE, MINC, PINC, CIRC and DIR bits */
+  tmpreg &= CCR_CLEAR_Mask;
+  18:	f024 04f0 	bic.w	r4, r4, #240	; 0xf0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:232
+  /* Set MINC bit according to DMA_MemoryInc value */
+  /* Set PSIZE bits according to DMA_PeripheralDataSize value */
+  /* Set MSIZE bits according to DMA_MemoryDataSize value */
+  /* Set PL bits according to DMA_Priority value */
+  /* Set the MEM2MEM bit according to DMA_M2M value */
+  tmpreg |= DMA_InitStruct->DMA_DIR | DMA_InitStruct->DMA_Mode |
+  1c:	4313      	orrs	r3, r2
+  1e:	69ca      	ldr	r2, [r1, #28]
+  20:	4313      	orrs	r3, r2
+  22:	6a4a      	ldr	r2, [r1, #36]
+  24:	4313      	orrs	r3, r2
+  26:	6a8a      	ldr	r2, [r1, #40]
+  28:	4313      	orrs	r3, r2
+  2a:	4323      	orrs	r3, r4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:238
+            DMA_InitStruct->DMA_PeripheralInc | DMA_InitStruct->DMA_MemoryInc |
+            DMA_InitStruct->DMA_PeripheralDataSize | DMA_InitStruct->DMA_MemoryDataSize |
+            DMA_InitStruct->DMA_Priority | DMA_InitStruct->DMA_M2M;
+
+  /* Write to DMAy Channelx CCR */
+  DMAy_Channelx->CCR = tmpreg;
+  2c:	6003      	str	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:242
+
+/*--------------------------- DMAy Channelx CNDTR Configuration ---------------*/
+  /* Write to DMAy Channelx CNDTR */
+  DMAy_Channelx->CNDTR = DMA_InitStruct->DMA_BufferSize;
+  2e:	68cb      	ldr	r3, [r1, #12]
+  30:	6043      	str	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:246
+
+/*--------------------------- DMAy Channelx CPAR Configuration ----------------*/
+  /* Write to DMAy Channelx CPAR */
+  DMAy_Channelx->CPAR = DMA_InitStruct->DMA_PeripheralBaseAddr;
+  32:	680b      	ldr	r3, [r1, #0]
+  34:	6083      	str	r3, [r0, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:250
+
+/*--------------------------- DMAy Channelx CMAR Configuration ----------------*/
+  /* Write to DMAy Channelx CMAR */
+  DMAy_Channelx->CMAR = DMA_InitStruct->DMA_MemoryBaseAddr;
+  36:	684b      	ldr	r3, [r1, #4]
+  38:	60c3      	str	r3, [r0, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:251
+}
+  3a:	bd10      	pop	{r4, pc}
+Disassembly of section .text.DMA_StructInit:
+
+00000000 <DMA_StructInit>:
+DMA_StructInit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:263
+  */
+void DMA_StructInit(DMA_InitTypeDef* DMA_InitStruct)
+{
+/*-------------- Reset DMA init structure parameters values ------------------*/
+  /* Initialize the DMA_PeripheralBaseAddr member */
+  DMA_InitStruct->DMA_PeripheralBaseAddr = 0;
+   0:	2300      	movs	r3, #0
+   2:	6003      	str	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:265
+  /* Initialize the DMA_MemoryBaseAddr member */
+  DMA_InitStruct->DMA_MemoryBaseAddr = 0;
+   4:	6043      	str	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:267
+  /* Initialize the DMA_DIR member */
+  DMA_InitStruct->DMA_DIR = DMA_DIR_PeripheralSRC;
+   6:	6083      	str	r3, [r0, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:269
+  /* Initialize the DMA_BufferSize member */
+  DMA_InitStruct->DMA_BufferSize = 0;
+   8:	60c3      	str	r3, [r0, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:271
+  /* Initialize the DMA_PeripheralInc member */
+  DMA_InitStruct->DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+   a:	6103      	str	r3, [r0, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:273
+  /* Initialize the DMA_MemoryInc member */
+  DMA_InitStruct->DMA_MemoryInc = DMA_MemoryInc_Disable;
+   c:	6143      	str	r3, [r0, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:275
+  /* Initialize the DMA_PeripheralDataSize member */
+  DMA_InitStruct->DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+   e:	6183      	str	r3, [r0, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:277
+  /* Initialize the DMA_MemoryDataSize member */
+  DMA_InitStruct->DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+  10:	61c3      	str	r3, [r0, #28]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:279
+  /* Initialize the DMA_Mode member */
+  DMA_InitStruct->DMA_Mode = DMA_Mode_Normal;
+  12:	6203      	str	r3, [r0, #32]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:281
+  /* Initialize the DMA_Priority member */
+  DMA_InitStruct->DMA_Priority = DMA_Priority_Low;
+  14:	6243      	str	r3, [r0, #36]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:283
+  /* Initialize the DMA_M2M member */
+  DMA_InitStruct->DMA_M2M = DMA_M2M_Disable;
+  16:	6283      	str	r3, [r0, #40]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:284
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.DMA_Cmd:
+
+00000000 <DMA_Cmd>:
+DMA_Cmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:300
+{
+  /* Check the parameters */
+  assert_param(IS_DMA_ALL_PERIPH(DMAy_Channelx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+
+  if (NewState != DISABLE)
+   0:	b119      	cbz	r1, a <DMA_Cmd+0xa>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:303
+  {
+    /* Enable the selected DMAy Channelx */
+    DMAy_Channelx->CCR |= CCR_ENABLE_Set;
+   2:	6803      	ldr	r3, [r0, #0]
+   4:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+   8:	e002      	b.n	10 <DMA_Cmd+0x10>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:308
+  }
+  else
+  {
+    /* Disable the selected DMAy Channelx */
+    DMAy_Channelx->CCR &= CCR_ENABLE_Reset;
+   a:	6803      	ldr	r3, [r0, #0]
+   c:	f023 0301 	bic.w	r3, r3, #1	; 0x1
+  10:	6003      	str	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:310
+  }
+}
+  12:	4770      	bx	lr
+Disassembly of section .text.DMA_ITConfig:
+
+00000000 <DMA_ITConfig>:
+DMA_ITConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:332
+{
+  /* Check the parameters */
+  assert_param(IS_DMA_ALL_PERIPH(DMAy_Channelx));
+  assert_param(IS_DMA_CONFIG_IT(DMA_IT));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b11a      	cbz	r2, a <DMA_ITConfig+0xa>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:335
+  {
+    /* Enable the selected DMA interrupts */
+    DMAy_Channelx->CCR |= DMA_IT;
+   2:	6803      	ldr	r3, [r0, #0]
+   4:	ea41 0303 	orr.w	r3, r1, r3
+   8:	e002      	b.n	10 <DMA_ITConfig+0x10>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:340
+  }
+  else
+  {
+    /* Disable the selected DMA interrupts */
+    DMAy_Channelx->CCR &= ~DMA_IT;
+   a:	6803      	ldr	r3, [r0, #0]
+   c:	ea23 0301 	bic.w	r3, r3, r1
+  10:	6003      	str	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:342
+  }
+}
+  12:	4770      	bx	lr
+Disassembly of section .text.DMA_GetCurrDataCounter:
+
+00000000 <DMA_GetCurrDataCounter>:
+DMA_GetCurrDataCounter():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:357
+uint16_t DMA_GetCurrDataCounter(DMA_Channel_TypeDef* DMAy_Channelx)
+{
+  /* Check the parameters */
+  assert_param(IS_DMA_ALL_PERIPH(DMAy_Channelx));
+  /* Return the number of remaining data units for DMAy Channelx */
+  return ((uint16_t)(DMAy_Channelx->CNDTR));
+   0:	6840      	ldr	r0, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:358
+}
+   2:	b280      	uxth	r0, r0
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.DMA_GetFlagStatus:
+
+00000000 <DMA_GetFlagStatus>:
+DMA_GetFlagStatus():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:422
+  uint32_t tmpreg = 0;
+  /* Check the parameters */
+  assert_param(IS_DMA_GET_FLAG(DMA_FLAG));
+
+  /* Calculate the used DMA */
+  if ((DMA_FLAG & FLAG_Mask) != (uint32_t)RESET)
+   0:	f010 5f80 	tst.w	r0, #268435456	; 0x10000000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:425
+  {
+    /* Get DMA2 ISR register value */
+    tmpreg = DMA2->ISR ;
+   4:	bf14      	ite	ne
+   6:	4b04      	ldrne	r3, [pc, #16]	(18 <DMA_GetFlagStatus+0x18>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:430
+  }
+  else
+  {
+    /* Get DMA1 ISR register value */
+    tmpreg = DMA1->ISR ;
+   8:	4b04      	ldreq	r3, [pc, #16]	(1c <DMA_GetFlagStatus+0x1c>)
+   a:	681b      	ldr	r3, [r3, #0]
+   c:	4203      	tst	r3, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:447
+    bitstatus = RESET;
+  }
+  
+  /* Return the DMA_FLAG status */
+  return  bitstatus;
+}
+   e:	bf0c      	ite	eq
+  10:	2000      	moveq	r0, #0
+  12:	2001      	movne	r0, #1
+  14:	4770      	bx	lr
+  16:	46c0      	nop			(mov r8, r8)
+  18:	40020400 	.word	0x40020400
+  1c:	40020000 	.word	0x40020000
+Disassembly of section .text.DMA_ClearFlag:
+
+00000000 <DMA_ClearFlag>:
+DMA_ClearFlag():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:509
+{
+  /* Check the parameters */
+  assert_param(IS_DMA_CLEAR_FLAG(DMA_FLAG));
+  /* Calculate the used DMA */
+
+  if ((DMA_FLAG & FLAG_Mask) != (uint32_t)RESET)
+   0:	f010 5f80 	tst.w	r0, #268435456	; 0x10000000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:512
+  {
+    /* Clear the selected DMA flags */
+    DMA2->IFCR = DMA_FLAG;
+   4:	bf14      	ite	ne
+   6:	4b02      	ldrne	r3, [pc, #8]	(10 <DMA_ClearFlag+0x10>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:517
+  }
+  else
+  {
+    /* Clear the selected DMA flags */
+    DMA1->IFCR = DMA_FLAG;
+   8:	4b02      	ldreq	r3, [pc, #8]	(14 <DMA_ClearFlag+0x14>)
+   a:	6058      	str	r0, [r3, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:519
+  }
+}
+   c:	4770      	bx	lr
+   e:	46c0      	nop			(mov r8, r8)
+  10:	40020400 	.word	0x40020400
+  14:	40020000 	.word	0x40020000
+Disassembly of section .text.DMA_GetITStatus:
+
+00000000 <DMA_GetITStatus>:
+DMA_GetITStatus():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:583
+  uint32_t tmpreg = 0;
+  /* Check the parameters */
+  assert_param(IS_DMA_GET_IT(DMA_IT));
+
+  /* Calculate the used DMA */
+  if ((DMA_IT & FLAG_Mask) != (uint32_t)RESET)
+   0:	f010 5f80 	tst.w	r0, #268435456	; 0x10000000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:586
+  {
+    /* Get DMA2 ISR register value */
+    tmpreg = DMA2->ISR ;
+   4:	bf14      	ite	ne
+   6:	4b04      	ldrne	r3, [pc, #16]	(18 <DMA_GetITStatus+0x18>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:591
+  }
+  else
+  {
+    /* Get DMA1 ISR register value */
+    tmpreg = DMA1->ISR ;
+   8:	4b04      	ldreq	r3, [pc, #16]	(1c <DMA_GetITStatus+0x1c>)
+   a:	681b      	ldr	r3, [r3, #0]
+   c:	4203      	tst	r3, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:607
+    /* DMA_IT is reset */
+    bitstatus = RESET;
+  }
+  /* Return the DMA_IT status */
+  return  bitstatus;
+}
+   e:	bf0c      	ite	eq
+  10:	2000      	moveq	r0, #0
+  12:	2001      	movne	r0, #1
+  14:	4770      	bx	lr
+  16:	46c0      	nop			(mov r8, r8)
+  18:	40020400 	.word	0x40020400
+  1c:	40020000 	.word	0x40020000
+Disassembly of section .text.DMA_ClearITPendingBit:
+
+00000000 <DMA_ClearITPendingBit>:
+DMA_ClearITPendingBit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:669
+{
+  /* Check the parameters */
+  assert_param(IS_DMA_CLEAR_IT(DMA_IT));
+
+  /* Calculate the used DMA */
+  if ((DMA_IT & FLAG_Mask) != (uint32_t)RESET)
+   0:	f010 5f80 	tst.w	r0, #268435456	; 0x10000000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:672
+  {
+    /* Clear the selected DMA interrupt pending bits */
+    DMA2->IFCR = DMA_IT;
+   4:	bf14      	ite	ne
+   6:	4b02      	ldrne	r3, [pc, #8]	(10 <DMA_ClearITPendingBit+0x10>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:677
+  }
+  else
+  {
+    /* Clear the selected DMA interrupt pending bits */
+    DMA1->IFCR = DMA_IT;
+   8:	4b02      	ldreq	r3, [pc, #8]	(14 <DMA_ClearITPendingBit+0x14>)
+   a:	6058      	str	r0, [r3, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_dma.c:679
+  }
+}
+   c:	4770      	bx	lr
+   e:	46c0      	nop			(mov r8, r8)
+  10:	40020400 	.word	0x40020400
+  14:	40020000 	.word	0x40020000

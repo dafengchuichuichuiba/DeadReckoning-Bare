@@ -1,0 +1,2730 @@
+
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\stm32f10x_flash.o:     file format elf32-littlearm
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\stm32f10x_flash.o
+
+Disassembly of section .text.FLASH_SetLatency:
+
+00000000 <FLASH_SetLatency>:
+FLASH_SetLatency():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:261
+  
+  /* Check the parameters */
+  assert_param(IS_FLASH_LATENCY(FLASH_Latency));
+  
+  /* Read the ACR register */
+  tmpreg = FLASH->ACR;  
+   0:	4b03      	ldr	r3, [pc, #12]	(10 <FLASH_SetLatency+0x10>)
+   2:	681a      	ldr	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:264
+  
+  /* Sets the Latency value */
+  tmpreg &= ACR_LATENCY_Mask;
+   4:	f002 0238 	and.w	r2, r2, #56	; 0x38
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:265
+  tmpreg |= FLASH_Latency;
+   8:	4310      	orrs	r0, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:268
+  
+  /* Write the ACR register */
+  FLASH->ACR = tmpreg;
+   a:	6018      	str	r0, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:269
+}
+   c:	4770      	bx	lr
+   e:	46c0      	nop			(mov r8, r8)
+  10:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_HalfCycleAccessCmd:
+
+00000000 <FLASH_HalfCycleAccessCmd>:
+FLASH_HalfCycleAccessCmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:286
+{
+  /* Check the parameters */
+  assert_param(IS_FLASH_HALFCYCLEACCESS_STATE(FLASH_HalfCycleAccess));
+  
+  /* Enable or disable the Half cycle access */
+  FLASH->ACR &= ACR_HLFCYA_Mask;
+   0:	4a04      	ldr	r2, [pc, #16]	(14 <FLASH_HalfCycleAccessCmd+0x14>)
+   2:	6813      	ldr	r3, [r2, #0]
+   4:	f023 0308 	bic.w	r3, r3, #8	; 0x8
+   8:	6013      	str	r3, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:287
+  FLASH->ACR |= FLASH_HalfCycleAccess;
+   a:	6813      	ldr	r3, [r2, #0]
+   c:	4318      	orrs	r0, r3
+   e:	6010      	str	r0, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:288
+}
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
+  14:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_PrefetchBufferCmd:
+
+00000000 <FLASH_PrefetchBufferCmd>:
+FLASH_PrefetchBufferCmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:305
+{
+  /* Check the parameters */
+  assert_param(IS_FLASH_PREFETCHBUFFER_STATE(FLASH_PrefetchBuffer));
+  
+  /* Enable or disable the Prefetch Buffer */
+  FLASH->ACR &= ACR_PRFTBE_Mask;
+   0:	4a04      	ldr	r2, [pc, #16]	(14 <FLASH_PrefetchBufferCmd+0x14>)
+   2:	6813      	ldr	r3, [r2, #0]
+   4:	f023 0310 	bic.w	r3, r3, #16	; 0x10
+   8:	6013      	str	r3, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:306
+  FLASH->ACR |= FLASH_PrefetchBuffer;
+   a:	6813      	ldr	r3, [r2, #0]
+   c:	4318      	orrs	r0, r3
+   e:	6010      	str	r0, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:307
+}
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
+  14:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_Unlock:
+
+00000000 <FLASH_Unlock>:
+FLASH_Unlock():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:321
+  * @retval None
+  */
+void FLASH_Unlock(void)
+{
+  /* Authorize the FPEC of Bank1 Access */
+  FLASH->KEYR = FLASH_KEY1;
+   0:	4b03      	ldr	r3, [pc, #12]	(10 <FLASH_Unlock+0x10>)
+   2:	4904      	ldr	r1, [pc, #16]	(14 <FLASH_Unlock+0x14>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:322
+  FLASH->KEYR = FLASH_KEY2;
+   4:	4a04      	ldr	r2, [pc, #16]	(18 <FLASH_Unlock+0x18>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:321
+  * @retval None
+  */
+void FLASH_Unlock(void)
+{
+  /* Authorize the FPEC of Bank1 Access */
+  FLASH->KEYR = FLASH_KEY1;
+   6:	6059      	str	r1, [r3, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:322
+  FLASH->KEYR = FLASH_KEY2;
+   8:	605a      	str	r2, [r3, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:326
+
+#ifdef STM32F10X_XL
+  /* Authorize the FPEC of Bank2 Access */
+  FLASH->KEYR2 = FLASH_KEY1;
+   a:	6459      	str	r1, [r3, #68]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:327
+  FLASH->KEYR2 = FLASH_KEY2;
+   c:	645a      	str	r2, [r3, #68]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:329
+#endif /* STM32F10X_XL */
+}
+   e:	4770      	bx	lr
+  10:	40022000 	.word	0x40022000
+  14:	45670123 	.word	0x45670123
+  18:	cdef89ab 	.word	0xcdef89ab
+Disassembly of section .text.FLASH_UnlockBank1:
+
+00000000 <FLASH_UnlockBank1>:
+FLASH_UnlockBank1():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:342
+  * @retval None
+  */
+void FLASH_UnlockBank1(void)
+{
+  /* Authorize the FPEC of Bank1 Access */
+  FLASH->KEYR = FLASH_KEY1;
+   0:	4b03      	ldr	r3, [pc, #12]	(10 <FLASH_UnlockBank1+0x10>)
+   2:	4a04      	ldr	r2, [pc, #16]	(14 <FLASH_UnlockBank1+0x14>)
+   4:	605a      	str	r2, [r3, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:343
+  FLASH->KEYR = FLASH_KEY2;
+   6:	f102 3288 	add.w	r2, r2, #2290649224	; 0x88888888
+   a:	605a      	str	r2, [r3, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:344
+}
+   c:	4770      	bx	lr
+   e:	46c0      	nop			(mov r8, r8)
+  10:	40022000 	.word	0x40022000
+  14:	45670123 	.word	0x45670123
+Disassembly of section .text.FLASH_UnlockBank2:
+
+00000000 <FLASH_UnlockBank2>:
+FLASH_UnlockBank2():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:356
+  * @retval None
+  */
+void FLASH_UnlockBank2(void)
+{
+  /* Authorize the FPEC of Bank2 Access */
+  FLASH->KEYR2 = FLASH_KEY1;
+   0:	4b03      	ldr	r3, [pc, #12]	(10 <FLASH_UnlockBank2+0x10>)
+   2:	4a04      	ldr	r2, [pc, #16]	(14 <FLASH_UnlockBank2+0x14>)
+   4:	645a      	str	r2, [r3, #68]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:357
+  FLASH->KEYR2 = FLASH_KEY2;
+   6:	f102 3288 	add.w	r2, r2, #2290649224	; 0x88888888
+   a:	645a      	str	r2, [r3, #68]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:359
+
+}
+   c:	4770      	bx	lr
+   e:	46c0      	nop			(mov r8, r8)
+  10:	40022000 	.word	0x40022000
+  14:	45670123 	.word	0x45670123
+Disassembly of section .text.FLASH_Lock:
+
+00000000 <FLASH_Lock>:
+FLASH_Lock():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:374
+  * @retval None
+  */
+void FLASH_Lock(void)
+{
+  /* Set the Lock Bit to lock the FPEC and the CR of  Bank1 */
+  FLASH->CR |= CR_LOCK_Set;
+   0:	4b04      	ldr	r3, [pc, #16]	(14 <FLASH_Lock+0x14>)
+   2:	691a      	ldr	r2, [r3, #16]
+   4:	f042 0280 	orr.w	r2, r2, #128	; 0x80
+   8:	611a      	str	r2, [r3, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:378
+
+#ifdef STM32F10X_XL
+  /* Set the Lock Bit to lock the FPEC and the CR of  Bank2 */
+  FLASH->CR2 |= CR_LOCK_Set;
+   a:	6d1a      	ldr	r2, [r3, #80]
+   c:	f042 0280 	orr.w	r2, r2, #128	; 0x80
+  10:	651a      	str	r2, [r3, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:380
+#endif /* STM32F10X_XL */
+}
+  12:	4770      	bx	lr
+  14:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_LockBank1:
+
+00000000 <FLASH_LockBank1>:
+FLASH_LockBank1():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:394
+  * @retval None
+  */
+void FLASH_LockBank1(void)
+{
+  /* Set the Lock Bit to lock the FPEC and the CR of  Bank1 */
+  FLASH->CR |= CR_LOCK_Set;
+   0:	4a02      	ldr	r2, [pc, #8]	(c <FLASH_LockBank1+0xc>)
+   2:	6913      	ldr	r3, [r2, #16]
+   4:	f043 0380 	orr.w	r3, r3, #128	; 0x80
+   8:	6113      	str	r3, [r2, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:395
+}
+   a:	4770      	bx	lr
+   c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_LockBank2:
+
+00000000 <FLASH_LockBank2>:
+FLASH_LockBank2():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:407
+  * @retval None
+  */
+void FLASH_LockBank2(void)
+{
+  /* Set the Lock Bit to lock the FPEC and the CR of  Bank2 */
+  FLASH->CR2 |= CR_LOCK_Set;
+   0:	4a02      	ldr	r2, [pc, #8]	(c <FLASH_LockBank2+0xc>)
+   2:	6d13      	ldr	r3, [r2, #80]
+   4:	f043 0380 	orr.w	r3, r3, #128	; 0x80
+   8:	6513      	str	r3, [r2, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:408
+}
+   a:	4770      	bx	lr
+   c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetUserOptionByte:
+
+00000000 <FLASH_GetUserOptionByte>:
+FLASH_GetUserOptionByte():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1270
+  *   and RST_STDBY(Bit2).
+  */
+uint32_t FLASH_GetUserOptionByte(void)
+{
+  /* Return the User Option Byte */
+  return (uint32_t)(FLASH->OBR >> 2);
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <FLASH_GetUserOptionByte+0x8>)
+   2:	69d8      	ldr	r0, [r3, #28]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1271
+}
+   4:	0880      	lsrs	r0, r0, #2
+   6:	4770      	bx	lr
+   8:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetWriteProtectionOptionByte:
+
+00000000 <FLASH_GetWriteProtectionOptionByte>:
+FLASH_GetWriteProtectionOptionByte():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1282
+  * @retval The FLASH Write Protection  Option Bytes Register value
+  */
+uint32_t FLASH_GetWriteProtectionOptionByte(void)
+{
+  /* Return the Falsh write protection Register value */
+  return (uint32_t)(FLASH->WRPR);
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <FLASH_GetWriteProtectionOptionByte+0x8>)
+   2:	6a18      	ldr	r0, [r3, #32]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1283
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+   8:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetReadOutProtectionStatus:
+
+00000000 <FLASH_GetReadOutProtectionStatus>:
+FLASH_GetReadOutProtectionStatus():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1294
+  * @retval FLASH ReadOut Protection Status(SET or RESET)
+  */
+FlagStatus FLASH_GetReadOutProtectionStatus(void)
+{
+  FlagStatus readoutstatus = RESET;
+  if ((FLASH->OBR & RDPRT_Mask) != (uint32_t)RESET)
+   0:	4b02      	ldr	r3, [pc, #8]	(c <FLASH_GetReadOutProtectionStatus+0xc>)
+   2:	69d8      	ldr	r0, [r3, #28]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1303
+  else
+  {
+    readoutstatus = RESET;
+  }
+  return readoutstatus;
+}
+   4:	f3c0 0040 	ubfx	r0, r0, #1, #1
+   8:	4770      	bx	lr
+   a:	46c0      	nop			(mov r8, r8)
+   c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetPrefetchBufferStatus:
+
+00000000 <FLASH_GetPrefetchBufferStatus>:
+FLASH_GetPrefetchBufferStatus():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1315
+  */
+FlagStatus FLASH_GetPrefetchBufferStatus(void)
+{
+  FlagStatus bitstatus = RESET;
+  
+  if ((FLASH->ACR & ACR_PRFTBS_Mask) != (uint32_t)RESET)
+   0:	4b02      	ldr	r3, [pc, #8]	(c <FLASH_GetPrefetchBufferStatus+0xc>)
+   2:	6818      	ldr	r0, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1325
+  {
+    bitstatus = RESET;
+  }
+  /* Return the new state of FLASH Prefetch Buffer Status (SET or RESET) */
+  return bitstatus; 
+}
+   4:	f3c0 1040 	ubfx	r0, r0, #5, #1
+   8:	4770      	bx	lr
+   a:	46c0      	nop			(mov r8, r8)
+   c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_ITConfig:
+
+00000000 <FLASH_ITConfig>:
+FLASH_ITConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1348
+#ifdef STM32F10X_XL
+  /* Check the parameters */
+  assert_param(IS_FLASH_IT(FLASH_IT)); 
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+
+  if((FLASH_IT & 0x80000000) != 0x0)
+   0:	2800      	cmp	r0, #0
+   2:	da0d      	bge.n	20 <FLASH_ITConfig+0x20>
+   4:	f020 4000 	bic.w	r0, r0, #2147483648	; 0x80000000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1350
+  {
+    if(NewState != DISABLE)
+   8:	b121      	cbz	r1, 14 <FLASH_ITConfig+0x14>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1353
+    {
+      /* Enable the interrupt sources */
+      FLASH->CR2 |= (FLASH_IT & 0x7FFFFFFF);
+   a:	4a0b      	ldr	r2, [pc, #44]	(38 <FLASH_ITConfig+0x38>)
+   c:	6d13      	ldr	r3, [r2, #80]
+   e:	ea40 0303 	orr.w	r3, r0, r3
+  12:	e003      	b.n	1c <FLASH_ITConfig+0x1c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1358
+    }
+    else
+    {
+      /* Disable the interrupt sources */
+      FLASH->CR2 &= ~(uint32_t)(FLASH_IT & 0x7FFFFFFF);
+  14:	4a08      	ldr	r2, [pc, #32]	(38 <FLASH_ITConfig+0x38>)
+  16:	6d13      	ldr	r3, [r2, #80]
+  18:	ea23 0300 	bic.w	r3, r3, r0
+  1c:	6513      	str	r3, [r2, #80]
+  1e:	e00a      	b.n	36 <FLASH_ITConfig+0x36>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1363
+    }
+  }
+  else
+  {
+    if(NewState != DISABLE)
+  20:	b121      	cbz	r1, 2c <FLASH_ITConfig+0x2c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1366
+    {
+      /* Enable the interrupt sources */
+      FLASH->CR |= FLASH_IT;
+  22:	4a05      	ldr	r2, [pc, #20]	(38 <FLASH_ITConfig+0x38>)
+  24:	6913      	ldr	r3, [r2, #16]
+  26:	ea40 0303 	orr.w	r3, r0, r3
+  2a:	e003      	b.n	34 <FLASH_ITConfig+0x34>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1371
+    }
+    else
+    {
+      /* Disable the interrupt sources */
+      FLASH->CR &= ~(uint32_t)FLASH_IT;
+  2c:	4a02      	ldr	r2, [pc, #8]	(38 <FLASH_ITConfig+0x38>)
+  2e:	6913      	ldr	r3, [r2, #16]
+  30:	ea23 0300 	bic.w	r3, r3, r0
+  34:	6113      	str	r3, [r2, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1390
+  {
+    /* Disable the interrupt sources */
+    FLASH->CR &= ~(uint32_t)FLASH_IT;
+  }
+#endif /* STM32F10X_XL */
+}
+  36:	4770      	bx	lr
+  38:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetFlagStatus:
+
+00000000 <FLASH_GetFlagStatus>:
+FLASH_GetFlagStatus():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1415
+  FlagStatus bitstatus = RESET;
+
+#ifdef STM32F10X_XL
+  /* Check the parameters */
+  assert_param(IS_FLASH_GET_FLAG(FLASH_FLAG)) ;
+  if(FLASH_FLAG == FLASH_FLAG_OPTERR) 
+   0:	2801      	cmp	r0, #1
+   2:	d104      	bne.n	e <FLASH_GetFlagStatus+0xe>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1417
+  {
+    if((FLASH->OBR & FLASH_FLAG_OPTERR) != (uint32_t)RESET)
+   4:	4b07      	ldr	r3, [pc, #28]	(24 <FLASH_GetFlagStatus+0x24>)
+   6:	69db      	ldr	r3, [r3, #28]
+   8:	f003 0001 	and.w	r0, r3, #1	; 0x1
+   c:	e009      	b.n	22 <FLASH_GetFlagStatus+0x22>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1428
+      bitstatus = RESET;
+    }
+  }
+  else
+  {
+    if((FLASH_FLAG & 0x80000000) != 0x0)
+   e:	2800      	cmp	r0, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1430
+    {
+      if((FLASH->SR2 & FLASH_FLAG) != (uint32_t)RESET)
+  10:	bfb5      	itete	lt
+  12:	4b04      	ldrlt	r3, [pc, #16]	(24 <FLASH_GetFlagStatus+0x24>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1441
+        bitstatus = RESET;
+      }
+    }
+    else
+    {
+      if((FLASH->SR & FLASH_FLAG) != (uint32_t)RESET)
+  14:	4b03      	ldrge	r3, [pc, #12]	(24 <FLASH_GetFlagStatus+0x24>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1430
+  }
+  else
+  {
+    if((FLASH_FLAG & 0x80000000) != 0x0)
+    {
+      if((FLASH->SR2 & FLASH_FLAG) != (uint32_t)RESET)
+  16:	6cdb      	ldrlt	r3, [r3, #76]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1441
+        bitstatus = RESET;
+      }
+    }
+    else
+    {
+      if((FLASH->SR & FLASH_FLAG) != (uint32_t)RESET)
+  18:	68db      	ldrge	r3, [r3, #12]
+  1a:	4218      	tst	r0, r3
+  1c:	bf0c      	ite	eq
+  1e:	2000      	moveq	r0, #0
+  20:	2001      	movne	r0, #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1480
+  }
+#endif /* STM32F10X_XL */
+
+  /* Return the new state of FLASH_FLAG (SET or RESET) */
+  return bitstatus;
+}
+  22:	4770      	bx	lr
+  24:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_ClearFlag:
+
+00000000 <FLASH_ClearFlag>:
+FLASH_ClearFlag():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1500
+{
+#ifdef STM32F10X_XL
+  /* Check the parameters */
+  assert_param(IS_FLASH_CLEAR_FLAG(FLASH_FLAG)) ;
+
+  if((FLASH_FLAG & 0x80000000) != 0x0)
+   0:	2800      	cmp	r0, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1503
+  {
+    /* Clear the flags */
+    FLASH->SR2 = FLASH_FLAG;
+   2:	bfb5      	itete	lt
+   4:	4b02      	ldrlt	r3, [pc, #8]	(10 <FLASH_ClearFlag+0x10>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1508
+  }
+  else
+  {
+    /* Clear the flags */
+    FLASH->SR = FLASH_FLAG;
+   6:	4b02      	ldrge	r3, [pc, #8]	(10 <FLASH_ClearFlag+0x10>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1503
+  assert_param(IS_FLASH_CLEAR_FLAG(FLASH_FLAG)) ;
+
+  if((FLASH_FLAG & 0x80000000) != 0x0)
+  {
+    /* Clear the flags */
+    FLASH->SR2 = FLASH_FLAG;
+   8:	64d8      	strlt	r0, [r3, #76]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1508
+  }
+  else
+  {
+    /* Clear the flags */
+    FLASH->SR = FLASH_FLAG;
+   a:	60d8      	strge	r0, [r3, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1518
+  assert_param(IS_FLASH_CLEAR_FLAG(FLASH_FLAG)) ;
+  
+  /* Clear the flags */
+  FLASH->SR = FLASH_FLAG;
+#endif /* STM32F10X_XL */
+}
+   c:	4770      	bx	lr
+   e:	46c0      	nop			(mov r8, r8)
+  10:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetStatus:
+
+00000000 <FLASH_GetStatus>:
+FLASH_GetStatus():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1532
+  */
+FLASH_Status FLASH_GetStatus(void)
+{
+  FLASH_Status flashstatus = FLASH_COMPLETE;
+  
+  if((FLASH->SR & FLASH_FLAG_BSY) == FLASH_FLAG_BSY) 
+   0:	4a09      	ldr	r2, [pc, #36]	(28 <FLASH_GetStatus+0x28>)
+   2:	68d3      	ldr	r3, [r2, #12]
+   4:	f013 0f01 	tst.w	r3, #1	; 0x1
+   8:	d001      	beq.n	e <FLASH_GetStatus+0xe>
+   a:	2001      	movs	r0, #1
+   c:	e00b      	b.n	26 <FLASH_GetStatus+0x26>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1538
+  {
+    flashstatus = FLASH_BUSY;
+  }
+  else 
+  {  
+    if((FLASH->SR & FLASH_FLAG_PGERR) != 0)
+   e:	68d3      	ldr	r3, [r2, #12]
+  10:	f013 0f04 	tst.w	r3, #4	; 0x4
+  14:	d001      	beq.n	1a <FLASH_GetStatus+0x1a>
+  16:	2002      	movs	r0, #2
+  18:	e005      	b.n	26 <FLASH_GetStatus+0x26>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1544
+    { 
+      flashstatus = FLASH_ERROR_PG;
+    }
+    else 
+    {
+      if((FLASH->SR & FLASH_FLAG_WRPRTERR) != 0 )
+  1a:	68d3      	ldr	r3, [r2, #12]
+  1c:	f013 0f10 	tst.w	r3, #16	; 0x10
+  20:	bf14      	ite	ne
+  22:	2003      	movne	r0, #3
+  24:	2004      	moveq	r0, #4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1556
+      }
+    }
+  }
+  /* Return the Flash Status */
+  return flashstatus;
+}
+  26:	4770      	bx	lr
+  28:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetBank1Status:
+
+00000000 <FLASH_GetBank1Status>:
+FLASH_GetBank1Status():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1570
+  */
+FLASH_Status FLASH_GetBank1Status(void)
+{
+  FLASH_Status flashstatus = FLASH_COMPLETE;
+  
+  if((FLASH->SR & FLASH_FLAG_BANK1_BSY) == FLASH_FLAG_BSY) 
+   0:	4a09      	ldr	r2, [pc, #36]	(28 <FLASH_GetBank1Status+0x28>)
+   2:	68d3      	ldr	r3, [r2, #12]
+   4:	f013 0f01 	tst.w	r3, #1	; 0x1
+   8:	d001      	beq.n	e <FLASH_GetBank1Status+0xe>
+   a:	2001      	movs	r0, #1
+   c:	e00b      	b.n	26 <FLASH_GetBank1Status+0x26>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1576
+  {
+    flashstatus = FLASH_BUSY;
+  }
+  else 
+  {  
+    if((FLASH->SR & FLASH_FLAG_BANK1_PGERR) != 0)
+   e:	68d3      	ldr	r3, [r2, #12]
+  10:	f013 0f04 	tst.w	r3, #4	; 0x4
+  14:	d001      	beq.n	1a <FLASH_GetBank1Status+0x1a>
+  16:	2002      	movs	r0, #2
+  18:	e005      	b.n	26 <FLASH_GetBank1Status+0x26>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1582
+    { 
+      flashstatus = FLASH_ERROR_PG;
+    }
+    else 
+    {
+      if((FLASH->SR & FLASH_FLAG_BANK1_WRPRTERR) != 0 )
+  1a:	68d3      	ldr	r3, [r2, #12]
+  1c:	f013 0f10 	tst.w	r3, #16	; 0x10
+  20:	bf14      	ite	ne
+  22:	2003      	movne	r0, #3
+  24:	2004      	moveq	r0, #4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1594
+      }
+    }
+  }
+  /* Return the Flash Status */
+  return flashstatus;
+}
+  26:	4770      	bx	lr
+  28:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetBank2Status:
+
+00000000 <FLASH_GetBank2Status>:
+FLASH_GetBank2Status():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1608
+  */
+FLASH_Status FLASH_GetBank2Status(void)
+{
+  FLASH_Status flashstatus = FLASH_COMPLETE;
+  
+  if((FLASH->SR2 & (FLASH_FLAG_BANK2_BSY & 0x7FFFFFFF)) == (FLASH_FLAG_BANK2_BSY & 0x7FFFFFFF)) 
+   0:	4a09      	ldr	r2, [pc, #36]	(28 <FLASH_GetBank2Status+0x28>)
+   2:	6cd3      	ldr	r3, [r2, #76]
+   4:	f013 0f01 	tst.w	r3, #1	; 0x1
+   8:	d001      	beq.n	e <FLASH_GetBank2Status+0xe>
+   a:	2001      	movs	r0, #1
+   c:	e00b      	b.n	26 <FLASH_GetBank2Status+0x26>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1614
+  {
+    flashstatus = FLASH_BUSY;
+  }
+  else 
+  {  
+    if((FLASH->SR2 & (FLASH_FLAG_BANK2_PGERR & 0x7FFFFFFF)) != 0)
+   e:	6cd3      	ldr	r3, [r2, #76]
+  10:	f013 0f04 	tst.w	r3, #4	; 0x4
+  14:	d001      	beq.n	1a <FLASH_GetBank2Status+0x1a>
+  16:	2002      	movs	r0, #2
+  18:	e005      	b.n	26 <FLASH_GetBank2Status+0x26>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1620
+    { 
+      flashstatus = FLASH_ERROR_PG;
+    }
+    else 
+    {
+      if((FLASH->SR2 & (FLASH_FLAG_BANK2_WRPRTERR & 0x7FFFFFFF)) != 0 )
+  1a:	6cd3      	ldr	r3, [r2, #76]
+  1c:	f013 0f10 	tst.w	r3, #16	; 0x10
+  20:	bf14      	ite	ne
+  22:	2003      	movne	r0, #3
+  24:	2004      	moveq	r0, #4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1632
+      }
+    }
+  }
+  /* Return the Flash Status */
+  return flashstatus;
+}
+  26:	4770      	bx	lr
+  28:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_WaitForLastOperation:
+
+00000000 <FLASH_WaitForLastOperation>:
+FLASH_WaitForLastOperation():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1647
+  * @param  Timeout: FLASH progamming Timeout
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_WaitForLastOperation(uint32_t Timeout)
+{ 
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1651
+  FLASH_Status status = FLASH_COMPLETE;
+   
+  /* Check for the Flash Status */
+  status = FLASH_GetBank1Status();
+   4:	f7ff fffe 	bl	0 <FLASH_WaitForLastOperation>
+   8:	e002      	b.n	8 <FLASH_WaitForLastOperation+0x8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1655
+  /* Wait for a Flash operation to complete or a TIMEOUT to occur */
+  while((status == FLASH_BUSY) && (Timeout != 0x00))
+  {
+    status = FLASH_GetBank1Status();
+   a:	f7ff fffe 	bl	0 <FLASH_WaitForLastOperation>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1656
+    Timeout--;
+   e:	3c01      	subs	r4, #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1653
+  FLASH_Status status = FLASH_COMPLETE;
+   
+  /* Check for the Flash Status */
+  status = FLASH_GetBank1Status();
+  /* Wait for a Flash operation to complete or a TIMEOUT to occur */
+  while((status == FLASH_BUSY) && (Timeout != 0x00))
+  10:	2801      	cmp	r0, #1
+  12:	d102      	bne.n	1a <FLASH_WaitForLastOperation+0x1a>
+  14:	2c00      	cmp	r4, #0
+  16:	d1f8      	bne.n	a <FLASH_WaitForLastOperation+0xa>
+  18:	e000      	b.n	1c <FLASH_WaitForLastOperation+0x1c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1658
+  {
+    status = FLASH_GetBank1Status();
+    Timeout--;
+  }
+  if(Timeout == 0x00 )
+  1a:	b904      	cbnz	r4, 1e <FLASH_WaitForLastOperation+0x1e>
+  1c:	2005      	movs	r0, #5
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1664
+  {
+    status = FLASH_TIMEOUT;
+  }
+  /* Return the operation status */
+  return status;
+}
+  1e:	bd10      	pop	{r4, pc}
+Disassembly of section .text.FLASH_BootConfig:
+
+00000000 <FLASH_BootConfig>:
+FLASH_BootConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1224
+  *        For more information, please refer to AN2606 from www.st.com.    
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG, 
+  * FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_BootConfig(uint16_t FLASH_BOOT)
+{ 
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1228
+  FLASH_Status status = FLASH_COMPLETE; 
+  assert_param(IS_FLASH_BOOT(FLASH_BOOT));
+  /* Authorize the small information block programming */
+  FLASH->OPTKEYR = FLASH_KEY1;
+   2:	4b16      	ldr	r3, [pc, #88]	(5c <FLASH_BootConfig+0x5c>)
+   4:	4c16      	ldr	r4, [pc, #88]	(60 <FLASH_BootConfig+0x60>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1224
+  *        For more information, please refer to AN2606 from www.st.com.    
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG, 
+  * FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_BootConfig(uint16_t FLASH_BOOT)
+{ 
+   6:	4605      	mov	r5, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1228
+  FLASH_Status status = FLASH_COMPLETE; 
+  assert_param(IS_FLASH_BOOT(FLASH_BOOT));
+  /* Authorize the small information block programming */
+  FLASH->OPTKEYR = FLASH_KEY1;
+   8:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1229
+  FLASH->OPTKEYR = FLASH_KEY2;
+   a:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+   e:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1232
+  
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+  10:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+  14:	f7ff fffe 	bl	0 <FLASH_BootConfig>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1234
+  
+  if(status == FLASH_COMPLETE)
+  18:	2804      	cmp	r0, #4
+  1a:	d11e      	bne.n	5a <FLASH_BootConfig+0x5a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1237
+  {  
+    /* Enable the Option Bytes Programming operation */
+    FLASH->CR |= CR_OPTPG_Set; 
+  1c:	6923      	ldr	r3, [r4, #16]
+  1e:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+  22:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1239
+
+    if(FLASH_BOOT == FLASH_BOOT_Bank1)
+  24:	b92d      	cbnz	r5, 32 <FLASH_BootConfig+0x32>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1241
+    {
+      OB->USER |= OB_USER_BFB2;
+  26:	4a0f      	ldr	r2, [pc, #60]	(64 <FLASH_BootConfig+0x64>)
+  28:	8853      	ldrh	r3, [r2, #2]
+  2a:	b29b      	uxth	r3, r3
+  2c:	f043 0308 	orr.w	r3, r3, #8	; 0x8
+  30:	e005      	b.n	3e <FLASH_BootConfig+0x3e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1245
+    }
+    else
+    {
+      OB->USER &= (uint16_t)(~(uint16_t)(OB_USER_BFB2));
+  32:	4a0c      	ldr	r2, [pc, #48]	(64 <FLASH_BootConfig+0x64>)
+  34:	8853      	ldrh	r3, [r2, #2]
+  36:	f023 0308 	bic.w	r3, r3, #8	; 0x8
+  3a:	041b      	lsls	r3, r3, #16
+  3c:	0c1b      	lsrs	r3, r3, #16
+  3e:	8053      	strh	r3, [r2, #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1248
+    }
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  40:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+  44:	f7ff fffe 	bl	0 <FLASH_BootConfig>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1249
+    if(status != FLASH_TIMEOUT)
+  48:	2805      	cmp	r0, #5
+  4a:	d006      	beq.n	5a <FLASH_BootConfig+0x5a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1252
+    {
+      /* if the program operation is completed, disable the OPTPG Bit */
+      FLASH->CR &= CR_OPTPG_Reset;
+  4c:	4904      	ldr	r1, [pc, #16]	(60 <FLASH_BootConfig+0x60>)
+  4e:	f641 73ef 	movw	r3, #8175	; 0x1fef
+  52:	690a      	ldr	r2, [r1, #16]
+  54:	ea02 0303 	and.w	r3, r2, r3
+  58:	610b      	str	r3, [r1, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1257
+    }
+  }    
+  /* Return the Option Byte program Status */
+  return status;
+}
+  5a:	bd70      	pop	{r4, r5, r6, pc}
+  5c:	45670123 	.word	0x45670123
+  60:	40022000 	.word	0x40022000
+  64:	1ffff800 	.word	0x1ffff800
+Disassembly of section .text.FLASH_UserOptionByteConfig:
+
+00000000 <FLASH_UserOptionByteConfig>:
+FLASH_UserOptionByteConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1170
+  *     @arg OB_STDBY_RST: Reset generated when entering in STANDBY
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG, 
+  * FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_UserOptionByteConfig(uint16_t OB_IWDG, uint16_t OB_STOP, uint16_t OB_STDBY)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1179
+  assert_param(IS_OB_IWDG_SOURCE(OB_IWDG));
+  assert_param(IS_OB_STOP_SOURCE(OB_STOP));
+  assert_param(IS_OB_STDBY_SOURCE(OB_STDBY));
+
+  /* Authorize the small information block programming */
+  FLASH->OPTKEYR = FLASH_KEY1;
+   4:	4b14      	ldr	r3, [pc, #80]	(58 <FLASH_UserOptionByteConfig+0x58>)
+   6:	4c15      	ldr	r4, [pc, #84]	(5c <FLASH_UserOptionByteConfig+0x5c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1170
+  *     @arg OB_STDBY_RST: Reset generated when entering in STANDBY
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG, 
+  * FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_UserOptionByteConfig(uint16_t OB_IWDG, uint16_t OB_STOP, uint16_t OB_STDBY)
+{
+   8:	4605      	mov	r5, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1179
+  assert_param(IS_OB_IWDG_SOURCE(OB_IWDG));
+  assert_param(IS_OB_STOP_SOURCE(OB_STOP));
+  assert_param(IS_OB_STDBY_SOURCE(OB_STDBY));
+
+  /* Authorize the small information block programming */
+  FLASH->OPTKEYR = FLASH_KEY1;
+   a:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1180
+  FLASH->OPTKEYR = FLASH_KEY2;
+   c:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+  10:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1183
+  
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+  12:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1170
+  *     @arg OB_STDBY_RST: Reset generated when entering in STANDBY
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG, 
+  * FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_UserOptionByteConfig(uint16_t OB_IWDG, uint16_t OB_STOP, uint16_t OB_STDBY)
+{
+  16:	460e      	mov	r6, r1
+  18:	4617      	mov	r7, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1183
+  /* Authorize the small information block programming */
+  FLASH->OPTKEYR = FLASH_KEY1;
+  FLASH->OPTKEYR = FLASH_KEY2;
+  
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+  1a:	f7ff fffe 	bl	0 <FLASH_UserOptionByteConfig>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1185
+  
+  if(status == FLASH_COMPLETE)
+  1e:	2804      	cmp	r0, #4
+  20:	d117      	bne.n	52 <FLASH_UserOptionByteConfig+0x52>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1188
+  {  
+    /* Enable the Option Bytes Programming operation */
+    FLASH->CR |= CR_OPTPG_Set; 
+  22:	6923      	ldr	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1190
+           
+    OB->USER = OB_IWDG | (uint16_t)(OB_STOP | (uint16_t)(OB_STDBY | ((uint16_t)0xF8))); 
+  24:	4a0e      	ldr	r2, [pc, #56]	(60 <FLASH_UserOptionByteConfig+0x60>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1188
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+  
+  if(status == FLASH_COMPLETE)
+  {  
+    /* Enable the Option Bytes Programming operation */
+    FLASH->CR |= CR_OPTPG_Set; 
+  26:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+  2a:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1190
+           
+    OB->USER = OB_IWDG | (uint16_t)(OB_STOP | (uint16_t)(OB_STDBY | ((uint16_t)0xF8))); 
+  2c:	f045 03f8 	orr.w	r3, r5, #248	; 0xf8
+  30:	ea46 0303 	orr.w	r3, r6, r3
+  34:	ea47 0303 	orr.w	r3, r7, r3
+  38:	8053      	strh	r3, [r2, #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1193
+  
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  3a:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+  3e:	f7ff fffe 	bl	0 <FLASH_UserOptionByteConfig>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1194
+    if(status != FLASH_TIMEOUT)
+  42:	2805      	cmp	r0, #5
+  44:	d005      	beq.n	52 <FLASH_UserOptionByteConfig+0x52>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1197
+    {
+      /* if the program operation is completed, disable the OPTPG Bit */
+      FLASH->CR &= CR_OPTPG_Reset;
+  46:	6922      	ldr	r2, [r4, #16]
+  48:	f641 73ef 	movw	r3, #8175	; 0x1fef
+  4c:	ea02 0303 	and.w	r3, r2, r3
+  50:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1202
+    }
+  }    
+  /* Return the Option Byte program Status */
+  return status;
+}
+  52:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  56:	46c0      	nop			(mov r8, r8)
+  58:	45670123 	.word	0x45670123
+  5c:	40022000 	.word	0x40022000
+  60:	1ffff800 	.word	0x1ffff800
+Disassembly of section .text.FLASH_ReadOutProtection:
+
+00000000 <FLASH_ReadOutProtection>:
+FLASH_ReadOutProtection():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1101
+  *   This parameter can be: ENABLE or DISABLE.
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_ReadOutProtection(FunctionalState NewState)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1105
+  FLASH_Status status = FLASH_COMPLETE;
+  /* Check the parameters */
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+   4:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+   8:	f7ff fffe 	bl	0 <FLASH_ReadOutProtection>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1106
+  if(status == FLASH_COMPLETE)
+   c:	2804      	cmp	r0, #4
+   e:	d13c      	bne.n	8a <FLASH_ReadOutProtection+0x8a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1109
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  10:	4c1e      	ldr	r4, [pc, #120]	(8c <FLASH_ReadOutProtection+0x8c>)
+  12:	4b1f      	ldr	r3, [pc, #124]	(90 <FLASH_ReadOutProtection+0x90>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1114
+    FLASH->OPTKEYR = FLASH_KEY2;
+    FLASH->CR |= CR_OPTER_Set;
+    FLASH->CR |= CR_STRT_Set;
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  14:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1109
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  18:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1110
+    FLASH->OPTKEYR = FLASH_KEY2;
+  1a:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+  1e:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1111
+    FLASH->CR |= CR_OPTER_Set;
+  20:	6923      	ldr	r3, [r4, #16]
+  22:	f043 0320 	orr.w	r3, r3, #32	; 0x20
+  26:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1112
+    FLASH->CR |= CR_STRT_Set;
+  28:	6923      	ldr	r3, [r4, #16]
+  2a:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  2e:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1114
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  30:	f7ff fffe 	bl	0 <FLASH_ReadOutProtection>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1115
+    if(status == FLASH_COMPLETE)
+  34:	2804      	cmp	r0, #4
+  36:	d120      	bne.n	7a <FLASH_ReadOutProtection+0x7a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1118
+    {
+      /* if the erase operation is completed, disable the OPTER Bit */
+      FLASH->CR &= CR_OPTER_Reset;
+  38:	6923      	ldr	r3, [r4, #16]
+  3a:	f641 72df 	movw	r2, #8159	; 0x1fdf
+  3e:	ea03 0202 	and.w	r2, r3, r2
+  42:	6122      	str	r2, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1120
+      /* Enable the Option Bytes Programming operation */
+      FLASH->CR |= CR_OPTPG_Set; 
+  44:	6923      	ldr	r3, [r4, #16]
+  46:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+  4a:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1121
+      if(NewState != DISABLE)
+  4c:	b11d      	cbz	r5, 56 <FLASH_ReadOutProtection+0x56>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1123
+      {
+        OB->RDP = 0x00;
+  4e:	4b11      	ldr	r3, [pc, #68]	(94 <FLASH_ReadOutProtection+0x94>)
+  50:	f04f 0200 	mov.w	r2, #0	; 0x0
+  54:	e002      	b.n	5c <FLASH_ReadOutProtection+0x5c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1127
+      }
+      else
+      {
+        OB->RDP = RDP_Key;  
+  56:	4b0f      	ldr	r3, [pc, #60]	(94 <FLASH_ReadOutProtection+0x94>)
+  58:	f04f 02a5 	mov.w	r2, #165	; 0xa5
+  5c:	801a      	strh	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1130
+      }
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(EraseTimeout); 
+  5e:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+  62:	f7ff fffe 	bl	0 <FLASH_ReadOutProtection>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1132
+    
+      if(status != FLASH_TIMEOUT)
+  66:	2805      	cmp	r0, #5
+  68:	d00f      	beq.n	8a <FLASH_ReadOutProtection+0x8a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1135
+      {
+        /* if the program operation is completed, disable the OPTPG Bit */
+        FLASH->CR &= CR_OPTPG_Reset;
+  6a:	4908      	ldr	r1, [pc, #32]	(8c <FLASH_ReadOutProtection+0x8c>)
+  6c:	f641 73ef 	movw	r3, #8175	; 0x1fef
+  70:	690a      	ldr	r2, [r1, #16]
+  72:	ea02 0303 	and.w	r3, r2, r3
+  76:	610b      	str	r3, [r1, #16]
+  78:	e007      	b.n	8a <FLASH_ReadOutProtection+0x8a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1140
+      }
+    }
+    else 
+    {
+      if(status != FLASH_TIMEOUT)
+  7a:	2805      	cmp	r0, #5
+  7c:	d005      	beq.n	8a <FLASH_ReadOutProtection+0x8a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1143
+      {
+        /* Disable the OPTER Bit */
+        FLASH->CR &= CR_OPTER_Reset;
+  7e:	6922      	ldr	r2, [r4, #16]
+  80:	f641 73df 	movw	r3, #8159	; 0x1fdf
+  84:	ea02 0303 	and.w	r3, r2, r3
+  88:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1149
+      }
+    }
+  }
+  /* Return the protection operation Status */
+  return status;       
+}
+  8a:	bd70      	pop	{r4, r5, r6, pc}
+  8c:	40022000 	.word	0x40022000
+  90:	45670123 	.word	0x45670123
+  94:	1ffff800 	.word	0x1ffff800
+Disassembly of section .text.FLASH_EnableWriteProtection:
+
+00000000 <FLASH_EnableWriteProtection>:
+FLASH_EnableWriteProtection():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1027
+  *     @arg FLASH_WRProt_AllPages
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_EnableWriteProtection(uint32_t FLASH_Pages)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1042
+  WRP1_Data = (uint16_t)((FLASH_Pages & WRP1_Mask) >> 8);
+  WRP2_Data = (uint16_t)((FLASH_Pages & WRP2_Mask) >> 16);
+  WRP3_Data = (uint16_t)((FLASH_Pages & WRP3_Mask) >> 24);
+  
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   4:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+   8:	f7ff fffe 	bl	0 <FLASH_EnableWriteProtection>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1044
+  
+  if(status == FLASH_COMPLETE)
+   c:	2804      	cmp	r0, #4
+   e:	d141      	bne.n	94 <FLASH_EnableWriteProtection+0x94>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1047
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  10:	4a21      	ldr	r2, [pc, #132]	(98 <FLASH_EnableWriteProtection+0x98>)
+  12:	4b22      	ldr	r3, [pc, #136]	(9c <FLASH_EnableWriteProtection+0x9c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1035
+  FLASH_Status status = FLASH_COMPLETE;
+  
+  /* Check the parameters */
+  assert_param(IS_FLASH_WRPROT_PAGE(FLASH_Pages));
+  
+  FLASH_Pages = (uint32_t)(~FLASH_Pages);
+  14:	43e4      	mvns	r4, r4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1047
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+  
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  16:	6093      	str	r3, [r2, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1048
+    FLASH->OPTKEYR = FLASH_KEY2;
+  18:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+  1c:	6093      	str	r3, [r2, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1049
+    FLASH->CR |= CR_OPTPG_Set;
+  1e:	6913      	ldr	r3, [r2, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1036
+  
+  /* Check the parameters */
+  assert_param(IS_FLASH_WRPROT_PAGE(FLASH_Pages));
+  
+  FLASH_Pages = (uint32_t)(~FLASH_Pages);
+  WRP0_Data = (uint16_t)(FLASH_Pages & WRP0_Mask);
+  20:	b2e1      	uxtb	r1, r4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1049
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+    FLASH->OPTKEYR = FLASH_KEY2;
+    FLASH->CR |= CR_OPTPG_Set;
+  22:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1050
+    if(WRP0_Data != 0xFF)
+  26:	29ff      	cmp	r1, #255
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1049
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+    FLASH->OPTKEYR = FLASH_KEY2;
+    FLASH->CR |= CR_OPTPG_Set;
+  28:	6113      	str	r3, [r2, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1050
+    if(WRP0_Data != 0xFF)
+  2a:	d007      	beq.n	3c <FLASH_EnableWriteProtection+0x3c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1052
+    {
+      OB->WRP0 = WRP0_Data;
+  2c:	4b1c      	ldr	r3, [pc, #112]	(a0 <FLASH_EnableWriteProtection+0xa0>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1055
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  2e:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1052
+    FLASH->OPTKEYR = FLASH_KEY1;
+    FLASH->OPTKEYR = FLASH_KEY2;
+    FLASH->CR |= CR_OPTPG_Set;
+    if(WRP0_Data != 0xFF)
+    {
+      OB->WRP0 = WRP0_Data;
+  32:	8119      	strh	r1, [r3, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1055
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  34:	f7ff fffe 	bl	0 <FLASH_EnableWriteProtection>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1057
+    }
+    if((status == FLASH_COMPLETE) && (WRP1_Data != 0xFF))
+  38:	2804      	cmp	r0, #4
+  3a:	d122      	bne.n	82 <FLASH_EnableWriteProtection+0x82>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1037
+  /* Check the parameters */
+  assert_param(IS_FLASH_WRPROT_PAGE(FLASH_Pages));
+  
+  FLASH_Pages = (uint32_t)(~FLASH_Pages);
+  WRP0_Data = (uint16_t)(FLASH_Pages & WRP0_Mask);
+  WRP1_Data = (uint16_t)((FLASH_Pages & WRP1_Mask) >> 8);
+  3c:	f3c4 2207 	ubfx	r2, r4, #8, #8
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1057
+      OB->WRP0 = WRP0_Data;
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+    }
+    if((status == FLASH_COMPLETE) && (WRP1_Data != 0xFF))
+  40:	2aff      	cmp	r2, #255
+  42:	d007      	beq.n	54 <FLASH_EnableWriteProtection+0x54>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1059
+    {
+      OB->WRP1 = WRP1_Data;
+  44:	4b16      	ldr	r3, [pc, #88]	(a0 <FLASH_EnableWriteProtection+0xa0>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1062
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  46:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1059
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+    }
+    if((status == FLASH_COMPLETE) && (WRP1_Data != 0xFF))
+    {
+      OB->WRP1 = WRP1_Data;
+  4a:	815a      	strh	r2, [r3, #10]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1062
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  4c:	f7ff fffe 	bl	0 <FLASH_EnableWriteProtection>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1064
+    }
+    if((status == FLASH_COMPLETE) && (WRP2_Data != 0xFF))
+  50:	2804      	cmp	r0, #4
+  52:	d116      	bne.n	82 <FLASH_EnableWriteProtection+0x82>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1038
+  assert_param(IS_FLASH_WRPROT_PAGE(FLASH_Pages));
+  
+  FLASH_Pages = (uint32_t)(~FLASH_Pages);
+  WRP0_Data = (uint16_t)(FLASH_Pages & WRP0_Mask);
+  WRP1_Data = (uint16_t)((FLASH_Pages & WRP1_Mask) >> 8);
+  WRP2_Data = (uint16_t)((FLASH_Pages & WRP2_Mask) >> 16);
+  54:	f3c4 4207 	ubfx	r2, r4, #16, #8
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1064
+      OB->WRP1 = WRP1_Data;
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+    }
+    if((status == FLASH_COMPLETE) && (WRP2_Data != 0xFF))
+  58:	2aff      	cmp	r2, #255
+  5a:	d007      	beq.n	6c <FLASH_EnableWriteProtection+0x6c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1066
+    {
+      OB->WRP2 = WRP2_Data;
+  5c:	4b10      	ldr	r3, [pc, #64]	(a0 <FLASH_EnableWriteProtection+0xa0>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1069
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  5e:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1066
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+    }
+    if((status == FLASH_COMPLETE) && (WRP2_Data != 0xFF))
+    {
+      OB->WRP2 = WRP2_Data;
+  62:	819a      	strh	r2, [r3, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1069
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  64:	f7ff fffe 	bl	0 <FLASH_EnableWriteProtection>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1072
+    }
+    
+    if((status == FLASH_COMPLETE)&& (WRP3_Data != 0xFF))
+  68:	2804      	cmp	r0, #4
+  6a:	d10a      	bne.n	82 <FLASH_EnableWriteProtection+0x82>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1039
+  
+  FLASH_Pages = (uint32_t)(~FLASH_Pages);
+  WRP0_Data = (uint16_t)(FLASH_Pages & WRP0_Mask);
+  WRP1_Data = (uint16_t)((FLASH_Pages & WRP1_Mask) >> 8);
+  WRP2_Data = (uint16_t)((FLASH_Pages & WRP2_Mask) >> 16);
+  WRP3_Data = (uint16_t)((FLASH_Pages & WRP3_Mask) >> 24);
+  6c:	0e20      	lsrs	r0, r4, #24
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1072
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+    }
+    
+    if((status == FLASH_COMPLETE)&& (WRP3_Data != 0xFF))
+  6e:	28ff      	cmp	r0, #255
+  70:	d101      	bne.n	76 <FLASH_EnableWriteProtection+0x76>
+  72:	2004      	movs	r0, #4
+  74:	e007      	b.n	86 <FLASH_EnableWriteProtection+0x86>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1074
+    {
+      OB->WRP3 = WRP3_Data;
+  76:	4b0a      	ldr	r3, [pc, #40]	(a0 <FLASH_EnableWriteProtection+0xa0>)
+  78:	81d8      	strh	r0, [r3, #14]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1077
+     
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  7a:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+  7e:	f7ff fffe 	bl	0 <FLASH_EnableWriteProtection>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1080
+    }
+          
+    if(status != FLASH_TIMEOUT)
+  82:	2805      	cmp	r0, #5
+  84:	d006      	beq.n	94 <FLASH_EnableWriteProtection+0x94>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1083
+    {
+      /* if the program operation is completed, disable the OPTPG Bit */
+      FLASH->CR &= CR_OPTPG_Reset;
+  86:	4904      	ldr	r1, [pc, #16]	(98 <FLASH_EnableWriteProtection+0x98>)
+  88:	f641 73ef 	movw	r3, #8175	; 0x1fef
+  8c:	690a      	ldr	r2, [r1, #16]
+  8e:	ea02 0303 	and.w	r3, r2, r3
+  92:	610b      	str	r3, [r1, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1088
+    }
+  } 
+  /* Return the write protection operation Status */
+  return status;       
+}
+  94:	bd10      	pop	{r4, pc}
+  96:	46c0      	nop			(mov r8, r8)
+  98:	40022000 	.word	0x40022000
+  9c:	45670123 	.word	0x45670123
+  a0:	1ffff800 	.word	0x1ffff800
+Disassembly of section .text.FLASH_ProgramOptionByteData:
+
+00000000 <FLASH_ProgramOptionByteData>:
+FLASH_ProgramOptionByteData():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:981
+  * @param  Data: specifies the data to be programmed.
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT. 
+  */
+FLASH_Status FLASH_ProgramOptionByteData(uint32_t Address, uint8_t Data)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4606      	mov	r6, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:985
+  FLASH_Status status = FLASH_COMPLETE;
+  /* Check the parameters */
+  assert_param(IS_OB_DATA_ADDRESS(Address));
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   4:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:981
+  * @param  Data: specifies the data to be programmed.
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT. 
+  */
+FLASH_Status FLASH_ProgramOptionByteData(uint32_t Address, uint8_t Data)
+{
+   8:	460d      	mov	r5, r1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:985
+  FLASH_Status status = FLASH_COMPLETE;
+  /* Check the parameters */
+  assert_param(IS_OB_DATA_ADDRESS(Address));
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   a:	f7ff fffe 	bl	0 <FLASH_ProgramOptionByteData>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:987
+
+  if(status == FLASH_COMPLETE)
+   e:	2804      	cmp	r0, #4
+  10:	d116      	bne.n	40 <FLASH_ProgramOptionByteData+0x40>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:990
+  {
+    /* Authorize the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  12:	4c0c      	ldr	r4, [pc, #48]	(44 <FLASH_ProgramOptionByteData+0x44>)
+  14:	4b0c      	ldr	r3, [pc, #48]	(48 <FLASH_ProgramOptionByteData+0x48>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:997
+    /* Enables the Option Bytes Programming operation */
+    FLASH->CR |= CR_OPTPG_Set; 
+    *(__IO uint16_t*)Address = Data;
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  16:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:990
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorize the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  1a:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:991
+    FLASH->OPTKEYR = FLASH_KEY2;
+  1c:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+  20:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:993
+    /* Enables the Option Bytes Programming operation */
+    FLASH->CR |= CR_OPTPG_Set; 
+  22:	6923      	ldr	r3, [r4, #16]
+  24:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+  28:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:994
+    *(__IO uint16_t*)Address = Data;
+  2a:	8035      	strh	r5, [r6, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:997
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  2c:	f7ff fffe 	bl	0 <FLASH_ProgramOptionByteData>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:998
+    if(status != FLASH_TIMEOUT)
+  30:	2805      	cmp	r0, #5
+  32:	d005      	beq.n	40 <FLASH_ProgramOptionByteData+0x40>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1001
+    {
+      /* if the program operation is completed, disable the OPTPG Bit */
+      FLASH->CR &= CR_OPTPG_Reset;
+  34:	6922      	ldr	r2, [r4, #16]
+  36:	f641 73ef 	movw	r3, #8175	; 0x1fef
+  3a:	ea02 0303 	and.w	r3, r2, r3
+  3e:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1006
+    }
+  }
+  /* Return the Option Byte Data Program Status */
+  return status;
+}
+  40:	bd70      	pop	{r4, r5, r6, pc}
+  42:	46c0      	nop			(mov r8, r8)
+  44:	40022000 	.word	0x40022000
+  48:	45670123 	.word	0x45670123
+Disassembly of section .text.FLASH_EraseOptionBytes:
+
+00000000 <FLASH_EraseOptionBytes>:
+FLASH_EraseOptionBytes():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:632
+  * @param  None
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_EraseOptionBytes(void)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:638
+  uint16_t rdptmp = RDP_Key;
+
+  FLASH_Status status = FLASH_COMPLETE;
+
+  /* Get the actual read protection Option Byte value */ 
+  if(FLASH_GetReadOutProtectionStatus() != RESET)
+   2:	f7ff fffe 	bl	0 <FLASH_EraseOptionBytes>
+   6:	2800      	cmp	r0, #0
+   8:	bf0c      	ite	eq
+   a:	25a5      	moveq	r5, #165
+   c:	2500      	movne	r5, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:644
+  {
+    rdptmp = 0x00;  
+  }
+
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+   e:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+  12:	f7ff fffe 	bl	0 <FLASH_EraseOptionBytes>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:645
+  if(status == FLASH_COMPLETE)
+  16:	2804      	cmp	r0, #4
+  18:	d12b      	bne.n	72 <FLASH_EraseOptionBytes+0x72>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:648
+  {
+    /* Authorize the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  1a:	4c16      	ldr	r4, [pc, #88]	(74 <FLASH_EraseOptionBytes+0x74>)
+  1c:	4b16      	ldr	r3, [pc, #88]	(78 <FLASH_EraseOptionBytes+0x78>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:655
+    
+    /* if the previous operation is completed, proceed to erase the option bytes */
+    FLASH->CR |= CR_OPTER_Set;
+    FLASH->CR |= CR_STRT_Set;
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  1e:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:648
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorize the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  22:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:649
+    FLASH->OPTKEYR = FLASH_KEY2;
+  24:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+  28:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:652
+    
+    /* if the previous operation is completed, proceed to erase the option bytes */
+    FLASH->CR |= CR_OPTER_Set;
+  2a:	6923      	ldr	r3, [r4, #16]
+  2c:	f043 0320 	orr.w	r3, r3, #32	; 0x20
+  30:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:653
+    FLASH->CR |= CR_STRT_Set;
+  32:	6923      	ldr	r3, [r4, #16]
+  34:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  38:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:655
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  3a:	f7ff fffe 	bl	0 <FLASH_EraseOptionBytes>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:657
+    
+    if(status == FLASH_COMPLETE)
+  3e:	2804      	cmp	r0, #4
+  40:	d10f      	bne.n	62 <FLASH_EraseOptionBytes+0x62>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:660
+    {
+      /* if the erase operation is completed, disable the OPTER Bit */
+      FLASH->CR &= CR_OPTER_Reset;
+  42:	6922      	ldr	r2, [r4, #16]
+  44:	f641 73df 	movw	r3, #8159	; 0x1fdf
+  48:	ea02 0303 	and.w	r3, r2, r3
+  4c:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:663
+       
+      /* Enable the Option Bytes Programming operation */
+      FLASH->CR |= CR_OPTPG_Set;
+  4e:	6923      	ldr	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:667
+      /* Restore the last read protection Option Byte value */
+      OB->RDP = (uint16_t)rdptmp; 
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  50:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:663
+    {
+      /* if the erase operation is completed, disable the OPTER Bit */
+      FLASH->CR &= CR_OPTER_Reset;
+       
+      /* Enable the Option Bytes Programming operation */
+      FLASH->CR |= CR_OPTPG_Set;
+  54:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+  58:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:665
+      /* Restore the last read protection Option Byte value */
+      OB->RDP = (uint16_t)rdptmp; 
+  5a:	4b08      	ldr	r3, [pc, #32]	(7c <FLASH_EraseOptionBytes+0x7c>)
+  5c:	801d      	strh	r5, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:667
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  5e:	f7ff fffe 	bl	0 <FLASH_EraseOptionBytes>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:677
+        FLASH->CR &= CR_OPTPG_Reset;
+      }
+    }
+    else
+    {
+      if (status != FLASH_TIMEOUT)
+  62:	2805      	cmp	r0, #5
+  64:	d005      	beq.n	72 <FLASH_EraseOptionBytes+0x72>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:680
+      {
+        /* Disable the OPTPG Bit */
+        FLASH->CR &= CR_OPTPG_Reset;
+  66:	6922      	ldr	r2, [r4, #16]
+  68:	f641 73ef 	movw	r3, #8175	; 0x1fef
+  6c:	ea02 0303 	and.w	r3, r2, r3
+  70:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:686
+      }
+    }  
+  }
+  /* Return the erase status */
+  return status;
+}
+  72:	bd70      	pop	{r4, r5, r6, pc}
+  74:	40022000 	.word	0x40022000
+  78:	45670123 	.word	0x45670123
+  7c:	1ffff800 	.word	0x1ffff800
+Disassembly of section .text.FLASH_WaitForLastBank1Operation:
+
+00000000 <FLASH_WaitForLastBank1Operation>:
+FLASH_WaitForLastBank1Operation():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1675
+  * @param  Timeout: FLASH progamming Timeout
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_WaitForLastBank1Operation(uint32_t Timeout)
+{ 
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1679
+  FLASH_Status status = FLASH_COMPLETE;
+   
+  /* Check for the Flash Status */
+  status = FLASH_GetBank1Status();
+   4:	f7ff fffe 	bl	0 <FLASH_WaitForLastBank1Operation>
+   8:	e002      	b.n	8 <FLASH_WaitForLastBank1Operation+0x8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1683
+  /* Wait for a Flash operation to complete or a TIMEOUT to occur */
+  while((status == FLASH_FLAG_BANK1_BSY) && (Timeout != 0x00))
+  {
+    status = FLASH_GetBank1Status();
+   a:	f7ff fffe 	bl	0 <FLASH_WaitForLastBank1Operation>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1684
+    Timeout--;
+   e:	3c01      	subs	r4, #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1681
+  FLASH_Status status = FLASH_COMPLETE;
+   
+  /* Check for the Flash Status */
+  status = FLASH_GetBank1Status();
+  /* Wait for a Flash operation to complete or a TIMEOUT to occur */
+  while((status == FLASH_FLAG_BANK1_BSY) && (Timeout != 0x00))
+  10:	2801      	cmp	r0, #1
+  12:	d102      	bne.n	1a <FLASH_WaitForLastBank1Operation+0x1a>
+  14:	2c00      	cmp	r4, #0
+  16:	d1f8      	bne.n	a <FLASH_WaitForLastBank1Operation+0xa>
+  18:	e000      	b.n	1c <FLASH_WaitForLastBank1Operation+0x1c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1686
+  {
+    status = FLASH_GetBank1Status();
+    Timeout--;
+  }
+  if(Timeout == 0x00 )
+  1a:	b904      	cbnz	r4, 1e <FLASH_WaitForLastBank1Operation+0x1e>
+  1c:	2005      	movs	r0, #5
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1692
+  {
+    status = FLASH_TIMEOUT;
+  }
+  /* Return the operation status */
+  return status;
+}
+  1e:	bd10      	pop	{r4, pc}
+Disassembly of section .text.FLASH_EraseAllBank1Pages:
+
+00000000 <FLASH_EraseAllBank1Pages>:
+FLASH_EraseAllBank1Pages():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:567
+  * @param  None
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_EraseAllBank1Pages(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:570
+  FLASH_Status status = FLASH_COMPLETE;
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+   2:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+   6:	f7ff fffe 	bl	0 <FLASH_EraseAllBank1Pages>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:572
+  
+  if(status == FLASH_COMPLETE)
+   a:	2804      	cmp	r0, #4
+   c:	d114      	bne.n	38 <FLASH_EraseAllBank1Pages+0x38>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:575
+  {
+    /* if the previous operation is completed, proceed to erase all pages */
+     FLASH->CR |= CR_MER_Set;
+   e:	4c0b      	ldr	r4, [pc, #44]	(3c <FLASH_EraseAllBank1Pages+0x3c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:579
+     FLASH->CR |= CR_STRT_Set;
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+  10:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:575
+  status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+  
+  if(status == FLASH_COMPLETE)
+  {
+    /* if the previous operation is completed, proceed to erase all pages */
+     FLASH->CR |= CR_MER_Set;
+  14:	6923      	ldr	r3, [r4, #16]
+  16:	f043 0304 	orr.w	r3, r3, #4	; 0x4
+  1a:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:576
+     FLASH->CR |= CR_STRT_Set;
+  1c:	6923      	ldr	r3, [r4, #16]
+  1e:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  22:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:579
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+  24:	f7ff fffe 	bl	0 <FLASH_EraseAllBank1Pages>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:580
+    if(status != FLASH_TIMEOUT)
+  28:	2805      	cmp	r0, #5
+  2a:	d005      	beq.n	38 <FLASH_EraseAllBank1Pages+0x38>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:583
+    {
+      /* if the erase operation is completed, disable the MER Bit */
+      FLASH->CR &= CR_MER_Reset;
+  2c:	6922      	ldr	r2, [r4, #16]
+  2e:	f641 73fb 	movw	r3, #8187	; 0x1ffb
+  32:	ea02 0303 	and.w	r3, r2, r3
+  36:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:588
+    }
+  }    
+  /* Return the Erase Status */
+  return status;
+}
+  38:	bd10      	pop	{r4, pc}
+  3a:	46c0      	nop			(mov r8, r8)
+  3c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_WaitForLastBank2Operation:
+
+00000000 <FLASH_WaitForLastBank2Operation>:
+FLASH_WaitForLastBank2Operation():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1703
+  * @param  Timeout: FLASH progamming Timeout
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_WaitForLastBank2Operation(uint32_t Timeout)
+{ 
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1707
+  FLASH_Status status = FLASH_COMPLETE;
+   
+  /* Check for the Flash Status */
+  status = FLASH_GetBank2Status();
+   4:	f7ff fffe 	bl	0 <FLASH_WaitForLastBank2Operation>
+   8:	e002      	b.n	8 <FLASH_WaitForLastBank2Operation+0x8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1711
+  /* Wait for a Flash operation to complete or a TIMEOUT to occur */
+  while((status == (FLASH_FLAG_BANK2_BSY & 0x7FFFFFFF)) && (Timeout != 0x00))
+  {
+    status = FLASH_GetBank2Status();
+   a:	f7ff fffe 	bl	0 <FLASH_WaitForLastBank2Operation>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1712
+    Timeout--;
+   e:	3c01      	subs	r4, #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1709
+  FLASH_Status status = FLASH_COMPLETE;
+   
+  /* Check for the Flash Status */
+  status = FLASH_GetBank2Status();
+  /* Wait for a Flash operation to complete or a TIMEOUT to occur */
+  while((status == (FLASH_FLAG_BANK2_BSY & 0x7FFFFFFF)) && (Timeout != 0x00))
+  10:	2801      	cmp	r0, #1
+  12:	d102      	bne.n	1a <FLASH_WaitForLastBank2Operation+0x1a>
+  14:	2c00      	cmp	r4, #0
+  16:	d1f8      	bne.n	a <FLASH_WaitForLastBank2Operation+0xa>
+  18:	e000      	b.n	1c <FLASH_WaitForLastBank2Operation+0x1c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1714
+  {
+    status = FLASH_GetBank2Status();
+    Timeout--;
+  }
+  if(Timeout == 0x00 )
+  1a:	b904      	cbnz	r4, 1e <FLASH_WaitForLastBank2Operation+0x1e>
+  1c:	2005      	movs	r0, #5
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:1720
+  {
+    status = FLASH_TIMEOUT;
+  }
+  /* Return the operation status */
+  return status;
+}
+  1e:	bd10      	pop	{r4, pc}
+Disassembly of section .text.FLASH_ProgramHalfWord:
+
+00000000 <FLASH_ProgramHalfWord>:
+FLASH_ProgramHalfWord():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:904
+  * @param  Data: specifies the data to be programmed.
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT. 
+  */
+FLASH_Status FLASH_ProgramHalfWord(uint32_t Address, uint16_t Data)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4604      	mov	r4, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:911
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Address));
+
+#ifdef STM32F10X_XL
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   4:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:904
+  * @param  Data: specifies the data to be programmed.
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT. 
+  */
+FLASH_Status FLASH_ProgramHalfWord(uint32_t Address, uint16_t Data)
+{
+   8:	460e      	mov	r6, r1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:911
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Address));
+
+#ifdef STM32F10X_XL
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   a:	f7ff fffe 	bl	0 <FLASH_ProgramHalfWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:913
+  
+  if(Address < FLASH_BANK1_END_ADDRESS)
+   e:	4b16      	ldr	r3, [pc, #88]	(68 <FLASH_ProgramHalfWord+0x68>)
+  10:	429c      	cmp	r4, r3
+  12:	d814      	bhi.n	3e <FLASH_ProgramHalfWord+0x3e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:915
+  {
+    if(status == FLASH_COMPLETE)
+  14:	2804      	cmp	r0, #4
+  16:	d126      	bne.n	66 <FLASH_ProgramHalfWord+0x66>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:918
+    {
+      /* if the previous operation is completed, proceed to program the new data */
+      FLASH->CR |= CR_PG_Set;
+  18:	4d14      	ldr	r5, [pc, #80]	(6c <FLASH_ProgramHalfWord+0x6c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:922
+  
+      *(__IO uint16_t*)Address = Data;
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank1Operation(ProgramTimeout);
+  1a:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:918
+  if(Address < FLASH_BANK1_END_ADDRESS)
+  {
+    if(status == FLASH_COMPLETE)
+    {
+      /* if the previous operation is completed, proceed to program the new data */
+      FLASH->CR |= CR_PG_Set;
+  1e:	692b      	ldr	r3, [r5, #16]
+  20:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  24:	612b      	str	r3, [r5, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:920
+  
+      *(__IO uint16_t*)Address = Data;
+  26:	8026      	strh	r6, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:922
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank1Operation(ProgramTimeout);
+  28:	f7ff fffe 	bl	0 <FLASH_ProgramHalfWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:923
+      if(status != FLASH_TIMEOUT)
+  2c:	2805      	cmp	r0, #5
+  2e:	d01a      	beq.n	66 <FLASH_ProgramHalfWord+0x66>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:926
+      {
+        /* if the program operation is completed, disable the PG Bit */
+        FLASH->CR &= CR_PG_Reset;
+  30:	692a      	ldr	r2, [r5, #16]
+  32:	f641 73fe 	movw	r3, #8190	; 0x1ffe
+  36:	ea02 0303 	and.w	r3, r2, r3
+  3a:	612b      	str	r3, [r5, #16]
+  3c:	e013      	b.n	66 <FLASH_ProgramHalfWord+0x66>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:932
+      }
+    }
+  }
+  else
+  {
+    if(status == FLASH_COMPLETE)
+  3e:	2804      	cmp	r0, #4
+  40:	d111      	bne.n	66 <FLASH_ProgramHalfWord+0x66>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:935
+    {
+      /* if the previous operation is completed, proceed to program the new data */
+      FLASH->CR2 |= CR_PG_Set;
+  42:	4d0a      	ldr	r5, [pc, #40]	(6c <FLASH_ProgramHalfWord+0x6c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:939
+  
+      *(__IO uint16_t*)Address = Data;
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+  44:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:935
+  else
+  {
+    if(status == FLASH_COMPLETE)
+    {
+      /* if the previous operation is completed, proceed to program the new data */
+      FLASH->CR2 |= CR_PG_Set;
+  48:	6d2b      	ldr	r3, [r5, #80]
+  4a:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  4e:	652b      	str	r3, [r5, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:937
+  
+      *(__IO uint16_t*)Address = Data;
+  50:	8026      	strh	r6, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:939
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+  52:	f7ff fffe 	bl	0 <FLASH_ProgramHalfWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:940
+      if(status != FLASH_TIMEOUT)
+  56:	2805      	cmp	r0, #5
+  58:	d005      	beq.n	66 <FLASH_ProgramHalfWord+0x66>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:943
+      {
+        /* if the program operation is completed, disable the PG Bit */
+        FLASH->CR2 &= CR_PG_Reset;
+  5a:	6d2a      	ldr	r2, [r5, #80]
+  5c:	f641 73fe 	movw	r3, #8190	; 0x1ffe
+  60:	ea02 0303 	and.w	r3, r2, r3
+  64:	652b      	str	r3, [r5, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:969
+  } 
+#endif  /* STM32F10X_XL */
+  
+  /* Return the Program Status */
+  return status;
+}
+  66:	bd70      	pop	{r4, r5, r6, pc}
+  68:	0807fffe 	.word	0x0807fffe
+  6c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_ProgramWord:
+
+00000000 <FLASH_ProgramWord>:
+FLASH_ProgramWord():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:697
+  * @param  Data: specifies the data to be programmed.
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT. 
+  */
+FLASH_Status FLASH_ProgramWord(uint32_t Address, uint32_t Data)
+{
+   0:	b573      	push	{r0, r1, r4, r5, r6, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:699
+  FLASH_Status status = FLASH_COMPLETE;
+  __IO uint32_t tmp = 0;
+   2:	2300      	movs	r3, #0
+   4:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:705
+
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Address));
+
+#ifdef STM32F10X_XL
+  if(Address < FLASH_BANK1_END_ADDRESS - 2)
+   6:	4b4e      	ldr	r3, [pc, #312]	(140 <FLASH_ProgramWord+0x140>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:697
+  * @param  Data: specifies the data to be programmed.
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT. 
+  */
+FLASH_Status FLASH_ProgramWord(uint32_t Address, uint32_t Data)
+{
+   8:	4604      	mov	r4, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:705
+
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Address));
+
+#ifdef STM32F10X_XL
+  if(Address < FLASH_BANK1_END_ADDRESS - 2)
+   a:	4298      	cmp	r0, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:697
+  * @param  Data: specifies the data to be programmed.
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT. 
+  */
+FLASH_Status FLASH_ProgramWord(uint32_t Address, uint32_t Data)
+{
+   c:	460e      	mov	r6, r1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:705
+
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Address));
+
+#ifdef STM32F10X_XL
+  if(Address < FLASH_BANK1_END_ADDRESS - 2)
+   e:	d825      	bhi.n	5c <FLASH_ProgramWord+0x5c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:708
+  { 
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank1Operation(ProgramTimeout); 
+  10:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+  14:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:709
+    if(status == FLASH_COMPLETE)
+  18:	2804      	cmp	r0, #4
+  1a:	f040 8090 	bne.w	13e <FLASH_ProgramWord+0x13e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:713
+    {
+      /* if the previous operation is completed, proceed to program the new first 
+        half word */
+      FLASH->CR |= CR_PG_Set;
+  1e:	4d49      	ldr	r5, [pc, #292]	(144 <FLASH_ProgramWord+0x144>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:717
+  
+      *(__IO uint16_t*)Address = (uint16_t)Data;
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  20:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:713
+    status = FLASH_WaitForLastBank1Operation(ProgramTimeout); 
+    if(status == FLASH_COMPLETE)
+    {
+      /* if the previous operation is completed, proceed to program the new first 
+        half word */
+      FLASH->CR |= CR_PG_Set;
+  24:	692b      	ldr	r3, [r5, #16]
+  26:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  2a:	612b      	str	r3, [r5, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:715
+  
+      *(__IO uint16_t*)Address = (uint16_t)Data;
+  2c:	b2b3      	uxth	r3, r6
+  2e:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:717
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  30:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:719
+ 
+      if(status == FLASH_COMPLETE)
+  34:	2804      	cmp	r0, #4
+  36:	d108      	bne.n	4a <FLASH_ProgramWord+0x4a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:723
+      {
+        /* if the previous operation is completed, proceed to program the new second 
+        half word */
+        tmp = Address + 2;
+  38:	1ca3      	adds	r3, r4, #2
+  3a:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:725
+
+        *(__IO uint16_t*) tmp = Data >> 16;
+  3c:	9a01      	ldr	r2, [sp, #4]
+  3e:	0c33      	lsrs	r3, r6, #16
+  40:	8013      	strh	r3, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:728
+    
+        /* Wait for last operation to be completed */
+        status = FLASH_WaitForLastOperation(ProgramTimeout);
+  42:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+  46:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:738
+          FLASH->CR &= CR_PG_Reset;
+        }
+      }
+      else
+      {
+        if (status != FLASH_TIMEOUT)
+  4a:	2805      	cmp	r0, #5
+  4c:	d077      	beq.n	13e <FLASH_ProgramWord+0x13e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:741
+        {
+          /* Disable the PG Bit */
+          FLASH->CR &= CR_PG_Reset;
+  4e:	692a      	ldr	r2, [r5, #16]
+  50:	f641 73fe 	movw	r3, #8190	; 0x1ffe
+  54:	ea02 0303 	and.w	r3, r2, r3
+  58:	612b      	str	r3, [r5, #16]
+  5a:	e070      	b.n	13e <FLASH_ProgramWord+0x13e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:746
+        }
+       }
+    }
+  }
+  else if(Address == (FLASH_BANK1_END_ADDRESS - 1))
+  5c:	4b3a      	ldr	r3, [pc, #232]	(148 <FLASH_ProgramWord+0x148>)
+  5e:	4298      	cmp	r0, r3
+  60:	d149      	bne.n	f6 <FLASH_ProgramWord+0xf6>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:749
+  {
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank1Operation(ProgramTimeout);
+  62:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+  66:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:751
+
+    if(status == FLASH_COMPLETE)
+  6a:	2804      	cmp	r0, #4
+  6c:	d113      	bne.n	96 <FLASH_ProgramWord+0x96>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:755
+    {
+      /* if the previous operation is completed, proceed to program the new first 
+        half word */
+      FLASH->CR |= CR_PG_Set;
+  6e:	4d35      	ldr	r5, [pc, #212]	(144 <FLASH_ProgramWord+0x144>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:760
+  
+      *(__IO uint16_t*)Address = (uint16_t)Data;
+
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank1Operation(ProgramTimeout);
+  70:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:755
+
+    if(status == FLASH_COMPLETE)
+    {
+      /* if the previous operation is completed, proceed to program the new first 
+        half word */
+      FLASH->CR |= CR_PG_Set;
+  74:	692b      	ldr	r3, [r5, #16]
+  76:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  7a:	612b      	str	r3, [r5, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:757
+  
+      *(__IO uint16_t*)Address = (uint16_t)Data;
+  7c:	b2b3      	uxth	r3, r6
+  7e:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:760
+
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank1Operation(ProgramTimeout);
+  80:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:762
+
+      if(status != FLASH_TIMEOUT)
+  84:	2805      	cmp	r0, #5
+  86:	d00f      	beq.n	a8 <FLASH_ProgramWord+0xa8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:765
+      {
+        /* Disable the PG Bit */
+        FLASH->CR &= CR_PG_Reset;
+  88:	692a      	ldr	r2, [r5, #16]
+  8a:	f641 73fe 	movw	r3, #8190	; 0x1ffe
+  8e:	ea02 0303 	and.w	r3, r2, r3
+  92:	612b      	str	r3, [r5, #16]
+  94:	e008      	b.n	a8 <FLASH_ProgramWord+0xa8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:770
+      }
+    }
+    else
+    {
+      if (status != FLASH_TIMEOUT)
+  96:	2805      	cmp	r0, #5
+  98:	d006      	beq.n	a8 <FLASH_ProgramWord+0xa8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:773
+      {
+        /* Disable the PG Bit */
+        FLASH->CR &= CR_PG_Reset;
+  9a:	492a      	ldr	r1, [pc, #168]	(144 <FLASH_ProgramWord+0x144>)
+  9c:	f641 73fe 	movw	r3, #8190	; 0x1ffe
+  a0:	690a      	ldr	r2, [r1, #16]
+  a2:	ea02 0303 	and.w	r3, r2, r3
+  a6:	610b      	str	r3, [r1, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:778
+      }
+    }
+
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+  a8:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+  ac:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:780
+
+    if(status == FLASH_COMPLETE)
+  b0:	2804      	cmp	r0, #4
+  b2:	d116      	bne.n	e2 <FLASH_ProgramWord+0xe2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:784
+    {
+      /* if the previous operation is completed, proceed to program the new second 
+      half word */
+      FLASH->CR2 |= CR_PG_Set;
+  b4:	4c23      	ldr	r4, [pc, #140]	(144 <FLASH_ProgramWord+0x144>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:790
+      tmp = Address + 2;
+
+      *(__IO uint16_t*) tmp = Data >> 16;
+    
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+  b6:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:784
+
+    if(status == FLASH_COMPLETE)
+    {
+      /* if the previous operation is completed, proceed to program the new second 
+      half word */
+      FLASH->CR2 |= CR_PG_Set;
+  ba:	6d23      	ldr	r3, [r4, #80]
+  bc:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  c0:	6523      	str	r3, [r4, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:785
+      tmp = Address + 2;
+  c2:	4b22      	ldr	r3, [pc, #136]	(14c <FLASH_ProgramWord+0x14c>)
+  c4:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:787
+
+      *(__IO uint16_t*) tmp = Data >> 16;
+  c6:	9a01      	ldr	r2, [sp, #4]
+  c8:	0c33      	lsrs	r3, r6, #16
+  ca:	8013      	strh	r3, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:790
+    
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+  cc:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:792
+        
+      if(status != FLASH_TIMEOUT)
+  d0:	2805      	cmp	r0, #5
+  d2:	d034      	beq.n	13e <FLASH_ProgramWord+0x13e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:795
+      {
+        /* Disable the PG Bit */
+        FLASH->CR2 &= CR_PG_Reset;
+  d4:	6d22      	ldr	r2, [r4, #80]
+  d6:	f641 73fe 	movw	r3, #8190	; 0x1ffe
+  da:	ea02 0303 	and.w	r3, r2, r3
+  de:	6523      	str	r3, [r4, #80]
+  e0:	e02d      	b.n	13e <FLASH_ProgramWord+0x13e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:800
+      }
+    }
+    else
+    {
+      if (status != FLASH_TIMEOUT)
+  e2:	2805      	cmp	r0, #5
+  e4:	d02b      	beq.n	13e <FLASH_ProgramWord+0x13e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:803
+      {
+        /* Disable the PG Bit */
+        FLASH->CR2 &= CR_PG_Reset;
+  e6:	4917      	ldr	r1, [pc, #92]	(144 <FLASH_ProgramWord+0x144>)
+  e8:	f641 73fe 	movw	r3, #8190	; 0x1ffe
+  ec:	6d0a      	ldr	r2, [r1, #80]
+  ee:	ea02 0303 	and.w	r3, r2, r3
+  f2:	650b      	str	r3, [r1, #80]
+  f4:	e023      	b.n	13e <FLASH_ProgramWord+0x13e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:810
+    }
+  }
+  else
+  {
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+  f6:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+  fa:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:812
+
+    if(status == FLASH_COMPLETE)
+  fe:	2804      	cmp	r0, #4
+ 100:	d11d      	bne.n	13e <FLASH_ProgramWord+0x13e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:816
+    {
+      /* if the previous operation is completed, proceed to program the new first 
+        half word */
+      FLASH->CR2 |= CR_PG_Set;
+ 102:	4d10      	ldr	r5, [pc, #64]	(144 <FLASH_ProgramWord+0x144>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:820
+  
+      *(__IO uint16_t*)Address = (uint16_t)Data;
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+ 104:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:816
+
+    if(status == FLASH_COMPLETE)
+    {
+      /* if the previous operation is completed, proceed to program the new first 
+        half word */
+      FLASH->CR2 |= CR_PG_Set;
+ 108:	6d2b      	ldr	r3, [r5, #80]
+ 10a:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+ 10e:	652b      	str	r3, [r5, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:818
+  
+      *(__IO uint16_t*)Address = (uint16_t)Data;
+ 110:	b2b3      	uxth	r3, r6
+ 112:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:820
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+ 114:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:822
+ 
+      if(status == FLASH_COMPLETE)
+ 118:	2804      	cmp	r0, #4
+ 11a:	d108      	bne.n	12e <FLASH_ProgramWord+0x12e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:826
+      {
+        /* if the previous operation is completed, proceed to program the new second 
+        half word */
+        tmp = Address + 2;
+ 11c:	1ca3      	adds	r3, r4, #2
+ 11e:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:828
+
+        *(__IO uint16_t*) tmp = Data >> 16;
+ 120:	9a01      	ldr	r2, [sp, #4]
+ 122:	0c33      	lsrs	r3, r6, #16
+ 124:	8013      	strh	r3, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:831
+    
+        /* Wait for last operation to be completed */
+        status = FLASH_WaitForLastBank2Operation(ProgramTimeout);
+ 126:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+ 12a:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:841
+          FLASH->CR2 &= CR_PG_Reset;
+        }
+      }
+      else
+      {
+        if (status != FLASH_TIMEOUT)
+ 12e:	2805      	cmp	r0, #5
+ 130:	d005      	beq.n	13e <FLASH_ProgramWord+0x13e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:844
+        {
+          /* Disable the PG Bit */
+          FLASH->CR2 &= CR_PG_Reset;
+ 132:	6d2a      	ldr	r2, [r5, #80]
+ 134:	f641 73fe 	movw	r3, #8190	; 0x1ffe
+ 138:	ea02 0303 	and.w	r3, r2, r3
+ 13c:	652b      	str	r3, [r5, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:893
+  }         
+#endif /* STM32F10X_XL */
+   
+  /* Return the Program Status */
+  return status;
+}
+ 13e:	bd7c      	pop	{r2, r3, r4, r5, r6, pc}
+ 140:	0807fffc 	.word	0x0807fffc
+ 144:	40022000 	.word	0x40022000
+ 148:	0807fffe 	.word	0x0807fffe
+ 14c:	08080000 	.word	0x08080000
+Disassembly of section .text.FLASH_EraseAllBank2Pages:
+
+00000000 <FLASH_EraseAllBank2Pages>:
+FLASH_EraseAllBank2Pages():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:599
+  * @param  None
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_EraseAllBank2Pages(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:602
+  FLASH_Status status = FLASH_COMPLETE;
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+   2:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+   6:	f7ff fffe 	bl	0 <FLASH_EraseAllBank2Pages>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:604
+  
+  if(status == FLASH_COMPLETE)
+   a:	2804      	cmp	r0, #4
+   c:	d114      	bne.n	38 <FLASH_EraseAllBank2Pages+0x38>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:607
+  {
+    /* if the previous operation is completed, proceed to erase all pages */
+     FLASH->CR2 |= CR_MER_Set;
+   e:	4c0b      	ldr	r4, [pc, #44]	(3c <FLASH_EraseAllBank2Pages+0x3c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:611
+     FLASH->CR2 |= CR_STRT_Set;
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+  10:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:607
+  status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+  
+  if(status == FLASH_COMPLETE)
+  {
+    /* if the previous operation is completed, proceed to erase all pages */
+     FLASH->CR2 |= CR_MER_Set;
+  14:	6d23      	ldr	r3, [r4, #80]
+  16:	f043 0304 	orr.w	r3, r3, #4	; 0x4
+  1a:	6523      	str	r3, [r4, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:608
+     FLASH->CR2 |= CR_STRT_Set;
+  1c:	6d23      	ldr	r3, [r4, #80]
+  1e:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  22:	6523      	str	r3, [r4, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:611
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+  24:	f7ff fffe 	bl	0 <FLASH_EraseAllBank2Pages>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:612
+    if(status != FLASH_TIMEOUT)
+  28:	2805      	cmp	r0, #5
+  2a:	d005      	beq.n	38 <FLASH_EraseAllBank2Pages+0x38>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:615
+    {
+      /* if the erase operation is completed, disable the MER Bit */
+      FLASH->CR2 &= CR_MER_Reset;
+  2c:	6d22      	ldr	r2, [r4, #80]
+  2e:	f641 73fb 	movw	r3, #8187	; 0x1ffb
+  32:	ea02 0303 	and.w	r3, r2, r3
+  36:	6523      	str	r3, [r4, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:620
+    }
+  }    
+  /* Return the Erase Status */
+  return status;
+}
+  38:	bd10      	pop	{r4, pc}
+  3a:	46c0      	nop			(mov r8, r8)
+  3c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_EraseAllPages:
+
+00000000 <FLASH_EraseAllPages>:
+FLASH_EraseAllPages():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:498
+  * @param  None
+  * @retval FLASH Status: The returned value can be: FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_EraseAllPages(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:503
+  FLASH_Status status = FLASH_COMPLETE;
+
+#ifdef STM32F10X_XL
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+   2:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+   6:	f7ff fffe 	bl	0 <FLASH_EraseAllPages>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:505
+  
+  if(status == FLASH_COMPLETE)
+   a:	2804      	cmp	r0, #4
+   c:	d12a      	bne.n	64 <FLASH_EraseAllPages+0x64>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:508
+  {
+    /* if the previous operation is completed, proceed to erase all pages */
+     FLASH->CR |= CR_MER_Set;
+   e:	4c16      	ldr	r4, [pc, #88]	(68 <FLASH_EraseAllPages+0x68>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:512
+     FLASH->CR |= CR_STRT_Set;
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+  10:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:508
+  status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+  
+  if(status == FLASH_COMPLETE)
+  {
+    /* if the previous operation is completed, proceed to erase all pages */
+     FLASH->CR |= CR_MER_Set;
+  14:	6923      	ldr	r3, [r4, #16]
+  16:	f043 0304 	orr.w	r3, r3, #4	; 0x4
+  1a:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:509
+     FLASH->CR |= CR_STRT_Set;
+  1c:	6923      	ldr	r3, [r4, #16]
+  1e:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  22:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:512
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+  24:	f7ff fffe 	bl	0 <FLASH_EraseAllPages>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:513
+    if(status != FLASH_TIMEOUT)
+  28:	2805      	cmp	r0, #5
+  2a:	d01b      	beq.n	64 <FLASH_EraseAllPages+0x64>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:516
+    {
+      /* if the erase operation is completed, disable the MER Bit */
+      FLASH->CR &= CR_MER_Reset;
+  2c:	6922      	ldr	r2, [r4, #16]
+  2e:	f641 73fb 	movw	r3, #8187	; 0x1ffb
+  32:	ea02 0303 	and.w	r3, r2, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:519
+    }
+  }    
+  if(status == FLASH_COMPLETE)
+  36:	2804      	cmp	r0, #4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:516
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+    if(status != FLASH_TIMEOUT)
+    {
+      /* if the erase operation is completed, disable the MER Bit */
+      FLASH->CR &= CR_MER_Reset;
+  38:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:519
+    }
+  }    
+  if(status == FLASH_COMPLETE)
+  3a:	d113      	bne.n	64 <FLASH_EraseAllPages+0x64>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:522
+  {
+    /* if the previous operation is completed, proceed to erase all pages */
+     FLASH->CR2 |= CR_MER_Set;
+  3c:	6d23      	ldr	r3, [r4, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:526
+     FLASH->CR2 |= CR_STRT_Set;
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+  3e:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:522
+    }
+  }    
+  if(status == FLASH_COMPLETE)
+  {
+    /* if the previous operation is completed, proceed to erase all pages */
+     FLASH->CR2 |= CR_MER_Set;
+  42:	f043 0304 	orr.w	r3, r3, #4	; 0x4
+  46:	6523      	str	r3, [r4, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:523
+     FLASH->CR2 |= CR_STRT_Set;
+  48:	6d23      	ldr	r3, [r4, #80]
+  4a:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  4e:	6523      	str	r3, [r4, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:526
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+  50:	f7ff fffe 	bl	0 <FLASH_EraseAllPages>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:527
+    if(status != FLASH_TIMEOUT)
+  54:	2805      	cmp	r0, #5
+  56:	d005      	beq.n	64 <FLASH_EraseAllPages+0x64>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:530
+    {
+      /* if the erase operation is completed, disable the MER Bit */
+      FLASH->CR2 &= CR_MER_Reset;
+  58:	6d22      	ldr	r2, [r4, #80]
+  5a:	f641 73fb 	movw	r3, #8187	; 0x1ffb
+  5e:	ea02 0303 	and.w	r3, r2, r3
+  62:	6523      	str	r3, [r4, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:554
+  }
+#endif /* STM32F10X_XL */
+
+  /* Return the Erase Status */
+  return status;
+}
+  64:	bd10      	pop	{r4, pc}
+  66:	46c0      	nop			(mov r8, r8)
+  68:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_ErasePage:
+
+00000000 <FLASH_ErasePage>:
+FLASH_ErasePage():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:419
+  * @param  Page_Address: The page address to be erased.
+  * @retval FLASH Status: The returned value can be: FLASH_BUSY, FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_ErasePage(uint32_t Page_Address)
+{
+   0:	4b1f      	ldr	r3, [pc, #124]	(80 <FLASH_ErasePage+0x80>)
+   2:	b570      	push	{r4, r5, r6, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:425
+  FLASH_Status status = FLASH_COMPLETE;
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Page_Address));
+
+#ifdef STM32F10X_XL
+  if(Page_Address < FLASH_BANK1_END_ADDRESS)  
+   4:	4298      	cmp	r0, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:419
+  * @param  Page_Address: The page address to be erased.
+  * @retval FLASH Status: The returned value can be: FLASH_BUSY, FLASH_ERROR_PG,
+  *   FLASH_ERROR_WRP, FLASH_COMPLETE or FLASH_TIMEOUT.
+  */
+FLASH_Status FLASH_ErasePage(uint32_t Page_Address)
+{
+   6:	4605      	mov	r5, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:425
+  FLASH_Status status = FLASH_COMPLETE;
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Page_Address));
+
+#ifdef STM32F10X_XL
+  if(Page_Address < FLASH_BANK1_END_ADDRESS)  
+   8:	d81c      	bhi.n	44 <FLASH_ErasePage+0x44>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:428
+  {
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+   a:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+   e:	f7ff fffe 	bl	0 <FLASH_ErasePage>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:429
+    if(status == FLASH_COMPLETE)
+  12:	2804      	cmp	r0, #4
+  14:	d132      	bne.n	7c <FLASH_ErasePage+0x7c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:432
+    { 
+      /* if the previous operation is completed, proceed to erase the page */
+      FLASH->CR|= CR_PER_Set;
+  16:	4c1b      	ldr	r4, [pc, #108]	(84 <FLASH_ErasePage+0x84>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:437
+      FLASH->AR = Page_Address; 
+      FLASH->CR|= CR_STRT_Set;
+    
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+  18:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:432
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+    if(status == FLASH_COMPLETE)
+    { 
+      /* if the previous operation is completed, proceed to erase the page */
+      FLASH->CR|= CR_PER_Set;
+  1c:	6923      	ldr	r3, [r4, #16]
+  1e:	f043 0302 	orr.w	r3, r3, #2	; 0x2
+  22:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:433
+      FLASH->AR = Page_Address; 
+  24:	6165      	str	r5, [r4, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:434
+      FLASH->CR|= CR_STRT_Set;
+  26:	6923      	ldr	r3, [r4, #16]
+  28:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  2c:	6123      	str	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:437
+    
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank1Operation(EraseTimeout);
+  2e:	f7ff fffe 	bl	0 <FLASH_ErasePage>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:438
+      if(status != FLASH_TIMEOUT)
+  32:	2805      	cmp	r0, #5
+  34:	d022      	beq.n	7c <FLASH_ErasePage+0x7c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:441
+      {
+        /* if the erase operation is completed, disable the PER Bit */
+        FLASH->CR &= CR_PER_Reset;
+  36:	6922      	ldr	r2, [r4, #16]
+  38:	f641 73fd 	movw	r3, #8189	; 0x1ffd
+  3c:	ea02 0303 	and.w	r3, r2, r3
+  40:	6123      	str	r3, [r4, #16]
+  42:	e01b      	b.n	7c <FLASH_ErasePage+0x7c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:448
+    }
+  }
+  else
+  {
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+  44:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+  48:	f7ff fffe 	bl	0 <FLASH_ErasePage>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:449
+    if(status == FLASH_COMPLETE)
+  4c:	2804      	cmp	r0, #4
+  4e:	d115      	bne.n	7c <FLASH_ErasePage+0x7c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:452
+    { 
+      /* if the previous operation is completed, proceed to erase the page */
+      FLASH->CR2|= CR_PER_Set;
+  50:	4c0c      	ldr	r4, [pc, #48]	(84 <FLASH_ErasePage+0x84>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:457
+      FLASH->AR2 = Page_Address; 
+      FLASH->CR2|= CR_STRT_Set;
+    
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+  52:	f44f 2030 	mov.w	r0, #720896	; 0xb0000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:452
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+    if(status == FLASH_COMPLETE)
+    { 
+      /* if the previous operation is completed, proceed to erase the page */
+      FLASH->CR2|= CR_PER_Set;
+  56:	6d23      	ldr	r3, [r4, #80]
+  58:	f043 0302 	orr.w	r3, r3, #2	; 0x2
+  5c:	6523      	str	r3, [r4, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:453
+      FLASH->AR2 = Page_Address; 
+  5e:	6565      	str	r5, [r4, #84]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:454
+      FLASH->CR2|= CR_STRT_Set;
+  60:	6d23      	ldr	r3, [r4, #80]
+  62:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  66:	6523      	str	r3, [r4, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:457
+    
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastBank2Operation(EraseTimeout);
+  68:	f7ff fffe 	bl	0 <FLASH_ErasePage>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:458
+      if(status != FLASH_TIMEOUT)
+  6c:	2805      	cmp	r0, #5
+  6e:	d005      	beq.n	7c <FLASH_ErasePage+0x7c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:461
+      {
+        /* if the erase operation is completed, disable the PER Bit */
+        FLASH->CR2 &= CR_PER_Reset;
+  70:	6d22      	ldr	r2, [r4, #80]
+  72:	f641 73fd 	movw	r3, #8189	; 0x1ffd
+  76:	ea02 0303 	and.w	r3, r2, r3
+  7a:	6523      	str	r3, [r4, #80]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_flash.c:488
+  }
+#endif /* STM32F10X_XL */
+
+  /* Return the Erase Status */
+  return status;
+}
+  7c:	bd70      	pop	{r4, r5, r6, pc}
+  7e:	46c0      	nop			(mov r8, r8)
+  80:	0807fffe 	.word	0x0807fffe
+  84:	40022000 	.word	0x40022000

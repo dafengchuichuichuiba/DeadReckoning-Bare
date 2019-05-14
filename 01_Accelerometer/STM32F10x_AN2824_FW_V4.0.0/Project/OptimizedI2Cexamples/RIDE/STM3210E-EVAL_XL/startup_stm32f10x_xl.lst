@@ -1,0 +1,44 @@
+
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\startup_stm32f10x_xl.o:     file format elf32-littlearm
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\startup_stm32f10x_xl.o
+
+Disassembly of section .text:
+
+00000000 <.text>:
+	...
+Disassembly of section .text.Reset_Handler:
+
+00000000 <Reset_Handler>:
+Reset_Handler():
+   0:	2100      	movs	r1, #0
+   2:	e003      	b.n	c <LoopCopyDataInit>
+
+00000004 <CopyDataInit>:
+CopyDataInit():
+   4:	585b4b0a 	.word	0x585b4b0a
+   8:	31045043 	.word	0x31045043
+
+0000000c <LoopCopyDataInit>:
+LoopCopyDataInit():
+   c:	4b0a4809 	.word	0x4b0a4809
+  10:	429a1842 	.word	0x429a1842
+  14:	4a09d3f6 	.word	0x4a09d3f6
+  18:	e002      	.short	0xe002
+
+0000001a <FillZerobss>:
+FillZerobss():
+  1a:	2300      	.short	0x2300
+  1c:	3b04f842 	.word	0x3b04f842
+
+00000020 <LoopFillZerobss>:
+LoopFillZerobss():
+  20:	429a4b07 	.word	0x429a4b07
+  24:	f7ffd3f9 	.word	0xf7ffd3f9
+  28:	f7fffffe 	.word	0xf7fffffe
+  2c:	4770fffe 	.word	0x4770fffe
+	...
+Disassembly of section .text.Default_Handler:
+
+00000000 <ADC1_2_IRQHandler>:
+DMA2_Channel4_5_IRQHandler():
+   0:	e7fe      	b.n	0 <ADC1_2_IRQHandler>

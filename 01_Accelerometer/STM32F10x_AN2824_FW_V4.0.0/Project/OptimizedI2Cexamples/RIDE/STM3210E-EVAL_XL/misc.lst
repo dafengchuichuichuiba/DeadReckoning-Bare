@@ -1,0 +1,200 @@
+
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\misc.o:     file format elf32-littlearm
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\misc.o
+
+Disassembly of section .text.NVIC_PriorityGroupConfig:
+
+00000000 <NVIC_PriorityGroupConfig>:
+NVIC_PriorityGroupConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:101
+{
+  /* Check the parameters */
+  assert_param(IS_NVIC_PRIORITY_GROUP(NVIC_PriorityGroup));
+  
+  /* Set the PRIGROUP[10:8] bits according to NVIC_PriorityGroup value */
+  SCB->AIRCR = AIRCR_VECTKEY_MASK | NVIC_PriorityGroup;
+   0:	f040 60be 	orr.w	r0, r0, #99614720	; 0x5f00000
+   4:	4b02      	ldr	r3, [pc, #8]	(10 <NVIC_PriorityGroupConfig+0x10>)
+   6:	f440 2020 	orr.w	r0, r0, #655360	; 0xa0000
+   a:	60d8      	str	r0, [r3, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:102
+}
+   c:	4770      	bx	lr
+   e:	46c0      	nop			(mov r8, r8)
+  10:	e000ed00 	.word	0xe000ed00
+Disassembly of section .text.NVIC_Init:
+
+00000000 <NVIC_Init>:
+NVIC_Init():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:120
+  /* Check the parameters */
+  assert_param(IS_FUNCTIONAL_STATE(NVIC_InitStruct->NVIC_IRQChannelCmd));
+  assert_param(IS_NVIC_PREEMPTION_PRIORITY(NVIC_InitStruct->NVIC_IRQChannelPreemptionPriority));  
+  assert_param(IS_NVIC_SUB_PRIORITY(NVIC_InitStruct->NVIC_IRQChannelSubPriority));
+    
+  if (NVIC_InitStruct->NVIC_IRQChannelCmd != DISABLE)
+   0:	78c3      	ldrb	r3, [r0, #3]
+   2:	f890 c000 	ldrb.w	ip, [r0]
+   6:	b1d3      	cbz	r3, 3e <NVIC_Init+0x3e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:123
+  {
+    /* Compute the Corresponding IRQ Priority --------------------------------*/    
+    tmppriority = (0x700 - ((SCB->AIRCR) & (uint32_t)0x700))>> 0x08;
+   8:	4b12      	ldr	r3, [pc, #72]	(54 <NVIC_Init+0x54>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:127
+    tmppre = (0x4 - tmppriority);
+    tmpsub = tmpsub >> tmppriority;
+
+    tmppriority = (uint32_t)NVIC_InitStruct->NVIC_IRQChannelPreemptionPriority << tmppre;
+   a:	7841      	ldrb	r1, [r0, #1]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:123
+  assert_param(IS_NVIC_SUB_PRIORITY(NVIC_InitStruct->NVIC_IRQChannelSubPriority));
+    
+  if (NVIC_InitStruct->NVIC_IRQChannelCmd != DISABLE)
+  {
+    /* Compute the Corresponding IRQ Priority --------------------------------*/    
+    tmppriority = (0x700 - ((SCB->AIRCR) & (uint32_t)0x700))>> 0x08;
+   c:	68da      	ldr	r2, [r3, #12]
+   e:	43d2      	mvns	r2, r2
+  10:	f3c2 2202 	ubfx	r2, r2, #8, #3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:127
+    tmppre = (0x4 - tmppriority);
+    tmpsub = tmpsub >> tmppriority;
+
+    tmppriority = (uint32_t)NVIC_InitStruct->NVIC_IRQChannelPreemptionPriority << tmppre;
+  14:	f1c2 0304 	rsb	r3, r2, #4	; 0x4
+  18:	4099      	lsls	r1, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:128
+    tmppriority |=  NVIC_InitStruct->NVIC_IRQChannelSubPriority & tmpsub;
+  1a:	230f      	movs	r3, #15
+  1c:	40d3      	lsrs	r3, r2
+  1e:	7882      	ldrb	r2, [r0, #2]
+  20:	4013      	ands	r3, r2
+  22:	430b      	orrs	r3, r1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:131
+    tmppriority = tmppriority << 0x04;
+        
+    NVIC->IP[NVIC_InitStruct->NVIC_IRQChannel] = tmppriority;
+  24:	4a0c      	ldr	r2, [pc, #48]	(58 <NVIC_Init+0x58>)
+  26:	011b      	lsls	r3, r3, #4
+  28:	b2db      	uxtb	r3, r3
+  2a:	4462      	add	r2, ip
+  2c:	f882 3300 	strb.w	r3, [r2, #768]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:134
+    
+    /* Enable the Selected IRQ Channels --------------------------------------*/
+    NVIC->ISER[NVIC_InitStruct->NVIC_IRQChannel >> 0x05] =
+  30:	f00c 021f 	and.w	r2, ip, #31	; 0x1f
+  34:	2301      	movs	r3, #1
+  36:	ea4f 115c 	mov.w	r1, ip, lsr #5
+  3a:	4093      	lsls	r3, r2
+  3c:	e006      	b.n	4c <NVIC_Init+0x4c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:140
+      (uint32_t)0x01 << (NVIC_InitStruct->NVIC_IRQChannel & (uint8_t)0x1F);
+  }
+  else
+  {
+    /* Disable the Selected IRQ Channels -------------------------------------*/
+    NVIC->ICER[NVIC_InitStruct->NVIC_IRQChannel >> 0x05] =
+  3e:	f00c 021f 	and.w	r2, ip, #31	; 0x1f
+  42:	2301      	movs	r3, #1
+  44:	4093      	lsls	r3, r2
+  46:	ea4f 115c 	mov.w	r1, ip, lsr #5
+  4a:	3120      	adds	r1, #32
+  4c:	4a02      	ldr	r2, [pc, #8]	(58 <NVIC_Init+0x58>)
+  4e:	f842 3021 	str.w	r3, [r2, r1, lsl #2]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:143
+      (uint32_t)0x01 << (NVIC_InitStruct->NVIC_IRQChannel & (uint8_t)0x1F);
+  }
+}
+  52:	4770      	bx	lr
+  54:	e000ed00 	.word	0xe000ed00
+  58:	e000e100 	.word	0xe000e100
+Disassembly of section .text.NVIC_SetVectorTable:
+
+00000000 <NVIC_SetVectorTable>:
+NVIC_SetVectorTable():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:160
+{ 
+  /* Check the parameters */
+  assert_param(IS_NVIC_VECTTAB(NVIC_VectTab));
+  assert_param(IS_NVIC_OFFSET(Offset));  
+   
+  SCB->VTOR = NVIC_VectTab | (Offset & (uint32_t)0x1FFFFF80);
+   0:	f021 4160 	bic.w	r1, r1, #3758096384	; 0xe0000000
+   4:	f021 017f 	bic.w	r1, r1, #127	; 0x7f
+   8:	4b01      	ldr	r3, [pc, #4]	(10 <NVIC_SetVectorTable+0x10>)
+   a:	4301      	orrs	r1, r0
+   c:	6099      	str	r1, [r3, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:161
+}
+   e:	4770      	bx	lr
+  10:	e000ed00 	.word	0xe000ed00
+Disassembly of section .text.NVIC_SystemLPConfig:
+
+00000000 <NVIC_SystemLPConfig>:
+NVIC_SystemLPConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:179
+{
+  /* Check the parameters */
+  assert_param(IS_NVIC_LP(LowPowerMode));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));  
+  
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <NVIC_SystemLPConfig+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:181
+  {
+    SCB->SCR |= LowPowerMode;
+   2:	4a05      	ldr	r2, [pc, #20]	(18 <NVIC_SystemLPConfig+0x18>)
+   4:	6913      	ldr	r3, [r2, #16]
+   6:	ea40 0303 	orr.w	r3, r0, r3
+   a:	e003      	b.n	14 <NVIC_SystemLPConfig+0x14>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:185
+  }
+  else
+  {
+    SCB->SCR &= (uint32_t)(~(uint32_t)LowPowerMode);
+   c:	4a02      	ldr	r2, [pc, #8]	(18 <NVIC_SystemLPConfig+0x18>)
+   e:	6913      	ldr	r3, [r2, #16]
+  10:	ea23 0300 	bic.w	r3, r3, r0
+  14:	6113      	str	r3, [r2, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:187
+  }
+}
+  16:	4770      	bx	lr
+  18:	e000ed00 	.word	0xe000ed00
+Disassembly of section .text.SysTick_CLKSourceConfig:
+
+00000000 <SysTick_CLKSourceConfig>:
+SysTick_CLKSourceConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:201
+  */
+void SysTick_CLKSourceConfig(uint32_t SysTick_CLKSource)
+{
+  /* Check the parameters */
+  assert_param(IS_SYSTICK_CLK_SOURCE(SysTick_CLKSource));
+  if (SysTick_CLKSource == SysTick_CLKSource_HCLK)
+   0:	2804      	cmp	r0, #4
+   2:	d104      	bne.n	e <SysTick_CLKSourceConfig+0xe>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:203
+  {
+    SysTick->CTRL |= SysTick_CLKSource_HCLK;
+   4:	4a05      	ldr	r2, [pc, #20]	(1c <SysTick_CLKSourceConfig+0x1c>)
+   6:	6813      	ldr	r3, [r2, #0]
+   8:	f043 0304 	orr.w	r3, r3, #4	; 0x4
+   c:	e003      	b.n	16 <SysTick_CLKSourceConfig+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:207
+  }
+  else
+  {
+    SysTick->CTRL &= SysTick_CLKSource_HCLK_Div8;
+   e:	4a03      	ldr	r2, [pc, #12]	(1c <SysTick_CLKSourceConfig+0x1c>)
+  10:	6813      	ldr	r3, [r2, #0]
+  12:	f023 0304 	bic.w	r3, r3, #4	; 0x4
+  16:	6013      	str	r3, [r2, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/misc.c:209
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+  1c:	e000e010 	.word	0xe000e010

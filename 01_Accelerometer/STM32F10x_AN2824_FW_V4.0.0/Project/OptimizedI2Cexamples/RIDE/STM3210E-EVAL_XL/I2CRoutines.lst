@@ -1,0 +1,2229 @@
+
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\I2CRoutines.o:     file format elf32-littlearm
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\I2CRoutines.o
+
+Disassembly of section .text.__enable_irq:
+
+00000000 <__enable_irq>:
+__enable_irq():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE/..\..\..\Libraries\CMSIS\CM3\CoreSupport/core_cm3.h:1204
+
+
+#elif (defined (__GNUC__)) /*------------------ GNU Compiler ---------------------*/
+/* GNU gcc specific functions */
+
+static __INLINE void __enable_irq()               { __ASM volatile ("cpsie i"); }
+   0:	b662      	cpsie	i
+   2:	4770      	bx	lr
+Disassembly of section .text.__disable_irq:
+
+00000000 <__disable_irq>:
+__disable_irq():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE/..\..\..\Libraries\CMSIS\CM3\CoreSupport/core_cm3.h:1205
+static __INLINE void __disable_irq()              { __ASM volatile ("cpsid i"); }
+   0:	b672      	cpsid	i
+   2:	4770      	bx	lr
+Disassembly of section .text.I2C_Slave_BufferReadWrite:
+
+00000000 <I2C_Slave_BufferReadWrite>:
+I2C_Slave_BufferReadWrite():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:510
+
+void I2C_Slave_BufferReadWrite(I2C_TypeDef* I2Cx,I2C_ProgrammingModel Mode)
+
+{
+    /* Enable Event IT needed for ADDR and STOPF events ITs */
+    I2Cx->CR2 |= I2C_IT_EVT ;
+   0:	8883      	ldrh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:514
+    /* Enable Error IT */
+    I2Cx->CR2 |= I2C_IT_ERR;
+
+    if (Mode == DMA)  /* I2Cx Slave Transmission using DMA */
+   2:	2902      	cmp	r1, #2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:510
+
+void I2C_Slave_BufferReadWrite(I2C_TypeDef* I2Cx,I2C_ProgrammingModel Mode)
+
+{
+    /* Enable Event IT needed for ADDR and STOPF events ITs */
+    I2Cx->CR2 |= I2C_IT_EVT ;
+   4:	b29b      	uxth	r3, r3
+   6:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+   a:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:512
+    /* Enable Error IT */
+    I2Cx->CR2 |= I2C_IT_ERR;
+   c:	8883      	ldrh	r3, [r0, #4]
+   e:	b29b      	uxth	r3, r3
+  10:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+  14:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:514
+
+    if (Mode == DMA)  /* I2Cx Slave Transmission using DMA */
+  16:	d104      	bne.n	22 <I2C_Slave_BufferReadWrite+0x22>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:517
+    {
+        /* Enable I2Cx DMA requests */
+        I2Cx->CR2 |= CR2_DMAEN_Set;
+  18:	8883      	ldrh	r3, [r0, #4]
+  1a:	b29b      	uxth	r3, r3
+  1c:	f443 6300 	orr.w	r3, r3, #2048	; 0x800
+  20:	e003      	b.n	2a <I2C_Slave_BufferReadWrite+0x2a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:523
+    }
+
+    else  /* I2Cx Slave Transmission using Interrupt with highest priority in the application */
+    {
+        /* Enable Buffer IT (TXE and RXNE ITs) */
+        I2Cx->CR2 |= I2C_IT_BUF;
+  22:	8883      	ldrh	r3, [r0, #4]
+  24:	b29b      	uxth	r3, r3
+  26:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
+  2a:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:527
+
+    }
+
+}
+  2c:	4770      	bx	lr
+  2e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_DMAConfig:
+
+00000000 <I2C_DMAConfig>:
+I2C_DMAConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:647
+  * @brief  Initializes DMA channel used by the I2C Write/read routines.
+  * @param  None.
+  * @retval None.
+  */
+void I2C_DMAConfig(I2C_TypeDef* I2Cx, uint8_t* pBuffer, uint32_t BufferSize, uint32_t Direction)
+{
+   0:	b510      	push	{r4, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:649
+    /* Initialize the DMA with the new parameters */
+    if (Direction == I2C_DIRECTION_TX)
+   2:	469e      	mov	lr, r3
+   4:	4c20      	ldr	r4, [pc, #128]	(88 <I2C_DMAConfig+0x88>)
+   6:	b9f3      	cbnz	r3, 46 <I2C_DMAConfig+0x46>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:653
+    {
+        /* Configure the DMA Tx Channel with the buffer address and the buffer size */
+        I2CDMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)pBuffer;
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;
+   8:	3310      	adds	r3, #16
+   a:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:656
+        I2CDMA_InitStructure.DMA_BufferSize = (uint32_t)BufferSize;
+
+        if (I2Cx == I2C1)
+   c:	4b1f      	ldr	r3, [pc, #124]	(8c <I2C_DMAConfig+0x8c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:652
+{
+    /* Initialize the DMA with the new parameters */
+    if (Direction == I2C_DIRECTION_TX)
+    {
+        /* Configure the DMA Tx Channel with the buffer address and the buffer size */
+        I2CDMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)pBuffer;
+   e:	6061      	str	r1, [r4, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:656
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;
+        I2CDMA_InitStructure.DMA_BufferSize = (uint32_t)BufferSize;
+
+        if (I2Cx == I2C1)
+  10:	4298      	cmp	r0, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:654
+    if (Direction == I2C_DIRECTION_TX)
+    {
+        /* Configure the DMA Tx Channel with the buffer address and the buffer size */
+        I2CDMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)pBuffer;
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;
+        I2CDMA_InitStructure.DMA_BufferSize = (uint32_t)BufferSize;
+  12:	60e2      	str	r2, [r4, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:656
+
+        if (I2Cx == I2C1)
+  14:	d10b      	bne.n	2e <I2C_DMAConfig+0x2e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:658
+        {
+            I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C1_DR_Address;
+  16:	3310      	adds	r3, #16
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:659
+            DMA_Cmd(I2C1_DMA_CHANNEL_TX, DISABLE);
+  18:	4671      	mov	r1, lr
+  1a:	481d      	ldr	r0, [pc, #116]	(90 <I2C_DMAConfig+0x90>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:658
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;
+        I2CDMA_InitStructure.DMA_BufferSize = (uint32_t)BufferSize;
+
+        if (I2Cx == I2C1)
+        {
+            I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C1_DR_Address;
+  1c:	6023      	str	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:659
+            DMA_Cmd(I2C1_DMA_CHANNEL_TX, DISABLE);
+  1e:	f7ff fffe 	bl	0 <DMA_Cmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:660
+            DMA_Init(I2C1_DMA_CHANNEL_TX, &I2CDMA_InitStructure);
+  22:	481b      	ldr	r0, [pc, #108]	(90 <I2C_DMAConfig+0x90>)
+  24:	4621      	mov	r1, r4
+  26:	f7ff fffe 	bl	0 <DMA_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:661
+            DMA_Cmd(I2C1_DMA_CHANNEL_TX, ENABLE);
+  2a:	4819      	ldr	r0, [pc, #100]	(90 <I2C_DMAConfig+0x90>)
+  2c:	e027      	b.n	7e <I2C_DMAConfig+0x7e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:665
+        }
+        else
+        {
+            I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C2_DR_Address;
+  2e:	4b19      	ldr	r3, [pc, #100]	(94 <I2C_DMAConfig+0x94>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:666
+            DMA_Cmd(I2C2_DMA_CHANNEL_TX, DISABLE);
+  30:	4671      	mov	r1, lr
+  32:	4819      	ldr	r0, [pc, #100]	(98 <I2C_DMAConfig+0x98>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:665
+            DMA_Init(I2C1_DMA_CHANNEL_TX, &I2CDMA_InitStructure);
+            DMA_Cmd(I2C1_DMA_CHANNEL_TX, ENABLE);
+        }
+        else
+        {
+            I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C2_DR_Address;
+  34:	6023      	str	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:666
+            DMA_Cmd(I2C2_DMA_CHANNEL_TX, DISABLE);
+  36:	f7ff fffe 	bl	0 <DMA_Cmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:667
+            DMA_Init(I2C2_DMA_CHANNEL_TX, &I2CDMA_InitStructure);
+  3a:	4817      	ldr	r0, [pc, #92]	(98 <I2C_DMAConfig+0x98>)
+  3c:	4621      	mov	r1, r4
+  3e:	f7ff fffe 	bl	0 <DMA_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:668
+            DMA_Cmd(I2C2_DMA_CHANNEL_TX, ENABLE);
+  42:	4815      	ldr	r0, [pc, #84]	(98 <I2C_DMAConfig+0x98>)
+  44:	e01b      	b.n	7e <I2C_DMAConfig+0x7e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:677
+    {
+        /* Configure the DMA Rx Channel with the buffer address and the buffer size */
+        I2CDMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)pBuffer;
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+        I2CDMA_InitStructure.DMA_BufferSize = (uint32_t)BufferSize;
+        if (I2Cx == I2C1)
+  46:	4b11      	ldr	r3, [pc, #68]	(8c <I2C_DMAConfig+0x8c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:674
+        }
+    }
+    else /* Reception */
+    {
+        /* Configure the DMA Rx Channel with the buffer address and the buffer size */
+        I2CDMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)pBuffer;
+  48:	6061      	str	r1, [r4, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:675
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+  4a:	2100      	movs	r1, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:677
+        I2CDMA_InitStructure.DMA_BufferSize = (uint32_t)BufferSize;
+        if (I2Cx == I2C1)
+  4c:	4298      	cmp	r0, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:675
+    }
+    else /* Reception */
+    {
+        /* Configure the DMA Rx Channel with the buffer address and the buffer size */
+        I2CDMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)pBuffer;
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+  4e:	60a1      	str	r1, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:676
+        I2CDMA_InitStructure.DMA_BufferSize = (uint32_t)BufferSize;
+  50:	60e2      	str	r2, [r4, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:677
+        if (I2Cx == I2C1)
+  52:	d10a      	bne.n	6a <I2C_DMAConfig+0x6a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:680
+        {
+
+            I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C1_DR_Address;
+  54:	3310      	adds	r3, #16
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:681
+            DMA_Cmd(I2C1_DMA_CHANNEL_RX, DISABLE);
+  56:	4811      	ldr	r0, [pc, #68]	(9c <I2C_DMAConfig+0x9c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:680
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+        I2CDMA_InitStructure.DMA_BufferSize = (uint32_t)BufferSize;
+        if (I2Cx == I2C1)
+        {
+
+            I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C1_DR_Address;
+  58:	6023      	str	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:681
+            DMA_Cmd(I2C1_DMA_CHANNEL_RX, DISABLE);
+  5a:	f7ff fffe 	bl	0 <DMA_Cmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:682
+            DMA_Init(I2C1_DMA_CHANNEL_RX, &I2CDMA_InitStructure);
+  5e:	480f      	ldr	r0, [pc, #60]	(9c <I2C_DMAConfig+0x9c>)
+  60:	4621      	mov	r1, r4
+  62:	f7ff fffe 	bl	0 <DMA_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:683
+            DMA_Cmd(I2C1_DMA_CHANNEL_RX, ENABLE);
+  66:	480d      	ldr	r0, [pc, #52]	(9c <I2C_DMAConfig+0x9c>)
+  68:	e009      	b.n	7e <I2C_DMAConfig+0x7e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:688
+        }
+
+        else
+        {
+            I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C2_DR_Address;
+  6a:	4b0a      	ldr	r3, [pc, #40]	(94 <I2C_DMAConfig+0x94>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:689
+            DMA_Cmd(I2C2_DMA_CHANNEL_RX, DISABLE);
+  6c:	480c      	ldr	r0, [pc, #48]	(a0 <I2C_DMAConfig+0xa0>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:688
+            DMA_Cmd(I2C1_DMA_CHANNEL_RX, ENABLE);
+        }
+
+        else
+        {
+            I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C2_DR_Address;
+  6e:	6023      	str	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:689
+            DMA_Cmd(I2C2_DMA_CHANNEL_RX, DISABLE);
+  70:	f7ff fffe 	bl	0 <DMA_Cmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:690
+            DMA_Init(I2C2_DMA_CHANNEL_RX, &I2CDMA_InitStructure);
+  74:	480a      	ldr	r0, [pc, #40]	(a0 <I2C_DMAConfig+0xa0>)
+  76:	4621      	mov	r1, r4
+  78:	f7ff fffe 	bl	0 <DMA_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:691
+            DMA_Cmd(I2C2_DMA_CHANNEL_RX, ENABLE);
+  7c:	4808      	ldr	r0, [pc, #32]	(a0 <I2C_DMAConfig+0xa0>)
+  7e:	2101      	movs	r1, #1
+  80:	f7ff fffe 	bl	0 <DMA_Cmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:695
+        }
+
+    }
+}
+  84:	bd10      	pop	{r4, pc}
+  86:	46c0      	nop			(mov r8, r8)
+  88:	00000000 	.word	0x00000000
+  8c:	40005400 	.word	0x40005400
+  90:	4002006c 	.word	0x4002006c
+  94:	40005810 	.word	0x40005810
+  98:	40020044 	.word	0x40020044
+  9c:	40020080 	.word	0x40020080
+  a0:	40020058 	.word	0x40020058
+Disassembly of section .text.I2C_LowLevel_Init:
+
+00000000 <I2C_LowLevel_Init>:
+I2C_LowLevel_Init():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:535
+* @brief  Initializes peripherals: I2Cx, GPIO, DMA channels .
+  * @param  None
+  * @retval None
+  */
+void I2C_LowLevel_Init(I2C_TypeDef* I2Cx)
+{
+   0:	b5f0      	push	{r4, r5, r6, r7, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:540
+    GPIO_InitTypeDef  GPIO_InitStructure;
+    I2C_InitTypeDef  I2C_InitStructure;
+
+    /* GPIOB clock enable */
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+   2:	2101      	movs	r1, #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:535
+* @brief  Initializes peripherals: I2Cx, GPIO, DMA channels .
+  * @param  None
+  * @retval None
+  */
+void I2C_LowLevel_Init(I2C_TypeDef* I2Cx)
+{
+   4:	b087      	sub	sp, #28
+   6:	4607      	mov	r7, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:540
+    GPIO_InitTypeDef  GPIO_InitStructure;
+    I2C_InitTypeDef  I2C_InitStructure;
+
+    /* GPIOB clock enable */
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+   8:	2008      	movs	r0, #8
+   a:	f7ff fffe 	bl	0 <RCC_APB2PeriphClockCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:542
+    /* Enable the DMA1 clock */
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+   e:	2001      	movs	r0, #1
+  10:	4601      	mov	r1, r0
+  12:	f7ff fffe 	bl	0 <RCC_AHBPeriphClockCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:543
+    if (I2Cx == I2C1)
+  16:	4b59      	ldr	r3, [pc, #356]	(17c <I2C_LowLevel_Init+0x17c>)
+  18:	ac05      	add	r4, sp, #20
+  1a:	429f      	cmp	r7, r3
+  1c:	d122      	bne.n	64 <I2C_LowLevel_Init+0x64>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:546
+    {
+        /* I2C1 clock enable */
+        RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+  1e:	f44f 1000 	mov.w	r0, #2097152	; 0x200000
+  22:	2101      	movs	r1, #1
+  24:	f7ff fffe 	bl	0 <RCC_APB1PeriphClockCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:548
+        /* I2C1 SDA and SCL configuration */
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
+  28:	f04f 0340 	mov.w	r3, #64	; 0x40
+  2c:	f8ad 3014 	strh.w	r3, [sp, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:549
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  30:	2303      	movs	r3, #3
+  32:	f88d 3016 	strb.w	r3, [sp, #22]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:551
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+  36:	4852      	ldr	r0, [pc, #328]	(180 <I2C_LowLevel_Init+0x180>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:550
+        /* I2C1 clock enable */
+        RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+        /* I2C1 SDA and SCL configuration */
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
+  38:	3319      	adds	r3, #25
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:551
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+  3a:	4621      	mov	r1, r4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:550
+        /* I2C1 clock enable */
+        RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+        /* I2C1 SDA and SCL configuration */
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
+  3c:	f88d 3017 	strb.w	r3, [sp, #23]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:551
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+  40:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:553
+
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+  44:	f04f 0380 	mov.w	r3, #128	; 0x80
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:554
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+  48:	484d      	ldr	r0, [pc, #308]	(180 <I2C_LowLevel_Init+0x180>)
+  4a:	4621      	mov	r1, r4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:553
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+  4c:	f8ad 3014 	strh.w	r3, [sp, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:554
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+  50:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:557
+
+        /* Enable I2C1 reset state */
+        RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C1, ENABLE);
+  54:	f44f 1000 	mov.w	r0, #2097152	; 0x200000
+  58:	2101      	movs	r1, #1
+  5a:	f7ff fffe 	bl	0 <RCC_APB1PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:559
+        /* Release I2C1 from reset state */
+        RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C1, DISABLE);
+  5e:	f44f 1000 	mov.w	r0, #2097152	; 0x200000
+  62:	e021      	b.n	a8 <I2C_LowLevel_Init+0xa8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:567
+    else /* I2Cx = I2C2 */
+
+    {
+
+        /* I2C2 clock enable */
+        RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2, ENABLE);
+  64:	f44f 0080 	mov.w	r0, #4194304	; 0x400000
+  68:	2101      	movs	r1, #1
+  6a:	f7ff fffe 	bl	0 <RCC_APB1PeriphClockCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:569
+        /* I2C1 SDA and SCL configuration */
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+  6e:	f44f 6380 	mov.w	r3, #1024	; 0x400
+  72:	f8ad 3014 	strh.w	r3, [sp, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:570
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  76:	2303      	movs	r3, #3
+  78:	f88d 3016 	strb.w	r3, [sp, #22]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:572
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+  7c:	4840      	ldr	r0, [pc, #256]	(180 <I2C_LowLevel_Init+0x180>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:571
+        /* I2C2 clock enable */
+        RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2, ENABLE);
+        /* I2C1 SDA and SCL configuration */
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
+  7e:	3319      	adds	r3, #25
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:572
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+  80:	4621      	mov	r1, r4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:571
+        /* I2C2 clock enable */
+        RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2, ENABLE);
+        /* I2C1 SDA and SCL configuration */
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
+  82:	f88d 3017 	strb.w	r3, [sp, #23]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:572
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+  86:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:574
+
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;
+  8a:	f44f 6300 	mov.w	r3, #2048	; 0x800
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:575
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+  8e:	483c      	ldr	r0, [pc, #240]	(180 <I2C_LowLevel_Init+0x180>)
+  90:	4621      	mov	r1, r4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:574
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;
+  92:	f8ad 3014 	strh.w	r3, [sp, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:575
+        GPIO_Init(GPIOB, &GPIO_InitStructure);
+  96:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:578
+
+        /* Enable I2C2 reset state */
+        RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, ENABLE);
+  9a:	f44f 0080 	mov.w	r0, #4194304	; 0x400000
+  9e:	2101      	movs	r1, #1
+  a0:	f7ff fffe 	bl	0 <RCC_APB1PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:580
+        /* Release I2C2 from reset state */
+        RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, DISABLE);
+  a4:	f44f 0080 	mov.w	r0, #4194304	; 0x400000
+  a8:	2100      	movs	r1, #0
+  aa:	f7ff fffe 	bl	0 <RCC_APB1PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:585
+    }
+
+    /* I2C1 and I2C2 configuration */
+    I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
+    I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
+  ae:	f64b 73ff 	movw	r3, #49151	; 0xbfff
+  b2:	f8ad 300a 	strh.w	r3, [sp, #10]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:586
+    I2C_InitStructure.I2C_OwnAddress1 = OwnAddress1;
+  b6:	f04f 0328 	mov.w	r3, #40	; 0x28
+  ba:	f8ad 300c 	strh.w	r3, [sp, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:587
+    I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
+  be:	f44f 6380 	mov.w	r3, #1024	; 0x400
+  c2:	f8ad 300e 	strh.w	r3, [sp, #14]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:588
+    I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+  c6:	f44f 4380 	mov.w	r3, #16384	; 0x4000
+  ca:	f8ad 3010 	strh.w	r3, [sp, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:589
+    I2C_InitStructure.I2C_ClockSpeed = ClockSpeed;
+  ce:	4b2d      	ldr	r3, [pc, #180]	(184 <I2C_LowLevel_Init+0x184>)
+  d0:	ac06      	add	r4, sp, #24
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:590
+    I2C_Init(I2C1, &I2C_InitStructure);
+  d2:	4d2a      	ldr	r5, [pc, #168]	(17c <I2C_LowLevel_Init+0x17c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:589
+    I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
+    I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
+    I2C_InitStructure.I2C_OwnAddress1 = OwnAddress1;
+    I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
+    I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    I2C_InitStructure.I2C_ClockSpeed = ClockSpeed;
+  d4:	f844 3d14 	str.w	r3, [r4, #-20]!
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:590
+    I2C_Init(I2C1, &I2C_InitStructure);
+  d8:	4621      	mov	r1, r4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:584
+        /* Release I2C2 from reset state */
+        RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, DISABLE);
+    }
+
+    /* I2C1 and I2C2 configuration */
+    I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
+  da:	2600      	movs	r6, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:590
+    I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
+    I2C_InitStructure.I2C_OwnAddress1 = OwnAddress1;
+    I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
+    I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    I2C_InitStructure.I2C_ClockSpeed = ClockSpeed;
+    I2C_Init(I2C1, &I2C_InitStructure);
+  dc:	4628      	mov	r0, r5
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:584
+        /* Release I2C2 from reset state */
+        RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, DISABLE);
+    }
+
+    /* I2C1 and I2C2 configuration */
+    I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
+  de:	f8ad 6008 	strh.w	r6, [sp, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:590
+    I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
+    I2C_InitStructure.I2C_OwnAddress1 = OwnAddress1;
+    I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
+    I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    I2C_InitStructure.I2C_ClockSpeed = ClockSpeed;
+    I2C_Init(I2C1, &I2C_InitStructure);
+  e2:	f7ff fffe 	bl	0 <I2C_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:591
+    I2C_InitStructure.I2C_OwnAddress1 = OwnAddress2;
+  e6:	f04f 0330 	mov.w	r3, #48	; 0x30
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:592
+    I2C_Init(I2C2, &I2C_InitStructure);
+  ea:	4621      	mov	r1, r4
+  ec:	4826      	ldr	r0, [pc, #152]	(188 <I2C_LowLevel_Init+0x188>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:591
+    I2C_InitStructure.I2C_OwnAddress1 = OwnAddress1;
+    I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
+    I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    I2C_InitStructure.I2C_ClockSpeed = ClockSpeed;
+    I2C_Init(I2C1, &I2C_InitStructure);
+    I2C_InitStructure.I2C_OwnAddress1 = OwnAddress2;
+  ee:	f8ad 300c 	strh.w	r3, [sp, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:592
+    I2C_Init(I2C2, &I2C_InitStructure);
+  f2:	f7ff fffe 	bl	0 <I2C_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:594
+
+    if (I2Cx == I2C1)
+  f6:	42af      	cmp	r7, r5
+  f8:	4c24      	ldr	r4, [pc, #144]	(18c <I2C_LowLevel_Init+0x18c>)
+  fa:	d11d      	bne.n	138 <I2C_LowLevel_Init+0x138>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:597
+
+    {   /* I2C1 TX DMA Channel configuration */
+        DMA_DeInit(I2C1_DMA_CHANNEL_TX);
+  fc:	4824      	ldr	r0, [pc, #144]	(190 <I2C_LowLevel_Init+0x190>)
+  fe:	f7ff fffe 	bl	0 <DMA_DeInit>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:598
+        I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C1_DR_Address;
+ 102:	4b24      	ldr	r3, [pc, #144]	(194 <I2C_LowLevel_Init+0x194>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:609
+        I2CDMA_InitStructure.DMA_PeripheralDataSize = DMA_MemoryDataSize_Byte;
+        I2CDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+        I2CDMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+        I2CDMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+        I2CDMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+        DMA_Init(I2C1_DMA_CHANNEL_TX, &I2CDMA_InitStructure);
+ 104:	4822      	ldr	r0, [pc, #136]	(190 <I2C_LowLevel_Init+0x190>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:598
+
+    if (I2Cx == I2C1)
+
+    {   /* I2C1 TX DMA Channel configuration */
+        DMA_DeInit(I2C1_DMA_CHANNEL_TX);
+        I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C1_DR_Address;
+ 106:	6023      	str	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:600
+        I2CDMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)0;   /* This parameter will be configured durig communication */
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;    /* This parameter will be configured durig communication */
+ 108:	2310      	movs	r3, #16
+ 10a:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:601
+        I2CDMA_InitStructure.DMA_BufferSize = 0xFFFF;            /* This parameter will be configured durig communication */
+ 10c:	f64f 73ff 	movw	r3, #65535	; 0xffff
+ 110:	60e3      	str	r3, [r4, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:603
+        I2CDMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+        I2CDMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+ 112:	2380      	movs	r3, #128
+ 114:	6163      	str	r3, [r4, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:607
+        I2CDMA_InitStructure.DMA_PeripheralDataSize = DMA_MemoryDataSize_Byte;
+        I2CDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+        I2CDMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+        I2CDMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+ 116:	f503 533e 	add.w	r3, r3, #12160	; 0x2f80
+ 11a:	6263      	str	r3, [r4, #36]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:609
+        I2CDMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+        DMA_Init(I2C1_DMA_CHANNEL_TX, &I2CDMA_InitStructure);
+ 11c:	4621      	mov	r1, r4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:599
+    if (I2Cx == I2C1)
+
+    {   /* I2C1 TX DMA Channel configuration */
+        DMA_DeInit(I2C1_DMA_CHANNEL_TX);
+        I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C1_DR_Address;
+        I2CDMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)0;   /* This parameter will be configured durig communication */
+ 11e:	6066      	str	r6, [r4, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:602
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;    /* This parameter will be configured durig communication */
+        I2CDMA_InitStructure.DMA_BufferSize = 0xFFFF;            /* This parameter will be configured durig communication */
+        I2CDMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+ 120:	6126      	str	r6, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:604
+        I2CDMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+        I2CDMA_InitStructure.DMA_PeripheralDataSize = DMA_MemoryDataSize_Byte;
+ 122:	61a6      	str	r6, [r4, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:605
+        I2CDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+ 124:	61e6      	str	r6, [r4, #28]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:606
+        I2CDMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+ 126:	6226      	str	r6, [r4, #32]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:608
+        I2CDMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+        I2CDMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+ 128:	62a6      	str	r6, [r4, #40]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:609
+        DMA_Init(I2C1_DMA_CHANNEL_TX, &I2CDMA_InitStructure);
+ 12a:	f7ff fffe 	bl	0 <DMA_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:612
+
+        /* I2C1 RX DMA Channel configuration */
+        DMA_DeInit(I2C1_DMA_CHANNEL_RX);
+ 12e:	481a      	ldr	r0, [pc, #104]	(6c <DMA_DeInit+0x6c>)
+ 130:	f7ff fffe 	bl	0 <DMA_DeInit>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:613
+        DMA_Init(I2C1_DMA_CHANNEL_RX, &I2CDMA_InitStructure);
+ 134:	4818      	ldr	r0, [pc, #96]	(198 <I2C_LowLevel_Init+0x198>)
+ 136:	e01c      	b.n	172 <I2C_LowLevel_Init+0x172>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:620
+
+    else /* I2Cx = I2C2 */
+
+    {
+        /* I2C2 TX DMA Channel configuration */
+        DMA_DeInit(I2C2_DMA_CHANNEL_TX);
+ 138:	4818      	ldr	r0, [pc, #96]	(19c <I2C_LowLevel_Init+0x19c>)
+ 13a:	f7ff fffe 	bl	0 <DMA_DeInit>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:621
+        I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C2_DR_Address;
+ 13e:	4b18      	ldr	r3, [pc, #96]	(1a0 <I2C_LowLevel_Init+0x1a0>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:632
+        I2CDMA_InitStructure.DMA_PeripheralDataSize = DMA_MemoryDataSize_Byte;
+        I2CDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+        I2CDMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+        I2CDMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+        I2CDMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+        DMA_Init(I2C2_DMA_CHANNEL_TX, &I2CDMA_InitStructure);
+ 140:	4816      	ldr	r0, [pc, #88]	(19c <I2C_LowLevel_Init+0x19c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:621
+    else /* I2Cx = I2C2 */
+
+    {
+        /* I2C2 TX DMA Channel configuration */
+        DMA_DeInit(I2C2_DMA_CHANNEL_TX);
+        I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C2_DR_Address;
+ 142:	6023      	str	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:623
+        I2CDMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)0;   /* This parameter will be configured durig communication */
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;    /* This parameter will be configured durig communication */
+ 144:	2310      	movs	r3, #16
+ 146:	60a3      	str	r3, [r4, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:624
+        I2CDMA_InitStructure.DMA_BufferSize = 0xFFFF;            /* This parameter will be configured durig communication */
+ 148:	f64f 73ff 	movw	r3, #65535	; 0xffff
+ 14c:	60e3      	str	r3, [r4, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:626
+        I2CDMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+        I2CDMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+ 14e:	2380      	movs	r3, #128
+ 150:	6163      	str	r3, [r4, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:630
+        I2CDMA_InitStructure.DMA_PeripheralDataSize = DMA_MemoryDataSize_Byte;
+        I2CDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+        I2CDMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+        I2CDMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+ 152:	f503 533e 	add.w	r3, r3, #12160	; 0x2f80
+ 156:	6263      	str	r3, [r4, #36]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:632
+        I2CDMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+        DMA_Init(I2C2_DMA_CHANNEL_TX, &I2CDMA_InitStructure);
+ 158:	4621      	mov	r1, r4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:622
+
+    {
+        /* I2C2 TX DMA Channel configuration */
+        DMA_DeInit(I2C2_DMA_CHANNEL_TX);
+        I2CDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)I2C2_DR_Address;
+        I2CDMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t)0;   /* This parameter will be configured durig communication */
+ 15a:	6066      	str	r6, [r4, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:625
+        I2CDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;    /* This parameter will be configured durig communication */
+        I2CDMA_InitStructure.DMA_BufferSize = 0xFFFF;            /* This parameter will be configured durig communication */
+        I2CDMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+ 15c:	6126      	str	r6, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:627
+        I2CDMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+        I2CDMA_InitStructure.DMA_PeripheralDataSize = DMA_MemoryDataSize_Byte;
+ 15e:	61a6      	str	r6, [r4, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:628
+        I2CDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+ 160:	61e6      	str	r6, [r4, #28]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:629
+        I2CDMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+ 162:	6226      	str	r6, [r4, #32]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:631
+        I2CDMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+        I2CDMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+ 164:	62a6      	str	r6, [r4, #40]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:632
+        DMA_Init(I2C2_DMA_CHANNEL_TX, &I2CDMA_InitStructure);
+ 166:	f7ff fffe 	bl	0 <DMA_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:635
+
+        /* I2C2 RX DMA Channel configuration */
+        DMA_DeInit(I2C2_DMA_CHANNEL_RX);
+ 16a:	480e      	ldr	r0, [pc, #56]	(3c <DMA_DeInit+0x3c>)
+ 16c:	f7ff fffe 	bl	0 <DMA_DeInit>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:636
+        DMA_Init(I2C2_DMA_CHANNEL_RX, &I2CDMA_InitStructure);
+ 170:	480c      	ldr	r0, [pc, #48]	(1a4 <I2C_LowLevel_Init+0x1a4>)
+ 172:	4621      	mov	r1, r4
+ 174:	f7ff fffe 	bl	0 <DMA_Init>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:639
+
+    }
+}
+ 178:	b007      	add	sp, #28
+ 17a:	bdf0      	pop	{r4, r5, r6, r7, pc}
+ 17c:	40005400 	.word	0x40005400
+ 180:	40010c00 	.word	0x40010c00
+ 184:	00061a80 	.word	0x00061a80
+ 188:	40005800 	.word	0x40005800
+ 18c:	00000000 	.word	0x00000000
+ 190:	4002006c 	.word	0x4002006c
+ 194:	40005410 	.word	0x40005410
+ 198:	40020080 	.word	0x40020080
+ 19c:	40020044 	.word	0x40020044
+ 1a0:	40005810 	.word	0x40005810
+ 1a4:	40020058 	.word	0x40020058
+Disassembly of section .text.I2C_Master_BufferWrite:
+
+00000000 <I2C_Master_BufferWrite>:
+I2C_Master_BufferWrite():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:352
+  * @param SlaveAddress: The address of the slave to be addressed by the Master.
+  * @retval : None.
+  */
+Status I2C_Master_BufferWrite(I2C_TypeDef* I2Cx, uint8_t* pBuffer,  uint32_t NumByteToWrite, I2C_ProgrammingModel Mode, uint8_t SlaveAddress )
+
+{
+   0:	e92d 41f3 	stmdb	sp!, {r0, r1, r4, r5, r6, r7, r8, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:354
+
+    __IO uint32_t temp = 0;
+   4:	2600      	movs	r6, #0
+   6:	9601      	str	r6, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:355
+    __IO uint32_t Timeout = 0;
+   8:	9600      	str	r6, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:352
+  * @param SlaveAddress: The address of the slave to be addressed by the Master.
+  * @retval : None.
+  */
+Status I2C_Master_BufferWrite(I2C_TypeDef* I2Cx, uint8_t* pBuffer,  uint32_t NumByteToWrite, I2C_ProgrammingModel Mode, uint8_t SlaveAddress )
+
+{
+   a:	461d      	mov	r5, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:358
+
+    __IO uint32_t temp = 0;
+    __IO uint32_t Timeout = 0;
+
+    /* Enable Error IT (used in all modes: DMA, Polling and Interrupts */
+    I2Cx->CR2 |= I2C_IT_ERR;
+   c:	8883      	ldrh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:359
+    if (Mode == DMA)  /* I2Cx Master Transmission using DMA */
+   e:	2d02      	cmp	r5, #2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:358
+
+    __IO uint32_t temp = 0;
+    __IO uint32_t Timeout = 0;
+
+    /* Enable Error IT (used in all modes: DMA, Polling and Interrupts */
+    I2Cx->CR2 |= I2C_IT_ERR;
+  10:	b29b      	uxth	r3, r3
+  12:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:352
+  * @param SlaveAddress: The address of the slave to be addressed by the Master.
+  * @retval : None.
+  */
+Status I2C_Master_BufferWrite(I2C_TypeDef* I2Cx, uint8_t* pBuffer,  uint32_t NumByteToWrite, I2C_ProgrammingModel Mode, uint8_t SlaveAddress )
+
+{
+  16:	f89d 7020 	ldrb.w	r7, [sp, #32]
+  1a:	4604      	mov	r4, r0
+  1c:	4688      	mov	r8, r1
+  1e:	4694      	mov	ip, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:358
+
+    __IO uint32_t temp = 0;
+    __IO uint32_t Timeout = 0;
+
+    /* Enable Error IT (used in all modes: DMA, Polling and Interrupts */
+    I2Cx->CR2 |= I2C_IT_ERR;
+  20:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:359
+    if (Mode == DMA)  /* I2Cx Master Transmission using DMA */
+  22:	d15d      	bne.n	e0 <I2C_Master_BufferWrite+0xe0>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:361
+    {
+        Timeout = 0xFFFF;
+  24:	f64f 73ff 	movw	r3, #65535	; 0xffff
+  28:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:363
+        /* Configure the DMA channel for I2Cx transmission */
+        I2C_DMAConfig (I2Cx, pBuffer, NumByteToWrite, I2C_DIRECTION_TX);
+  2a:	4633      	mov	r3, r6
+  2c:	f7ff fffe 	bl	0 <I2C_Master_BufferWrite>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:365
+        /* Enable the I2Cx DMA requests */
+        I2Cx->CR2 |= CR2_DMAEN_Set;
+  30:	88a3      	ldrh	r3, [r4, #4]
+  32:	b29b      	uxth	r3, r3
+  34:	f443 6300 	orr.w	r3, r3, #2048	; 0x800
+  38:	80a3      	strh	r3, [r4, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:367
+        /* Send START condition */
+        I2Cx->CR1 |= CR1_START_Set;
+  3a:	8823      	ldrh	r3, [r4, #0]
+  3c:	b29b      	uxth	r3, r3
+  3e:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+  42:	8023      	strh	r3, [r4, #0]
+  44:	e005      	b.n	52 <I2C_Master_BufferWrite+0x52>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:371
+        /* Wait until SB flag is set: EV5 */
+        while ((I2Cx->SR1&0x0001) != 0x0001)
+        {
+            if (Timeout-- == 0)
+  46:	9a00      	ldr	r2, [sp, #0]
+  48:	1e53      	subs	r3, r2, #1
+  4a:	9300      	str	r3, [sp, #0]
+  4c:	2a00      	cmp	r2, #0
+  4e:	f000 80b5 	beq.w	1bc <I2C_Master_BufferWrite+0x1bc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:369
+        /* Enable the I2Cx DMA requests */
+        I2Cx->CR2 |= CR2_DMAEN_Set;
+        /* Send START condition */
+        I2Cx->CR1 |= CR1_START_Set;
+        /* Wait until SB flag is set: EV5 */
+        while ((I2Cx->SR1&0x0001) != 0x0001)
+  52:	8aa3      	ldrh	r3, [r4, #20]
+  54:	f013 0f01 	tst.w	r3, #1	; 0x1
+  58:	d0f5      	beq.n	46 <I2C_Master_BufferWrite+0x46>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:374
+        {
+            if (Timeout-- == 0)
+                return Error;
+        }
+        Timeout = 0xFFFF;
+  5a:	f64f 73ff 	movw	r3, #65535	; 0xffff
+  5e:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:378
+        /* Send slave address */
+        /* Reset the address bit0 for write */
+        SlaveAddress &= OAR1_ADD0_Reset;
+        Address = SlaveAddress;
+  60:	4b59      	ldr	r3, [pc, #356]	(1c8 <I2C_Master_BufferWrite+0x1c8>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:377
+                return Error;
+        }
+        Timeout = 0xFFFF;
+        /* Send slave address */
+        /* Reset the address bit0 for write */
+        SlaveAddress &= OAR1_ADD0_Reset;
+  62:	f007 02fe 	and.w	r2, r7, #254	; 0xfe
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:378
+        Address = SlaveAddress;
+  66:	701a      	strb	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:380
+        /* Send the slave address */
+        I2Cx->DR = Address;
+  68:	781b      	ldrb	r3, [r3, #0]
+  6a:	8223      	strh	r3, [r4, #16]
+  6c:	e005      	b.n	7a <I2C_Master_BufferWrite+0x7a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:384
+        /* Wait until ADDR is set: EV6 */
+        while ((I2Cx->SR1&0x0002) != 0x0002)
+        {
+            if (Timeout-- == 0)
+  6e:	9a00      	ldr	r2, [sp, #0]
+  70:	1e53      	subs	r3, r2, #1
+  72:	9300      	str	r3, [sp, #0]
+  74:	2a00      	cmp	r2, #0
+  76:	f000 80a1 	beq.w	1bc <I2C_Master_BufferWrite+0x1bc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:382
+        SlaveAddress &= OAR1_ADD0_Reset;
+        Address = SlaveAddress;
+        /* Send the slave address */
+        I2Cx->DR = Address;
+        /* Wait until ADDR is set: EV6 */
+        while ((I2Cx->SR1&0x0002) != 0x0002)
+  7a:	8aa3      	ldrh	r3, [r4, #20]
+  7c:	f013 0f02 	tst.w	r3, #2	; 0x2
+  80:	d0f5      	beq.n	6e <I2C_Master_BufferWrite+0x6e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:389
+            if (Timeout-- == 0)
+                return Error;
+        }
+
+        /* Clear ADDR flag by reading SR2 register */
+        temp = I2Cx->SR2;
+  82:	8b23      	ldrh	r3, [r4, #24]
+  84:	b29b      	uxth	r3, r3
+  86:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:390
+        if (I2Cx == I2C1)
+  88:	4b50      	ldr	r3, [pc, #320]	(1cc <I2C_Master_BufferWrite+0x1cc>)
+  8a:	429c      	cmp	r4, r3
+  8c:	d10c      	bne.n	a8 <I2C_Master_BufferWrite+0xa8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:393
+        {
+            /* Wait until DMA end of transfer */
+            while (!DMA_GetFlagStatus(DMA1_FLAG_TC6));
+  8e:	f44f 1000 	mov.w	r0, #2097152	; 0x200000
+  92:	f7ff fffe 	bl	0 <DMA_GetFlagStatus>
+  96:	2800      	cmp	r0, #0
+  98:	d0f9      	beq.n	8e <I2C_Master_BufferWrite+0x8e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:395
+            /* Disable the DMA1 Channel 6 */
+            DMA_Cmd(I2C1_DMA_CHANNEL_TX, DISABLE);
+  9a:	484d      	ldr	r0, [pc, #308]	(1d0 <I2C_Master_BufferWrite+0x1d0>)
+  9c:	2100      	movs	r1, #0
+  9e:	f7ff fffe 	bl	0 <DMA_Cmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:397
+            /* Clear the DMA Transfer complete flag */
+            DMA_ClearFlag(DMA1_FLAG_TC6);
+  a2:	f44f 1000 	mov.w	r0, #2097152	; 0x200000
+  a6:	e00b      	b.n	c0 <I2C_Master_BufferWrite+0xc0>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:402
+        }
+        else  /* I2Cx = I2C2 */
+        {
+            /* Wait until DMA end of transfer */
+            while (!DMA_GetFlagStatus(DMA1_FLAG_TC4));
+  a8:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+  ac:	f7ff fffe 	bl	0 <DMA_GetFlagStatus>
+  b0:	2800      	cmp	r0, #0
+  b2:	d0f9      	beq.n	a8 <I2C_Master_BufferWrite+0xa8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:404
+            /* Disable the DMA1 Channel 4 */
+            DMA_Cmd(I2C2_DMA_CHANNEL_TX, DISABLE);
+  b4:	4847      	ldr	r0, [pc, #284]	(1d4 <I2C_Master_BufferWrite+0x1d4>)
+  b6:	2100      	movs	r1, #0
+  b8:	f7ff fffe 	bl	0 <DMA_Cmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:406
+            /* Clear the DMA Transfer complete flag */
+            DMA_ClearFlag(DMA1_FLAG_TC4);
+  bc:	f44f 5000 	mov.w	r0, #8192	; 0x2000
+  c0:	f7ff fffe 	bl	0 <DMA_ClearFlag>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:410
+        }
+
+        /* EV8_2: Wait until BTF is set before programming the STOP */
+        while ((I2Cx->SR1 & 0x00004) != 0x000004);
+  c4:	8aa3      	ldrh	r3, [r4, #20]
+  c6:	f013 0f04 	tst.w	r3, #4	; 0x4
+  ca:	d0fb      	beq.n	c4 <I2C_Master_BufferWrite+0xc4>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:412
+        /* Program the STOP */
+        I2Cx->CR1 |= CR1_STOP_Set;
+  cc:	8823      	ldrh	r3, [r4, #0]
+  ce:	b29b      	uxth	r3, r3
+  d0:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+  d4:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:414
+        /* Make sure that the STOP bit is cleared by Hardware */
+        while ((I2Cx->CR1&0x200) == 0x200);
+  d6:	8823      	ldrh	r3, [r4, #0]
+  d8:	f413 7f00 	tst.w	r3, #512	; 0x200
+  dc:	d1fb      	bne.n	d6 <I2C_Master_BufferWrite+0xd6>
+  de:	e06f      	b.n	1c0 <I2C_Master_BufferWrite+0x1c0>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:417
+
+    }
+    else if (Mode == Polling) /* I2Cx Master Transmission using Polling */
+  e0:	2d00      	cmp	r5, #0
+  e2:	d146      	bne.n	172 <I2C_Master_BufferWrite+0x172>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:420
+    {
+
+        Timeout = 0xFFFF;
+  e4:	f64f 73ff 	movw	r3, #65535	; 0xffff
+  e8:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:422
+        /* Send START condition */
+        I2Cx->CR1 |= CR1_START_Set;
+  ea:	8803      	ldrh	r3, [r0, #0]
+  ec:	b29b      	uxth	r3, r3
+  ee:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+  f2:	8003      	strh	r3, [r0, #0]
+  f4:	e004      	b.n	100 <I2C_Master_BufferWrite+0x100>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:426
+        /* Wait until SB flag is set: EV5 */
+        while ((I2Cx->SR1&0x0001) != 0x0001)
+        {
+            if (Timeout-- == 0)
+  f6:	9a00      	ldr	r2, [sp, #0]
+  f8:	1e53      	subs	r3, r2, #1
+  fa:	9300      	str	r3, [sp, #0]
+  fc:	2a00      	cmp	r2, #0
+  fe:	d05d      	beq.n	1bc <I2C_Master_BufferWrite+0x1bc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:424
+
+        Timeout = 0xFFFF;
+        /* Send START condition */
+        I2Cx->CR1 |= CR1_START_Set;
+        /* Wait until SB flag is set: EV5 */
+        while ((I2Cx->SR1&0x0001) != 0x0001)
+ 100:	8aa3      	ldrh	r3, [r4, #20]
+ 102:	f013 0f01 	tst.w	r3, #1	; 0x1
+ 106:	d0f6      	beq.n	f6 <I2C_Master_BufferWrite+0xf6>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:433
+        }
+
+        /* Send slave address */
+        /* Reset the address bit0 for write*/
+        SlaveAddress &= OAR1_ADD0_Reset;
+        Address = SlaveAddress;
+ 108:	4b2f      	ldr	r3, [pc, #188]	(1c8 <I2C_Master_BufferWrite+0x1c8>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:432
+                return Error;
+        }
+
+        /* Send slave address */
+        /* Reset the address bit0 for write*/
+        SlaveAddress &= OAR1_ADD0_Reset;
+ 10a:	f007 02fe 	and.w	r2, r7, #254	; 0xfe
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:433
+        Address = SlaveAddress;
+ 10e:	701a      	strb	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:435
+        /* Send the slave address */
+        I2Cx->DR = Address;
+ 110:	781b      	ldrb	r3, [r3, #0]
+ 112:	8223      	strh	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:436
+        Timeout = 0xFFFF;
+ 114:	f64f 73ff 	movw	r3, #65535	; 0xffff
+ 118:	9300      	str	r3, [sp, #0]
+ 11a:	e004      	b.n	126 <I2C_Master_BufferWrite+0x126>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:440
+        /* Wait until ADDR is set: EV6 */
+        while ((I2Cx->SR1 &0x0002) != 0x0002)
+        {
+            if (Timeout-- == 0)
+ 11c:	9a00      	ldr	r2, [sp, #0]
+ 11e:	1e53      	subs	r3, r2, #1
+ 120:	9300      	str	r3, [sp, #0]
+ 122:	2a00      	cmp	r2, #0
+ 124:	d04a      	beq.n	1bc <I2C_Master_BufferWrite+0x1bc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:438
+        Address = SlaveAddress;
+        /* Send the slave address */
+        I2Cx->DR = Address;
+        Timeout = 0xFFFF;
+        /* Wait until ADDR is set: EV6 */
+        while ((I2Cx->SR1 &0x0002) != 0x0002)
+ 126:	8aa3      	ldrh	r3, [r4, #20]
+ 128:	f013 0f02 	tst.w	r3, #2	; 0x2
+ 12c:	d0f6      	beq.n	11c <I2C_Master_BufferWrite+0x11c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:445
+            if (Timeout-- == 0)
+                return Error;
+        }
+
+        /* Clear ADDR flag by reading SR2 register */
+        temp = I2Cx->SR2;
+ 12e:	8b23      	ldrh	r3, [r4, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:451
+        /* Write the first data in DR register (EV8_1) */
+        I2Cx->DR = *pBuffer;
+        /* Increment */
+        pBuffer++;
+        /* Decrement the number of bytes to be written */
+        NumByteToWrite--;
+ 130:	f10c 32ff 	add.w	r2, ip, #4294967295	; 0xffffffff
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:445
+            if (Timeout-- == 0)
+                return Error;
+        }
+
+        /* Clear ADDR flag by reading SR2 register */
+        temp = I2Cx->SR2;
+ 134:	b29b      	uxth	r3, r3
+ 136:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:447
+        /* Write the first data in DR register (EV8_1) */
+        I2Cx->DR = *pBuffer;
+ 138:	f898 3000 	ldrb.w	r3, [r8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:451
+        /* Increment */
+        pBuffer++;
+        /* Decrement the number of bytes to be written */
+        NumByteToWrite--;
+ 13c:	4641      	mov	r1, r8
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:447
+        }
+
+        /* Clear ADDR flag by reading SR2 register */
+        temp = I2Cx->SR2;
+        /* Write the first data in DR register (EV8_1) */
+        I2Cx->DR = *pBuffer;
+ 13e:	8223      	strh	r3, [r4, #16]
+ 140:	e007      	b.n	152 <I2C_Master_BufferWrite+0x152>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:457
+        /* While there is data to be written */
+        while (NumByteToWrite--)
+        {
+            /* Poll on BTF to receive data because in polling mode we can not guarantee the
+              EV8 software sequence is managed before the current byte transfer completes */
+            while ((I2Cx->SR1 & 0x00004) != 0x000004);
+ 142:	8aa3      	ldrh	r3, [r4, #20]
+ 144:	f013 0f04 	tst.w	r3, #4	; 0x4
+ 148:	d0fb      	beq.n	142 <I2C_Master_BufferWrite+0x142>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:459
+            /* Send the current byte */
+            I2Cx->DR = *pBuffer;
+ 14a:	f811 3f01 	ldrb.w	r3, [r1, #1]!
+ 14e:	3a01      	subs	r2, #1
+ 150:	8223      	strh	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:453
+        /* Increment */
+        pBuffer++;
+        /* Decrement the number of bytes to be written */
+        NumByteToWrite--;
+        /* While there is data to be written */
+        while (NumByteToWrite--)
+ 152:	2a00      	cmp	r2, #0
+ 154:	d1f5      	bne.n	142 <I2C_Master_BufferWrite+0x142>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:464
+            I2Cx->DR = *pBuffer;
+            /* Point to the next byte to be written */
+            pBuffer++;
+        }
+        /* EV8_2: Wait until BTF is set before programming the STOP */
+        while ((I2Cx->SR1 & 0x00004) != 0x000004);
+ 156:	8aa3      	ldrh	r3, [r4, #20]
+ 158:	f013 0f04 	tst.w	r3, #4	; 0x4
+ 15c:	d0fb      	beq.n	156 <I2C_Master_BufferWrite+0x156>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:466
+        /* Send STOP condition */
+        I2Cx->CR1 |= CR1_STOP_Set;
+ 15e:	8823      	ldrh	r3, [r4, #0]
+ 160:	b29b      	uxth	r3, r3
+ 162:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 166:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:468
+        /* Make sure that the STOP bit is cleared by Hardware */
+        while ((I2Cx->CR1&0x200) == 0x200);
+ 168:	8823      	ldrh	r3, [r4, #0]
+ 16a:	f413 7f00 	tst.w	r3, #512	; 0x200
+ 16e:	d1fb      	bne.n	168 <I2C_Master_BufferWrite+0x168>
+ 170:	e026      	b.n	1c0 <I2C_Master_BufferWrite+0x1c0>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:476
+
+    else /* I2Cx Master Transmission using Interrupt with highest priority in the application */
+
+    {
+        /* Enable EVT IT*/
+        I2Cx->CR2 |= I2C_IT_EVT;
+ 172:	8883      	ldrh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:481
+        /* Enable BUF IT */
+        I2Cx->CR2 |= I2C_IT_BUF;
+        /* Set the I2C direction to Transmission */
+        I2CDirection = I2C_DIRECTION_TX;
+        SlaveAddress &= OAR1_ADD0_Reset;
+ 174:	f007 02fe 	and.w	r2, r7, #254	; 0xfe
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:476
+
+    else /* I2Cx Master Transmission using Interrupt with highest priority in the application */
+
+    {
+        /* Enable EVT IT*/
+        I2Cx->CR2 |= I2C_IT_EVT;
+ 178:	b29b      	uxth	r3, r3
+ 17a:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 17e:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:478
+        /* Enable BUF IT */
+        I2Cx->CR2 |= I2C_IT_BUF;
+ 180:	8883      	ldrh	r3, [r0, #4]
+ 182:	b29b      	uxth	r3, r3
+ 184:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
+ 188:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:480
+        /* Set the I2C direction to Transmission */
+        I2CDirection = I2C_DIRECTION_TX;
+ 18a:	4b13      	ldr	r3, [pc, #76]	(1d8 <I2C_Master_BufferWrite+0x1d8>)
+ 18c:	601e      	str	r6, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:482
+        SlaveAddress &= OAR1_ADD0_Reset;
+        Address = SlaveAddress;
+ 18e:	4b0e      	ldr	r3, [pc, #56]	(1c8 <I2C_Master_BufferWrite+0x1c8>)
+ 190:	701a      	strb	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:483
+        if (I2Cx == I2C1)    NumbOfBytes1 = NumByteToWrite;
+ 192:	4b0e      	ldr	r3, [pc, #56]	(1cc <I2C_Master_BufferWrite+0x1cc>)
+ 194:	4298      	cmp	r0, r3
+ 196:	bf0c      	ite	eq
+ 198:	4b10      	ldreq	r3, [pc, #64]	(1dc <I2C_Master_BufferWrite+0x1dc>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:484
+        else NumbOfBytes2 = NumByteToWrite;
+ 19a:	4b11      	ldrne	r3, [pc, #68]	(1e0 <I2C_Master_BufferWrite+0x1e0>)
+ 19c:	f8c3 c000 	str.w	ip, [r3]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:486
+        /* Send START condition */
+        I2Cx->CR1 |= CR1_START_Set;
+ 1a0:	8803      	ldrh	r3, [r0, #0]
+ 1a2:	b29b      	uxth	r3, r3
+ 1a4:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+ 1a8:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:488
+        /* Wait until the START condition is generated on the bus: the START bit is cleared by hardware */
+        while ((I2Cx->CR1&0x100) == 0x100);
+ 1aa:	8823      	ldrh	r3, [r4, #0]
+ 1ac:	f413 7f80 	tst.w	r3, #256	; 0x100
+ 1b0:	d1fb      	bne.n	1aa <I2C_Master_BufferWrite+0x1aa>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:491
+        /* Wait until BUSY flag is reset: a STOP has been generated on the bus signaling the end
+        of transmission */
+        while ((I2Cx->SR2 &0x0002) == 0x0002);
+ 1b2:	8b23      	ldrh	r3, [r4, #24]
+ 1b4:	f013 0f02 	tst.w	r3, #2	; 0x2
+ 1b8:	d1fb      	bne.n	1b2 <I2C_Master_BufferWrite+0x1b2>
+ 1ba:	e001      	b.n	1c0 <I2C_Master_BufferWrite+0x1c0>
+ 1bc:	2000      	movs	r0, #0
+ 1be:	e000      	b.n	1c2 <I2C_Master_BufferWrite+0x1c2>
+ 1c0:	2001      	movs	r0, #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:496
+    }
+
+    return Success;
+
+}
+ 1c2:	e8bd 81fc 	ldmia.w	sp!, {r2, r3, r4, r5, r6, r7, r8, pc}
+ 1c6:	46c0      	nop			(mov r8, r8)
+ 1c8:	00000000 	.word	0x00000000
+ 1cc:	40005400 	.word	0x40005400
+ 1d0:	4002006c 	.word	0x4002006c
+ 1d4:	40020044 	.word	0x40020044
+	...
+Disassembly of section .text.I2C_Master_BufferRead:
+
+00000000 <I2C_Master_BufferRead>:
+I2C_Master_BufferRead():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:51
+  * @param SlaveAddress: The address of the slave to be addressed by the Master.
+  * @retval : None.
+  */
+Status I2C_Master_BufferRead(I2C_TypeDef* I2Cx, uint8_t* pBuffer,  uint32_t NumByteToRead, I2C_ProgrammingModel Mode, uint8_t SlaveAddress)
+
+{
+   0:	e92d 41f3 	stmdb	sp!, {r0, r1, r4, r5, r6, r7, r8, lr}
+   4:	461e      	mov	r6, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:52
+    __IO uint32_t temp = 0;
+   6:	2300      	movs	r3, #0
+   8:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:53
+    __IO uint32_t Timeout = 0;
+   a:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:56
+
+    /* Enable I2C errors interrupts (used in all modes: Polling, DMA and Interrupts */
+    I2Cx->CR2 |= I2C_IT_ERR;
+   c:	8883      	ldrh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:58
+
+    if (Mode == DMA) /* I2Cx Master Reception using DMA */
+   e:	2e02      	cmp	r6, #2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:56
+{
+    __IO uint32_t temp = 0;
+    __IO uint32_t Timeout = 0;
+
+    /* Enable I2C errors interrupts (used in all modes: Polling, DMA and Interrupts */
+    I2Cx->CR2 |= I2C_IT_ERR;
+  10:	b29b      	uxth	r3, r3
+  12:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:51
+  * @param SlaveAddress: The address of the slave to be addressed by the Master.
+  * @retval : None.
+  */
+Status I2C_Master_BufferRead(I2C_TypeDef* I2Cx, uint8_t* pBuffer,  uint32_t NumByteToRead, I2C_ProgrammingModel Mode, uint8_t SlaveAddress)
+
+{
+  16:	f89d 8020 	ldrb.w	r8, [sp, #32]
+  1a:	4604      	mov	r4, r0
+  1c:	460f      	mov	r7, r1
+  1e:	4615      	mov	r5, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:56
+    __IO uint32_t temp = 0;
+    __IO uint32_t Timeout = 0;
+
+    /* Enable I2C errors interrupts (used in all modes: Polling, DMA and Interrupts */
+    I2Cx->CR2 |= I2C_IT_ERR;
+  20:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:58
+
+    if (Mode == DMA) /* I2Cx Master Reception using DMA */
+  22:	d15e      	bne.n	e2 <I2C_Master_BufferRead+0xe2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:61
+    {
+        /* Configure I2Cx DMA channel */
+        I2C_DMAConfig(I2Cx, pBuffer, NumByteToRead, I2C_DIRECTION_RX);
+  24:	2301      	movs	r3, #1
+  26:	f7ff fffe 	bl	0 <I2C_Master_BufferRead>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:63
+        /* Set Last bit to have a NACK on the last received byte */
+        I2Cx->CR2 |= CR2_LAST_Set;
+  2a:	88a3      	ldrh	r3, [r4, #4]
+  2c:	b29b      	uxth	r3, r3
+  2e:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
+  32:	80a3      	strh	r3, [r4, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:65
+        /* Enable I2C DMA requests */
+        I2Cx->CR2 |= CR2_DMAEN_Set;
+  34:	88a3      	ldrh	r3, [r4, #4]
+  36:	b29b      	uxth	r3, r3
+  38:	f443 6300 	orr.w	r3, r3, #2048	; 0x800
+  3c:	80a3      	strh	r3, [r4, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:66
+        Timeout = 0xFFFF;
+  3e:	f64f 73ff 	movw	r3, #65535	; 0xffff
+  42:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:68
+        /* Send START condition */
+        I2Cx->CR1 |= CR1_START_Set;
+  44:	8823      	ldrh	r3, [r4, #0]
+  46:	b29b      	uxth	r3, r3
+  48:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+  4c:	8023      	strh	r3, [r4, #0]
+  4e:	e005      	b.n	5c <I2C_Master_BufferRead+0x5c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:72
+        /* Wait until SB flag is set: EV5  */
+        while ((I2Cx->SR1&0x0001) != 0x0001)
+        {
+            if (Timeout-- == 0)
+  50:	9a00      	ldr	r2, [sp, #0]
+  52:	1e53      	subs	r3, r2, #1
+  54:	9300      	str	r3, [sp, #0]
+  56:	2a00      	cmp	r2, #0
+  58:	f000 8177 	beq.w	34a <I2C_Master_BufferRead+0x34a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:70
+        I2Cx->CR2 |= CR2_DMAEN_Set;
+        Timeout = 0xFFFF;
+        /* Send START condition */
+        I2Cx->CR1 |= CR1_START_Set;
+        /* Wait until SB flag is set: EV5  */
+        while ((I2Cx->SR1&0x0001) != 0x0001)
+  5c:	8aa3      	ldrh	r3, [r4, #20]
+  5e:	f013 0f01 	tst.w	r3, #1	; 0x1
+  62:	d0f5      	beq.n	50 <I2C_Master_BufferRead+0x50>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:75
+        {
+            if (Timeout-- == 0)
+                return Error;
+        }
+        Timeout = 0xFFFF;
+  64:	f64f 73ff 	movw	r3, #65535	; 0xffff
+  68:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:79
+        /* Send slave address */
+        /* Set the address bit0 for read */
+        SlaveAddress |= OAR1_ADD0_Set;
+        Address = SlaveAddress;
+  6a:	4b9e      	ldr	r3, [pc, #632]	(2e4 <I2C_Master_BufferRead+0x2e4>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:78
+                return Error;
+        }
+        Timeout = 0xFFFF;
+        /* Send slave address */
+        /* Set the address bit0 for read */
+        SlaveAddress |= OAR1_ADD0_Set;
+  6c:	f048 0201 	orr.w	r2, r8, #1	; 0x1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:79
+        Address = SlaveAddress;
+  70:	701a      	strb	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:81
+        /* Send the slave address */
+        I2Cx->DR = Address;
+  72:	781b      	ldrb	r3, [r3, #0]
+  74:	8223      	strh	r3, [r4, #16]
+  76:	e005      	b.n	84 <I2C_Master_BufferRead+0x84>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:85
+        /* Wait until ADDR is set: EV6 */
+        while ((I2Cx->SR1&0x0002) != 0x0002)
+        {
+            if (Timeout-- == 0)
+  78:	9a00      	ldr	r2, [sp, #0]
+  7a:	1e53      	subs	r3, r2, #1
+  7c:	9300      	str	r3, [sp, #0]
+  7e:	2a00      	cmp	r2, #0
+  80:	f000 8163 	beq.w	34a <I2C_Master_BufferRead+0x34a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:83
+        SlaveAddress |= OAR1_ADD0_Set;
+        Address = SlaveAddress;
+        /* Send the slave address */
+        I2Cx->DR = Address;
+        /* Wait until ADDR is set: EV6 */
+        while ((I2Cx->SR1&0x0002) != 0x0002)
+  84:	8aa3      	ldrh	r3, [r4, #20]
+  86:	f013 0f02 	tst.w	r3, #2	; 0x2
+  8a:	d0f5      	beq.n	78 <I2C_Master_BufferRead+0x78>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:89
+        {
+            if (Timeout-- == 0)
+                return Error;
+        }
+        /* Clear ADDR flag by reading SR2 register */
+        temp = I2Cx->SR2;
+  8c:	8b23      	ldrh	r3, [r4, #24]
+  8e:	b29b      	uxth	r3, r3
+  90:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:90
+        if (I2Cx == I2C1)
+  92:	4b95      	ldr	r3, [pc, #596]	(2e8 <I2C_Master_BufferRead+0x2e8>)
+  94:	429c      	cmp	r4, r3
+  96:	d10c      	bne.n	b2 <I2C_Master_BufferRead+0xb2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:93
+        {
+            /* Wait until DMA end of transfer */
+            while (!DMA_GetFlagStatus(DMA1_FLAG_TC7));
+  98:	f04f 7000 	mov.w	r0, #33554432	; 0x2000000
+  9c:	f7ff fffe 	bl	0 <DMA_GetFlagStatus>
+  a0:	2800      	cmp	r0, #0
+  a2:	d0f9      	beq.n	98 <I2C_Master_BufferRead+0x98>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:95
+            /* Disable DMA Channel */
+            DMA_Cmd(I2C1_DMA_CHANNEL_RX, DISABLE);
+  a4:	4891      	ldr	r0, [pc, #580]	(2ec <I2C_Master_BufferRead+0x2ec>)
+  a6:	2100      	movs	r1, #0
+  a8:	f7ff fffe 	bl	0 <DMA_Cmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:97
+            /* Clear the DMA Transfer Complete flag */
+            DMA_ClearFlag(DMA1_FLAG_TC7);
+  ac:	f04f 7000 	mov.w	r0, #33554432	; 0x2000000
+  b0:	e00b      	b.n	ca <I2C_Master_BufferRead+0xca>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:104
+        }
+
+        else /* I2Cx = I2C2*/
+        {
+            /* Wait until DMA end of transfer */
+            while (!DMA_GetFlagStatus(DMA1_FLAG_TC5));
+  b2:	f44f 3000 	mov.w	r0, #131072	; 0x20000
+  b6:	f7ff fffe 	bl	0 <DMA_GetFlagStatus>
+  ba:	2800      	cmp	r0, #0
+  bc:	d0f9      	beq.n	b2 <I2C_Master_BufferRead+0xb2>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:106
+            /* Disable DMA Channel */
+            DMA_Cmd(I2C2_DMA_CHANNEL_RX, DISABLE);
+  be:	488c      	ldr	r0, [pc, #560]	(2f0 <I2C_Master_BufferRead+0x2f0>)
+  c0:	2100      	movs	r1, #0
+  c2:	f7ff fffe 	bl	0 <DMA_Cmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:108
+            /* Clear the DMA Transfer Complete flag */
+            DMA_ClearFlag(DMA1_FLAG_TC5);
+  c6:	f44f 3000 	mov.w	r0, #131072	; 0x20000
+  ca:	f7ff fffe 	bl	0 <DMA_ClearFlag>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:111
+        }
+        /* Program the STOP */
+        I2Cx->CR1 |= CR1_STOP_Set;
+  ce:	8823      	ldrh	r3, [r4, #0]
+  d0:	b29b      	uxth	r3, r3
+  d2:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+  d6:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:113
+        /* Make sure that the STOP bit is cleared by Hardware before CR1 write access */
+        while ((I2Cx->CR1&0x200) == 0x200);
+  d8:	8823      	ldrh	r3, [r4, #0]
+  da:	f413 7f00 	tst.w	r3, #512	; 0x200
+  de:	d1fb      	bne.n	d8 <I2C_Master_BufferRead+0xd8>
+  e0:	e131      	b.n	346 <I2C_Master_BufferRead+0x346>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:116
+    }
+
+    else if (Mode == Polling) /* I2Cx Master Reception using Polling */
+  e2:	2e00      	cmp	r6, #0
+  e4:	f040 8106 	bne.w	2f4 <I2C_Master_BufferRead+0x2f4>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:120
+    {
+
+
+        if (NumByteToRead == 1)
+  e8:	2a01      	cmp	r2, #1
+  ea:	d143      	bne.n	174 <I2C_Master_BufferRead+0x174>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:122
+        {
+            Timeout = 0xFFFF;
+  ec:	f64f 73ff 	movw	r3, #65535	; 0xffff
+  f0:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:124
+            /* Send START condition */
+            I2Cx->CR1 |= CR1_START_Set;
+  f2:	8803      	ldrh	r3, [r0, #0]
+  f4:	b29b      	uxth	r3, r3
+  f6:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+  fa:	8003      	strh	r3, [r0, #0]
+  fc:	e005      	b.n	10a <I2C_Master_BufferRead+0x10a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:128
+            /* Wait until SB flag is set: EV5  */
+            while ((I2Cx->SR1&0x0001) != 0x0001)
+            {
+                if (Timeout-- == 0)
+  fe:	9a00      	ldr	r2, [sp, #0]
+ 100:	1e53      	subs	r3, r2, #1
+ 102:	9300      	str	r3, [sp, #0]
+ 104:	2a00      	cmp	r2, #0
+ 106:	f000 8120 	beq.w	34a <I2C_Master_BufferRead+0x34a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:126
+        {
+            Timeout = 0xFFFF;
+            /* Send START condition */
+            I2Cx->CR1 |= CR1_START_Set;
+            /* Wait until SB flag is set: EV5  */
+            while ((I2Cx->SR1&0x0001) != 0x0001)
+ 10a:	8aa3      	ldrh	r3, [r4, #20]
+ 10c:	f013 0f01 	tst.w	r3, #1	; 0x1
+ 110:	d0f5      	beq.n	fe <I2C_Master_BufferRead+0xfe>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:134
+                    return Error;
+            }
+            /* Send slave address */
+            /* Reset the address bit0 for read */
+            SlaveAddress |= OAR1_ADD0_Set;
+            Address = SlaveAddress;
+ 112:	4b74      	ldr	r3, [pc, #464]	(2e4 <I2C_Master_BufferRead+0x2e4>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:133
+                if (Timeout-- == 0)
+                    return Error;
+            }
+            /* Send slave address */
+            /* Reset the address bit0 for read */
+            SlaveAddress |= OAR1_ADD0_Set;
+ 114:	f048 0201 	orr.w	r2, r8, #1	; 0x1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:134
+            Address = SlaveAddress;
+ 118:	701a      	strb	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:136
+            /* Send the slave address */
+            I2Cx->DR = Address;
+ 11a:	781b      	ldrb	r3, [r3, #0]
+ 11c:	8223      	strh	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:141
+            /* Wait until ADDR is set: EV6_3, then program ACK = 0, clear ADDR
+            and program the STOP just after ADDR is cleared. The EV6_3 
+            software sequence must complete before the current byte end of transfer.*/
+            /* Wait until ADDR is set */
+            Timeout = 0xFFFF;
+ 11e:	f64f 73ff 	movw	r3, #65535	; 0xffff
+ 122:	9300      	str	r3, [sp, #0]
+ 124:	e005      	b.n	132 <I2C_Master_BufferRead+0x132>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:144
+            while ((I2Cx->SR1&0x0002) != 0x0002)
+            {
+                if (Timeout-- == 0)
+ 126:	9a00      	ldr	r2, [sp, #0]
+ 128:	1e53      	subs	r3, r2, #1
+ 12a:	9300      	str	r3, [sp, #0]
+ 12c:	2a00      	cmp	r2, #0
+ 12e:	f000 810c 	beq.w	34a <I2C_Master_BufferRead+0x34a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:142
+            /* Wait until ADDR is set: EV6_3, then program ACK = 0, clear ADDR
+            and program the STOP just after ADDR is cleared. The EV6_3 
+            software sequence must complete before the current byte end of transfer.*/
+            /* Wait until ADDR is set */
+            Timeout = 0xFFFF;
+            while ((I2Cx->SR1&0x0002) != 0x0002)
+ 132:	8aa3      	ldrh	r3, [r4, #20]
+ 134:	f013 0f02 	tst.w	r3, #2	; 0x2
+ 138:	d0f5      	beq.n	126 <I2C_Master_BufferRead+0x126>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:148
+            {
+                if (Timeout-- == 0)
+                    return Error;
+            }
+            /* Clear ACK bit */
+            I2Cx->CR1 &= CR1_ACK_Reset;
+ 13a:	8823      	ldrh	r3, [r4, #0]
+ 13c:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+ 140:	041b      	lsls	r3, r3, #16
+ 142:	0c1b      	lsrs	r3, r3, #16
+ 144:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:151
+            /* Disable all active IRQs around ADDR clearing and STOP programming because the EV6_3
+            software sequence must complete before the current byte end of transfer */
+            __disable_irq();
+ 146:	f7ff fffe 	bl	0 <I2C_Master_BufferRead>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:153
+            /* Clear ADDR flag */
+            temp = I2Cx->SR2;
+ 14a:	8b23      	ldrh	r3, [r4, #24]
+ 14c:	b29b      	uxth	r3, r3
+ 14e:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:155
+            /* Program the STOP */
+            I2Cx->CR1 |= CR1_STOP_Set;
+ 150:	8823      	ldrh	r3, [r4, #0]
+ 152:	b29b      	uxth	r3, r3
+ 154:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 158:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:157
+            /* Re-enable IRQs */
+            __enable_irq();
+ 15a:	f7ff fffe 	bl	0 <I2C_Master_BufferRead>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:159
+            /* Wait until a data is received in DR register (RXNE = 1) EV7 */
+            while ((I2Cx->SR1 & 0x00040) != 0x000040);
+ 15e:	8aa3      	ldrh	r3, [r4, #20]
+ 160:	f013 0f40 	tst.w	r3, #64	; 0x40
+ 164:	d0fb      	beq.n	15e <I2C_Master_BufferRead+0x15e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:161
+            /* Read the data */
+            *pBuffer = I2Cx->DR;
+ 166:	8a23      	ldrh	r3, [r4, #16]
+ 168:	703b      	strb	r3, [r7, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:163
+            /* Make sure that the STOP bit is cleared by Hardware before CR1 write access */
+            while ((I2Cx->CR1&0x200) == 0x200);
+ 16a:	8823      	ldrh	r3, [r4, #0]
+ 16c:	f413 7f00 	tst.w	r3, #512	; 0x200
+ 170:	d1fb      	bne.n	16a <I2C_Master_BufferRead+0x16a>
+ 172:	e0e3      	b.n	33c <I2C_Master_BufferRead+0x33c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:169
+            /* Enable Acknowledgement to be ready for another reception */
+            I2Cx->CR1 |= CR1_ACK_Set;
+
+        }
+
+        else if (NumByteToRead == 2)
+ 174:	2a02      	cmp	r2, #2
+ 176:	d157      	bne.n	228 <I2C_Master_BufferRead+0x228>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:172
+        {
+            /* Set POS bit */
+            I2Cx->CR1 |= CR1_POS_Set;
+ 178:	8803      	ldrh	r3, [r0, #0]
+ 17a:	b29b      	uxth	r3, r3
+ 17c:	f443 6300 	orr.w	r3, r3, #2048	; 0x800
+ 180:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:173
+            Timeout = 0xFFFF;
+ 182:	f64f 73ff 	movw	r3, #65535	; 0xffff
+ 186:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:175
+            /* Send START condition */
+            I2Cx->CR1 |= CR1_START_Set;
+ 188:	8803      	ldrh	r3, [r0, #0]
+ 18a:	b29b      	uxth	r3, r3
+ 18c:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+ 190:	8003      	strh	r3, [r0, #0]
+ 192:	e005      	b.n	1a0 <I2C_Master_BufferRead+0x1a0>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:179
+            /* Wait until SB flag is set: EV5 */
+            while ((I2Cx->SR1&0x0001) != 0x0001)
+            {
+                if (Timeout-- == 0)
+ 194:	9a00      	ldr	r2, [sp, #0]
+ 196:	1e53      	subs	r3, r2, #1
+ 198:	9300      	str	r3, [sp, #0]
+ 19a:	2a00      	cmp	r2, #0
+ 19c:	f000 80d5 	beq.w	34a <I2C_Master_BufferRead+0x34a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:177
+            I2Cx->CR1 |= CR1_POS_Set;
+            Timeout = 0xFFFF;
+            /* Send START condition */
+            I2Cx->CR1 |= CR1_START_Set;
+            /* Wait until SB flag is set: EV5 */
+            while ((I2Cx->SR1&0x0001) != 0x0001)
+ 1a0:	8aa3      	ldrh	r3, [r4, #20]
+ 1a2:	f013 0f01 	tst.w	r3, #1	; 0x1
+ 1a6:	d0f5      	beq.n	194 <I2C_Master_BufferRead+0x194>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:182
+            {
+                if (Timeout-- == 0)
+                    return Error;
+            }
+            Timeout = 0xFFFF;
+ 1a8:	f64f 73ff 	movw	r3, #65535	; 0xffff
+ 1ac:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:186
+            /* Send slave address */
+            /* Set the address bit0 for read */
+            SlaveAddress |= OAR1_ADD0_Set;
+            Address = SlaveAddress;
+ 1ae:	4b4d      	ldr	r3, [pc, #308]	(2e4 <I2C_Master_BufferRead+0x2e4>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:185
+                    return Error;
+            }
+            Timeout = 0xFFFF;
+            /* Send slave address */
+            /* Set the address bit0 for read */
+            SlaveAddress |= OAR1_ADD0_Set;
+ 1b0:	f048 0201 	orr.w	r2, r8, #1	; 0x1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:186
+            Address = SlaveAddress;
+ 1b4:	701a      	strb	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:188
+            /* Send the slave address */
+            I2Cx->DR = Address;
+ 1b6:	781b      	ldrb	r3, [r3, #0]
+ 1b8:	8223      	strh	r3, [r4, #16]
+ 1ba:	e005      	b.n	1c8 <I2C_Master_BufferRead+0x1c8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:192
+            /* Wait until ADDR is set: EV6 */
+            while ((I2Cx->SR1&0x0002) != 0x0002)
+            {
+                if (Timeout-- == 0)
+ 1bc:	9a00      	ldr	r2, [sp, #0]
+ 1be:	1e53      	subs	r3, r2, #1
+ 1c0:	9300      	str	r3, [sp, #0]
+ 1c2:	2a00      	cmp	r2, #0
+ 1c4:	f000 80c1 	beq.w	34a <I2C_Master_BufferRead+0x34a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:190
+            SlaveAddress |= OAR1_ADD0_Set;
+            Address = SlaveAddress;
+            /* Send the slave address */
+            I2Cx->DR = Address;
+            /* Wait until ADDR is set: EV6 */
+            while ((I2Cx->SR1&0x0002) != 0x0002)
+ 1c8:	8aa3      	ldrh	r3, [r4, #20]
+ 1ca:	f013 0f02 	tst.w	r3, #2	; 0x2
+ 1ce:	d0f5      	beq.n	ffffffee <I2CDirection+0xffffffee>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:198
+                    return Error;
+            }
+            /* EV6_1: The acknowledge disable should be done just after EV6,
+            that is after ADDR is cleared, so disable all active IRQs around ADDR clearing and 
+            ACK clearing */
+            __disable_irq();
+ 1d0:	f7ff fffe 	bl	0 <I2C_Master_BufferRead>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:200
+            /* Clear ADDR by reading SR2 register  */
+            temp = I2Cx->SR2;
+ 1d4:	8b23      	ldrh	r3, [r4, #24]
+ 1d6:	b29b      	uxth	r3, r3
+ 1d8:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:202
+            /* Clear ACK */
+            I2Cx->CR1 &= CR1_ACK_Reset;
+ 1da:	8823      	ldrh	r3, [r4, #0]
+ 1dc:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+ 1e0:	041b      	lsls	r3, r3, #16
+ 1e2:	0c1b      	lsrs	r3, r3, #16
+ 1e4:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:204
+            /*Re-enable IRQs */
+            __enable_irq();
+ 1e6:	f7ff fffe 	bl	0 <I2C_Master_BufferRead>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:206
+            /* Wait until BTF is set */
+            while ((I2Cx->SR1 & 0x00004) != 0x000004);
+ 1ea:	8aa3      	ldrh	r3, [r4, #20]
+ 1ec:	f013 0f04 	tst.w	r3, #4	; 0x4
+ 1f0:	d0fb      	beq.n	fffffffa <I2CDirection+0xfffffffa>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:208
+            /* Disable IRQs around STOP programming and data reading because of the limitation ?*/
+            __disable_irq();
+ 1f2:	f7ff fffe 	bl	0 <I2C_Master_BufferRead>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:210
+            /* Program the STOP */
+            I2C_GenerateSTOP(I2Cx, ENABLE);
+ 1f6:	4620      	mov	r0, r4
+ 1f8:	2101      	movs	r1, #1
+ 1fa:	f7ff fffe 	bl	0 <I2C_GenerateSTOP>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:212
+            /* Read first data */
+            *pBuffer = I2Cx->DR;
+ 1fe:	8a23      	ldrh	r3, [r4, #16]
+ 200:	703b      	strb	r3, [r7, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:214
+            /* Re-enable IRQs */
+            __enable_irq();
+ 202:	f7ff fffe 	bl	0 <I2C_Master_BufferRead>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:218
+            /**/
+            pBuffer++;
+            /* Read second data */
+            *pBuffer = I2Cx->DR;
+ 206:	8a23      	ldrh	r3, [r4, #16]
+ 208:	707b      	strb	r3, [r7, #1]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:220
+            /* Make sure that the STOP bit is cleared by Hardware before CR1 write access */
+            while ((I2Cx->CR1&0x200) == 0x200);
+ 20a:	8823      	ldrh	r3, [r4, #0]
+ 20c:	f413 7f00 	tst.w	r3, #512	; 0x200
+ 210:	d1fb      	bne.n	20a <I2C_Master_BufferRead+0x20a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:222
+            /* Enable Acknowledgement to be ready for another reception */
+            I2Cx->CR1  |= CR1_ACK_Set;
+ 212:	8823      	ldrh	r3, [r4, #0]
+ 214:	b29b      	uxth	r3, r3
+ 216:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
+ 21a:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:224
+            /* Clear POS bit */
+            I2Cx->CR1  &= CR1_POS_Reset;
+ 21c:	8823      	ldrh	r3, [r4, #0]
+ 21e:	f423 6300 	bic.w	r3, r3, #2048	; 0x800
+ 222:	041b      	lsls	r3, r3, #16
+ 224:	0c1b      	lsrs	r3, r3, #16
+ 226:	e08d      	b.n	344 <I2C_Master_BufferRead+0x344>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:232
+
+        else
+
+        {
+
+            Timeout = 0xFFFF;
+ 228:	f64f 73ff 	movw	r3, #65535	; 0xffff
+ 22c:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:234
+            /* Send START condition */
+            I2Cx->CR1 |= CR1_START_Set;
+ 22e:	8803      	ldrh	r3, [r0, #0]
+ 230:	b29b      	uxth	r3, r3
+ 232:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+ 236:	8003      	strh	r3, [r0, #0]
+ 238:	e005      	b.n	246 <I2C_Master_BufferRead+0x246>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:238
+            /* Wait until SB flag is set: EV5 */
+            while ((I2Cx->SR1&0x0001) != 0x0001)
+            {
+                if (Timeout-- == 0)
+ 23a:	9a00      	ldr	r2, [sp, #0]
+ 23c:	1e53      	subs	r3, r2, #1
+ 23e:	9300      	str	r3, [sp, #0]
+ 240:	2a00      	cmp	r2, #0
+ 242:	f000 8082 	beq.w	34a <I2C_Master_BufferRead+0x34a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:236
+
+            Timeout = 0xFFFF;
+            /* Send START condition */
+            I2Cx->CR1 |= CR1_START_Set;
+            /* Wait until SB flag is set: EV5 */
+            while ((I2Cx->SR1&0x0001) != 0x0001)
+ 246:	8aa3      	ldrh	r3, [r4, #20]
+ 248:	f013 0f01 	tst.w	r3, #1	; 0x1
+ 24c:	d0f5      	beq.n	23a <I2C_Master_BufferRead+0x23a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:241
+            {
+                if (Timeout-- == 0)
+                    return Error;
+            }
+            Timeout = 0xFFFF;
+ 24e:	f64f 73ff 	movw	r3, #65535	; 0xffff
+ 252:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:245
+            /* Send slave address */
+            /* Reset the address bit0 for write */
+            SlaveAddress |= OAR1_ADD0_Set;;
+            Address = SlaveAddress;
+ 254:	4b23      	ldr	r3, [pc, #140]	(2e4 <I2C_Master_BufferRead+0x2e4>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:244
+                    return Error;
+            }
+            Timeout = 0xFFFF;
+            /* Send slave address */
+            /* Reset the address bit0 for write */
+            SlaveAddress |= OAR1_ADD0_Set;;
+ 256:	f048 0201 	orr.w	r2, r8, #1	; 0x1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:245
+            Address = SlaveAddress;
+ 25a:	701a      	strb	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:247
+            /* Send the slave address */
+            I2Cx->DR = Address;
+ 25c:	781b      	ldrb	r3, [r3, #0]
+ 25e:	8223      	strh	r3, [r4, #16]
+ 260:	e004      	b.n	26c <I2C_Master_BufferRead+0x26c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:251
+            /* Wait until ADDR is set: EV6 */
+            while ((I2Cx->SR1&0x0002) != 0x0002)
+            {
+                if (Timeout-- == 0)
+ 262:	9a00      	ldr	r2, [sp, #0]
+ 264:	1e53      	subs	r3, r2, #1
+ 266:	9300      	str	r3, [sp, #0]
+ 268:	2a00      	cmp	r2, #0
+ 26a:	d06e      	beq.n	34a <I2C_Master_BufferRead+0x34a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:249
+            SlaveAddress |= OAR1_ADD0_Set;;
+            Address = SlaveAddress;
+            /* Send the slave address */
+            I2Cx->DR = Address;
+            /* Wait until ADDR is set: EV6 */
+            while ((I2Cx->SR1&0x0002) != 0x0002)
+ 26c:	8aa3      	ldrh	r3, [r4, #20]
+ 26e:	f013 0f02 	tst.w	r3, #2	; 0x2
+ 272:	d0f6      	beq.n	262 <I2C_Master_BufferRead+0x262>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:255
+            {
+                if (Timeout-- == 0)
+                    return Error;
+            }
+            /* Clear ADDR by reading SR2 status register */
+            temp = I2Cx->SR2;
+ 274:	8b23      	ldrh	r3, [r4, #24]
+ 276:	b29b      	uxth	r3, r3
+ 278:	9301      	str	r3, [sp, #4]
+ 27a:	e02b      	b.n	2d4 <I2C_Master_BufferRead+0x2d4>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:260
+            /* While there is data to be read */
+            while (NumByteToRead)
+            {
+                /* Receive bytes from first byte until byte N-3 */
+                if (NumByteToRead != 3)
+ 27c:	2d03      	cmp	r5, #3
+ 27e:	d009      	beq.n	294 <I2C_Master_BufferRead+0x294>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:264
+                {
+                    /* Poll on BTF to receive data because in polling mode we can not guarantee the
+                    EV7 software sequence is managed before the current byte transfer completes */
+                    while ((I2Cx->SR1 & 0x00004) != 0x000004);
+ 280:	8aa3      	ldrh	r3, [r4, #20]
+ 282:	f013 0f04 	tst.w	r3, #4	; 0x4
+ 286:	d0fb      	beq.n	280 <I2C_Master_BufferRead+0x280>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:266
+                    /* Read data */
+                    *pBuffer = I2Cx->DR;
+ 288:	8a23      	ldrh	r3, [r4, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:270
+                    /* */
+                    pBuffer++;
+                    /* Decrement the read bytes counter */
+                    NumByteToRead--;
+ 28a:	3d01      	subs	r5, #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:274
+                }
+
+                /* it remains to read three data: data N-2, data N-1, Data N */
+                if (NumByteToRead == 3)
+ 28c:	2d03      	cmp	r5, #3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:266
+                {
+                    /* Poll on BTF to receive data because in polling mode we can not guarantee the
+                    EV7 software sequence is managed before the current byte transfer completes */
+                    while ((I2Cx->SR1 & 0x00004) != 0x000004);
+                    /* Read data */
+                    *pBuffer = I2Cx->DR;
+ 28e:	f807 3b01 	strb.w	r3, [r7], #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:274
+                    /* Decrement the read bytes counter */
+                    NumByteToRead--;
+                }
+
+                /* it remains to read three data: data N-2, data N-1, Data N */
+                if (NumByteToRead == 3)
+ 292:	d11f      	bne.n	2d4 <I2C_Master_BufferRead+0x2d4>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:278
+                {
+
+                    /* Wait until BTF is set: Data N-2 in DR and data N -1 in shift register */
+                    while ((I2Cx->SR1 & 0x00004) != 0x000004);
+ 294:	8aa3      	ldrh	r3, [r4, #20]
+ 296:	f013 0f04 	tst.w	r3, #4	; 0x4
+ 29a:	d0fb      	beq.n	294 <I2C_Master_BufferRead+0x294>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:280
+                    /* Clear ACK */
+                    I2Cx->CR1 &= CR1_ACK_Reset;
+ 29c:	8823      	ldrh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:286
+
+                    /* Disable IRQs around data reading and STOP programming because of the
+                    limitation ? */
+                    __disable_irq();
+                    /* Read Data N-2 */
+                    *pBuffer = I2Cx->DR;
+ 29e:	463d      	mov	r5, r7
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:280
+                {
+
+                    /* Wait until BTF is set: Data N-2 in DR and data N -1 in shift register */
+                    while ((I2Cx->SR1 & 0x00004) != 0x000004);
+                    /* Clear ACK */
+                    I2Cx->CR1 &= CR1_ACK_Reset;
+ 2a0:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+ 2a4:	041b      	lsls	r3, r3, #16
+ 2a6:	0c1b      	lsrs	r3, r3, #16
+ 2a8:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:284
+
+                    /* Disable IRQs around data reading and STOP programming because of the
+                    limitation ? */
+                    __disable_irq();
+ 2aa:	f7ff fffe 	bl	0 <I2C_Master_BufferRead>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:286
+                    /* Read Data N-2 */
+                    *pBuffer = I2Cx->DR;
+ 2ae:	8a23      	ldrh	r3, [r4, #16]
+ 2b0:	f805 3b01 	strb.w	r3, [r5], #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:290
+                    /* Increment */
+                    pBuffer++;
+                    /* Program the STOP */
+                    I2Cx->CR1 |= CR1_STOP_Set;
+ 2b4:	8823      	ldrh	r3, [r4, #0]
+ 2b6:	b29b      	uxth	r3, r3
+ 2b8:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 2bc:	8023      	strh	r3, [r4, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:292
+                    /* Read DataN-1 */
+                    *pBuffer = I2Cx->DR;
+ 2be:	8a23      	ldrh	r3, [r4, #16]
+ 2c0:	707b      	strb	r3, [r7, #1]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:294
+                    /* Re-enable IRQs */
+                    __enable_irq();
+ 2c2:	f7ff fffe 	bl	0 <I2C_Master_BufferRead>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:298
+                    /* Increment */
+                    pBuffer++;
+                    /* Wait until RXNE is set (DR contains the last data) */
+                    while ((I2Cx->SR1 & 0x00040) != 0x000040);
+ 2c6:	8aa3      	ldrh	r3, [r4, #20]
+ 2c8:	f013 0f40 	tst.w	r3, #64	; 0x40
+ 2cc:	d0fb      	beq.n	2c6 <I2C_Master_BufferRead+0x2c6>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:300
+                    /* Read DataN */
+                    *pBuffer = I2Cx->DR;
+ 2ce:	8a23      	ldrh	r3, [r4, #16]
+ 2d0:	706b      	strb	r3, [r5, #1]
+ 2d2:	e001      	b.n	2d8 <I2C_Master_BufferRead+0x2d8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:257
+                    return Error;
+            }
+            /* Clear ADDR by reading SR2 status register */
+            temp = I2Cx->SR2;
+            /* While there is data to be read */
+            while (NumByteToRead)
+ 2d4:	2d00      	cmp	r5, #0
+ 2d6:	d1d1      	bne.n	27c <I2C_Master_BufferRead+0x27c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:307
+                    NumByteToRead = 0;
+
+                }
+            }
+            /* Make sure that the STOP bit is cleared by Hardware before CR1 write access */
+            while ((I2Cx->CR1&0x200) == 0x200);
+ 2d8:	8823      	ldrh	r3, [r4, #0]
+ 2da:	f413 7f00 	tst.w	r3, #512	; 0x200
+ 2de:	d1fb      	bne.n	2d8 <I2C_Master_BufferRead+0x2d8>
+ 2e0:	e02c      	b.n	33c <I2C_Master_BufferRead+0x33c>
+ 2e2:	46c0      	nop			(mov r8, r8)
+ 2e4:	00000000 	.word	0x00000000
+ 2e8:	40005400 	.word	0x40005400
+ 2ec:	40020080 	.word	0x40020080
+ 2f0:	40020058 	.word	0x40020058
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:318
+    }
+
+    else /* I2Cx Master Reception using Interrupts with highest priority in an application */
+    {
+        /* Enable EVT IT*/
+        I2Cx->CR2 |= I2C_IT_EVT;
+ 2f4:	8883      	ldrh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:322
+        /* Enable BUF IT */
+        I2Cx->CR2 |= I2C_IT_BUF;
+        /* Set the I2C direction to reception */
+        I2CDirection = I2C_DIRECTION_RX;
+ 2f6:	2201      	movs	r2, #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:318
+    }
+
+    else /* I2Cx Master Reception using Interrupts with highest priority in an application */
+    {
+        /* Enable EVT IT*/
+        I2Cx->CR2 |= I2C_IT_EVT;
+ 2f8:	b29b      	uxth	r3, r3
+ 2fa:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+ 2fe:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:320
+        /* Enable BUF IT */
+        I2Cx->CR2 |= I2C_IT_BUF;
+ 300:	8883      	ldrh	r3, [r0, #4]
+ 302:	b29b      	uxth	r3, r3
+ 304:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
+ 308:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:322
+        /* Set the I2C direction to reception */
+        I2CDirection = I2C_DIRECTION_RX;
+ 30a:	4b11      	ldr	r3, [pc, #68]	(350 <I2C_Master_BufferRead+0x350>)
+ 30c:	601a      	str	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:324
+        SlaveAddress |= OAR1_ADD0_Set;
+        Address = SlaveAddress;
+ 30e:	4b11      	ldr	r3, [pc, #68]	(354 <I2C_Master_BufferRead+0x354>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:323
+        I2Cx->CR2 |= I2C_IT_EVT;
+        /* Enable BUF IT */
+        I2Cx->CR2 |= I2C_IT_BUF;
+        /* Set the I2C direction to reception */
+        I2CDirection = I2C_DIRECTION_RX;
+        SlaveAddress |= OAR1_ADD0_Set;
+ 310:	ea48 0202 	orr.w	r2, r8, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:324
+        Address = SlaveAddress;
+ 314:	701a      	strb	r2, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:325
+        if (I2Cx == I2C1)    NumbOfBytes1 = NumByteToRead;
+ 316:	4b10      	ldr	r3, [pc, #64]	(358 <I2C_Master_BufferRead+0x358>)
+ 318:	4298      	cmp	r0, r3
+ 31a:	bf0c      	ite	eq
+ 31c:	4b0f      	ldreq	r3, [pc, #60]	(35c <I2C_Master_BufferRead+0x35c>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:326
+        else NumbOfBytes2 = NumByteToRead;
+ 31e:	4b10      	ldrne	r3, [pc, #64]	(360 <I2C_Master_BufferRead+0x360>)
+ 320:	601d      	str	r5, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:328
+        /* Send START condition */
+        I2Cx->CR1 |= CR1_START_Set;
+ 322:	8803      	ldrh	r3, [r0, #0]
+ 324:	b29b      	uxth	r3, r3
+ 326:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+ 32a:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:330
+        /* Wait until the START condition is generated on the bus: START bit is cleared by hardware */
+        while ((I2Cx->CR1&0x100) == 0x100);
+ 32c:	8823      	ldrh	r3, [r4, #0]
+ 32e:	f413 7f80 	tst.w	r3, #256	; 0x100
+ 332:	d1fb      	bne.n	32c <I2C_Master_BufferRead+0x32c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:332
+        /* Wait until BUSY flag is reset (until a STOP is generated) */
+        while ((I2Cx->SR2 &0x0002) == 0x0002);
+ 334:	8b23      	ldrh	r3, [r4, #24]
+ 336:	f013 0f02 	tst.w	r3, #2	; 0x2
+ 33a:	d1fb      	bne.n	334 <I2C_Master_BufferRead+0x334>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:334
+        /* Enable Acknowledgement to be ready for another reception */
+        I2Cx->CR1 |= CR1_ACK_Set;
+ 33c:	8823      	ldrh	r3, [r4, #0]
+ 33e:	b29b      	uxth	r3, r3
+ 340:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
+ 344:	8023      	strh	r3, [r4, #0]
+ 346:	2001      	movs	r0, #1
+ 348:	e000      	b.n	34c <I2C_Master_BufferRead+0x34c>
+ 34a:	2000      	movs	r0, #0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\src/I2CRoutines.c:338
+    }
+
+    return Success;
+}
+ 34c:	e8bd 81fc 	ldmia.w	sp!, {r2, r3, r4, r5, r6, r7, r8, pc}
+	...
+ 358:	40005400 	.word	0x40005400
+	...

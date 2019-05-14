@@ -1,0 +1,1485 @@
+
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\stm32f10x_i2c.o:     file format elf32-littlearm
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Project\OptimizedI2Cexamples\RIDE\STM3210E-EVAL_XL\stm32f10x_i2c.o
+
+Disassembly of section .text.I2C_StructInit:
+
+00000000 <I2C_StructInit>:
+I2C_StructInit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:301
+  */
+void I2C_StructInit(I2C_InitTypeDef* I2C_InitStruct)
+{
+/*---------------- Reset I2C init structure parameters values ----------------*/
+  /* initialize the I2C_ClockSpeed member */
+  I2C_InitStruct->I2C_ClockSpeed = 5000;
+   0:	f241 3388 	movw	r3, #5000	; 0x1388
+   4:	6003      	str	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:303
+  /* Initialize the I2C_Mode member */
+  I2C_InitStruct->I2C_Mode = I2C_Mode_I2C;
+   6:	2300      	movs	r3, #0
+   8:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:305
+  /* Initialize the I2C_DutyCycle member */
+  I2C_InitStruct->I2C_DutyCycle = I2C_DutyCycle_2;
+   a:	f64b 72ff 	movw	r2, #49151	; 0xbfff
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:307
+  /* Initialize the I2C_OwnAddress1 member */
+  I2C_InitStruct->I2C_OwnAddress1 = 0;
+   e:	8103      	strh	r3, [r0, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:309
+  /* Initialize the I2C_Ack member */
+  I2C_InitStruct->I2C_Ack = I2C_Ack_Disable;
+  10:	8143      	strh	r3, [r0, #10]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:311
+  /* Initialize the I2C_AcknowledgedAddress member */
+  I2C_InitStruct->I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+  12:	f44f 4380 	mov.w	r3, #16384	; 0x4000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:305
+  /* initialize the I2C_ClockSpeed member */
+  I2C_InitStruct->I2C_ClockSpeed = 5000;
+  /* Initialize the I2C_Mode member */
+  I2C_InitStruct->I2C_Mode = I2C_Mode_I2C;
+  /* Initialize the I2C_DutyCycle member */
+  I2C_InitStruct->I2C_DutyCycle = I2C_DutyCycle_2;
+  16:	80c2      	strh	r2, [r0, #6]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:311
+  /* Initialize the I2C_OwnAddress1 member */
+  I2C_InitStruct->I2C_OwnAddress1 = 0;
+  /* Initialize the I2C_Ack member */
+  I2C_InitStruct->I2C_Ack = I2C_Ack_Disable;
+  /* Initialize the I2C_AcknowledgedAddress member */
+  I2C_InitStruct->I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+  18:	8183      	strh	r3, [r0, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:312
+}
+  1a:	4770      	bx	lr
+Disassembly of section .text.I2C_Cmd:
+
+00000000 <I2C_Cmd>:
+I2C_Cmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:326
+void I2C_Cmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <I2C_Cmd+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:329
+  {
+    /* Enable the selected I2C peripheral */
+    I2Cx->CR1 |= CR1_PE_Set;
+   2:	8803      	ldrh	r3, [r0, #0]
+   4:	b29b      	uxth	r3, r3
+   6:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+   a:	e004      	b.n	16 <I2C_Cmd+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:334
+  }
+  else
+  {
+    /* Disable the selected I2C peripheral */
+    I2Cx->CR1 &= CR1_PE_Reset;
+   c:	8803      	ldrh	r3, [r0, #0]
+   e:	f023 0301 	bic.w	r3, r3, #1	; 0x1
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:336
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_DMACmd:
+
+00000000 <I2C_DMACmd>:
+I2C_DMACmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:350
+void I2C_DMACmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <I2C_DMACmd+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:353
+  {
+    /* Enable the selected I2C DMA requests */
+    I2Cx->CR2 |= CR2_DMAEN_Set;
+   2:	8883      	ldrh	r3, [r0, #4]
+   4:	b29b      	uxth	r3, r3
+   6:	f443 6300 	orr.w	r3, r3, #2048	; 0x800
+   a:	e004      	b.n	16 <I2C_DMACmd+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:358
+  }
+  else
+  {
+    /* Disable the selected I2C DMA requests */
+    I2Cx->CR2 &= CR2_DMAEN_Reset;
+   c:	8883      	ldrh	r3, [r0, #4]
+   e:	f423 6300 	bic.w	r3, r3, #2048	; 0x800
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:360
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_DMALastTransferCmd:
+
+00000000 <I2C_DMALastTransferCmd>:
+I2C_DMALastTransferCmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:374
+void I2C_DMALastTransferCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <I2C_DMALastTransferCmd+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:377
+  {
+    /* Next DMA transfer is the last transfer */
+    I2Cx->CR2 |= CR2_LAST_Set;
+   2:	8883      	ldrh	r3, [r0, #4]
+   4:	b29b      	uxth	r3, r3
+   6:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
+   a:	e004      	b.n	16 <I2C_DMALastTransferCmd+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:382
+  }
+  else
+  {
+    /* Next DMA transfer is not the last transfer */
+    I2Cx->CR2 &= CR2_LAST_Reset;
+   c:	8883      	ldrh	r3, [r0, #4]
+   e:	f423 5380 	bic.w	r3, r3, #4096	; 0x1000
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:384
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_GenerateSTART:
+
+00000000 <I2C_GenerateSTART>:
+I2C_GenerateSTART():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:398
+void I2C_GenerateSTART(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <I2C_GenerateSTART+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:401
+  {
+    /* Generate a START condition */
+    I2Cx->CR1 |= CR1_START_Set;
+   2:	8803      	ldrh	r3, [r0, #0]
+   4:	b29b      	uxth	r3, r3
+   6:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+   a:	e004      	b.n	16 <I2C_GenerateSTART+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:406
+  }
+  else
+  {
+    /* Disable the START condition generation */
+    I2Cx->CR1 &= CR1_START_Reset;
+   c:	8803      	ldrh	r3, [r0, #0]
+   e:	f423 7380 	bic.w	r3, r3, #256	; 0x100
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:408
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_GenerateSTOP:
+
+00000000 <I2C_GenerateSTOP>:
+I2C_GenerateSTOP():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:422
+void I2C_GenerateSTOP(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <I2C_GenerateSTOP+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:425
+  {
+    /* Generate a STOP condition */
+    I2Cx->CR1 |= CR1_STOP_Set;
+   2:	8803      	ldrh	r3, [r0, #0]
+   4:	b29b      	uxth	r3, r3
+   6:	f443 7300 	orr.w	r3, r3, #512	; 0x200
+   a:	e004      	b.n	16 <I2C_GenerateSTOP+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:430
+  }
+  else
+  {
+    /* Disable the STOP condition generation */
+    I2Cx->CR1 &= CR1_STOP_Reset;
+   c:	8803      	ldrh	r3, [r0, #0]
+   e:	f423 7300 	bic.w	r3, r3, #512	; 0x200
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:432
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_AcknowledgeConfig:
+
+00000000 <I2C_AcknowledgeConfig>:
+I2C_AcknowledgeConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:446
+void I2C_AcknowledgeConfig(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <I2C_AcknowledgeConfig+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:449
+  {
+    /* Enable the acknowledgement */
+    I2Cx->CR1 |= CR1_ACK_Set;
+   2:	8803      	ldrh	r3, [r0, #0]
+   4:	b29b      	uxth	r3, r3
+   6:	f443 6380 	orr.w	r3, r3, #1024	; 0x400
+   a:	e004      	b.n	16 <I2C_AcknowledgeConfig+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:454
+  }
+  else
+  {
+    /* Disable the acknowledgement */
+    I2Cx->CR1 &= CR1_ACK_Reset;
+   c:	8803      	ldrh	r3, [r0, #0]
+   e:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:456
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_OwnAddress2Config:
+
+00000000 <I2C_OwnAddress2Config>:
+I2C_OwnAddress2Config():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:472
+
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+
+  /* Get the old register value */
+  tmpreg = I2Cx->OAR2;
+   0:	8983      	ldrh	r3, [r0, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:478
+
+  /* Reset I2Cx Own address2 bit [7:1] */
+  tmpreg &= OAR2_ADD2_Reset;
+
+  /* Set I2Cx Own address2 */
+  tmpreg |= (uint16_t)((uint16_t)Address & (uint16_t)0x00FE);
+   2:	f001 01fe 	and.w	r1, r1, #254	; 0xfe
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:472
+
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+
+  /* Get the old register value */
+  tmpreg = I2Cx->OAR2;
+   6:	b29b      	uxth	r3, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:478
+
+  /* Reset I2Cx Own address2 bit [7:1] */
+  tmpreg &= OAR2_ADD2_Reset;
+
+  /* Set I2Cx Own address2 */
+  tmpreg |= (uint16_t)((uint16_t)Address & (uint16_t)0x00FE);
+   8:	f023 03fe 	bic.w	r3, r3, #254	; 0xfe
+   c:	4319      	orrs	r1, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:481
+
+  /* Store the new register value */
+  I2Cx->OAR2 = tmpreg;
+   e:	8181      	strh	r1, [r0, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:482
+}
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_DualAddressCmd:
+
+00000000 <I2C_DualAddressCmd>:
+I2C_DualAddressCmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:496
+void I2C_DualAddressCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <I2C_DualAddressCmd+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:499
+  {
+    /* Enable dual addressing mode */
+    I2Cx->OAR2 |= OAR2_ENDUAL_Set;
+   2:	8983      	ldrh	r3, [r0, #12]
+   4:	b29b      	uxth	r3, r3
+   6:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+   a:	e004      	b.n	16 <I2C_DualAddressCmd+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:504
+  }
+  else
+  {
+    /* Disable dual addressing mode */
+    I2Cx->OAR2 &= OAR2_ENDUAL_Reset;
+   c:	8983      	ldrh	r3, [r0, #12]
+   e:	f023 0301 	bic.w	r3, r3, #1	; 0x1
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8183      	strh	r3, [r0, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:506
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_GeneralCallCmd:
+
+00000000 <I2C_GeneralCallCmd>:
+I2C_GeneralCallCmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:520
+void I2C_GeneralCallCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <I2C_GeneralCallCmd+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:523
+  {
+    /* Enable generall call */
+    I2Cx->CR1 |= CR1_ENGC_Set;
+   2:	8803      	ldrh	r3, [r0, #0]
+   4:	b29b      	uxth	r3, r3
+   6:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+   a:	e004      	b.n	16 <I2C_GeneralCallCmd+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:528
+  }
+  else
+  {
+    /* Disable generall call */
+    I2Cx->CR1 &= CR1_ENGC_Reset;
+   c:	8803      	ldrh	r3, [r0, #0]
+   e:	f023 0340 	bic.w	r3, r3, #64	; 0x40
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:530
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_ITConfig:
+
+00000000 <I2C_ITConfig>:
+I2C_ITConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:551
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  assert_param(IS_I2C_CONFIG_IT(I2C_IT));
+  
+  if (NewState != DISABLE)
+   0:	b122      	cbz	r2, c <I2C_ITConfig+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:554
+  {
+    /* Enable the selected I2C interrupts */
+    I2Cx->CR2 |= I2C_IT;
+   2:	8883      	ldrh	r3, [r0, #4]
+   4:	b29b      	uxth	r3, r3
+   6:	ea41 0303 	orr.w	r3, r1, r3
+   a:	e003      	b.n	14 <I2C_ITConfig+0x14>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:559
+  }
+  else
+  {
+    /* Disable the selected I2C interrupts */
+    I2Cx->CR2 &= (uint16_t)~I2C_IT;
+   c:	8883      	ldrh	r3, [r0, #4]
+   e:	b29b      	uxth	r3, r3
+  10:	ea23 0301 	bic.w	r3, r3, r1
+  14:	8083      	strh	r3, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:561
+  }
+}
+  16:	4770      	bx	lr
+Disassembly of section .text.I2C_SendData:
+
+00000000 <I2C_SendData>:
+I2C_SendData():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:574
+void I2C_SendData(I2C_TypeDef* I2Cx, uint8_t Data)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  /* Write in the DR register the data to be sent */
+  I2Cx->DR = Data;
+   0:	8201      	strh	r1, [r0, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:575
+}
+   2:	4770      	bx	lr
+Disassembly of section .text.I2C_ReceiveData:
+
+00000000 <I2C_ReceiveData>:
+I2C_ReceiveData():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:587
+uint8_t I2C_ReceiveData(I2C_TypeDef* I2Cx)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  /* Return the data in the DR register */
+  return (uint8_t)I2Cx->DR;
+   0:	8a00      	ldrh	r0, [r0, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:588
+}
+   2:	b2c0      	uxtb	r0, r0
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_Send7bitAddress:
+
+00000000 <I2C_Send7bitAddress>:
+I2C_Send7bitAddress():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:606
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_I2C_DIRECTION(I2C_Direction));
+  /* Test on the direction to set/reset the read/write bit */
+  if (I2C_Direction != I2C_Direction_Transmitter)
+   0:	b112      	cbz	r2, 8 <I2C_Send7bitAddress+0x8>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:609
+  {
+    /* Set the address bit0 for read */
+    Address |= OAR1_ADD0_Set;
+   2:	f041 0101 	orr.w	r1, r1, #1	; 0x1
+   6:	e001      	b.n	c <I2C_Send7bitAddress+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:614
+  }
+  else
+  {
+    /* Reset the address bit0 for write */
+    Address &= OAR1_ADD0_Reset;
+   8:	f001 01fe 	and.w	r1, r1, #254	; 0xfe
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:617
+  }
+  /* Send the address */
+  I2Cx->DR = Address;
+   c:	8201      	strh	r1, [r0, #16]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:618
+}
+   e:	4770      	bx	lr
+Disassembly of section .text.I2C_ReadRegister:
+
+00000000 <I2C_ReadRegister>:
+I2C_ReadRegister():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:636
+  *     @arg I2C_Register_CCR:   CCR register.
+  *     @arg I2C_Register_TRISE: TRISE register.
+  * @retval The value of the read register.
+  */
+uint16_t I2C_ReadRegister(I2C_TypeDef* I2Cx, uint8_t I2C_Register)
+{
+   0:	b082      	sub	sp, #8
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:637
+  __IO uint32_t tmp = 0;
+   2:	2300      	movs	r3, #0
+   4:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:643
+
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_I2C_REGISTER(I2C_Register));
+
+  tmp = (uint32_t) I2Cx;
+   6:	9001      	str	r0, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:644
+  tmp += I2C_Register;
+   8:	9b01      	ldr	r3, [sp, #4]
+   a:	18c9      	adds	r1, r1, r3
+   c:	9101      	str	r1, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:647
+
+  /* Return the selected register value */
+  return (*(__IO uint16_t *) tmp);
+   e:	9b01      	ldr	r3, [sp, #4]
+  10:	8818      	ldrh	r0, [r3, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:648
+}
+  12:	b280      	uxth	r0, r0
+  14:	b002      	add	sp, #8
+  16:	4770      	bx	lr
+Disassembly of section .text.I2C_SoftwareResetCmd:
+
+00000000 <I2C_SoftwareResetCmd>:
+I2C_SoftwareResetCmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:662
+void I2C_SoftwareResetCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b131      	cbz	r1, 10 <I2C_SoftwareResetCmd+0x10>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:665
+  {
+    /* Peripheral under reset */
+    I2Cx->CR1 |= CR1_SWRST_Set;
+   2:	8803      	ldrh	r3, [r0, #0]
+   4:	ea6f 4343 	mvn.w	r3, r3, lsl #17
+   8:	ea6f 4353 	mvn.w	r3, r3, lsr #17
+   c:	b29b      	uxth	r3, r3
+   e:	e002      	b.n	16 <I2C_SoftwareResetCmd+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:670
+  }
+  else
+  {
+    /* Peripheral not under reset */
+    I2Cx->CR1 &= CR1_SWRST_Reset;
+  10:	8803      	ldrh	r3, [r0, #0]
+  12:	045b      	lsls	r3, r3, #17
+  14:	0c5b      	lsrs	r3, r3, #17
+  16:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:672
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_SMBusAlertConfig:
+
+00000000 <I2C_SMBusAlertConfig>:
+I2C_SMBusAlertConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:688
+void I2C_SMBusAlertConfig(I2C_TypeDef* I2Cx, uint16_t I2C_SMBusAlert)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_I2C_SMBUS_ALERT(I2C_SMBusAlert));
+  if (I2C_SMBusAlert == I2C_SMBusAlert_Low)
+   0:	f5b1 5f00 	cmp.w	r1, #8192	; 0x2000
+   4:	d104      	bne.n	10 <I2C_SMBusAlertConfig+0x10>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:691
+  {
+    /* Drive the SMBusAlert pin Low */
+    I2Cx->CR1 |= I2C_SMBusAlert_Low;
+   6:	8803      	ldrh	r3, [r0, #0]
+   8:	b29b      	uxth	r3, r3
+   a:	f443 5300 	orr.w	r3, r3, #8192	; 0x2000
+   e:	e004      	b.n	1a <I2C_SMBusAlertConfig+0x1a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:696
+  }
+  else
+  {
+    /* Drive the SMBusAlert pin High  */
+    I2Cx->CR1 &= I2C_SMBusAlert_High;
+  10:	8803      	ldrh	r3, [r0, #0]
+  12:	f423 5300 	bic.w	r3, r3, #8192	; 0x2000
+  16:	041b      	lsls	r3, r3, #16
+  18:	0c1b      	lsrs	r3, r3, #16
+  1a:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:698
+  }
+}
+  1c:	4770      	bx	lr
+  1e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_TransmitPEC:
+
+00000000 <I2C_TransmitPEC>:
+I2C_TransmitPEC():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:712
+void I2C_TransmitPEC(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <I2C_TransmitPEC+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:715
+  {
+    /* Enable the selected I2C PEC transmission */
+    I2Cx->CR1 |= CR1_PEC_Set;
+   2:	8803      	ldrh	r3, [r0, #0]
+   4:	b29b      	uxth	r3, r3
+   6:	f443 5380 	orr.w	r3, r3, #4096	; 0x1000
+   a:	e004      	b.n	16 <I2C_TransmitPEC+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:720
+  }
+  else
+  {
+    /* Disable the selected I2C PEC transmission */
+    I2Cx->CR1 &= CR1_PEC_Reset;
+   c:	8803      	ldrh	r3, [r0, #0]
+   e:	f423 5380 	bic.w	r3, r3, #4096	; 0x1000
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:722
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_PECPositionConfig:
+
+00000000 <I2C_PECPositionConfig>:
+I2C_PECPositionConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:738
+void I2C_PECPositionConfig(I2C_TypeDef* I2Cx, uint16_t I2C_PECPosition)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_I2C_PEC_POSITION(I2C_PECPosition));
+  if (I2C_PECPosition == I2C_PECPosition_Next)
+   0:	f5b1 6f00 	cmp.w	r1, #2048	; 0x800
+   4:	d104      	bne.n	10 <I2C_PECPositionConfig+0x10>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:741
+  {
+    /* Next byte in shift register is PEC */
+    I2Cx->CR1 |= I2C_PECPosition_Next;
+   6:	8803      	ldrh	r3, [r0, #0]
+   8:	b29b      	uxth	r3, r3
+   a:	f443 6300 	orr.w	r3, r3, #2048	; 0x800
+   e:	e004      	b.n	1a <I2C_PECPositionConfig+0x1a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:746
+  }
+  else
+  {
+    /* Current byte in shift register is PEC */
+    I2Cx->CR1 &= I2C_PECPosition_Current;
+  10:	8803      	ldrh	r3, [r0, #0]
+  12:	f423 6300 	bic.w	r3, r3, #2048	; 0x800
+  16:	041b      	lsls	r3, r3, #16
+  18:	0c1b      	lsrs	r3, r3, #16
+  1a:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:748
+  }
+}
+  1c:	4770      	bx	lr
+  1e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_CalculatePEC:
+
+00000000 <I2C_CalculatePEC>:
+I2C_CalculatePEC():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:762
+void I2C_CalculatePEC(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <I2C_CalculatePEC+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:765
+  {
+    /* Enable the selected I2C PEC calculation */
+    I2Cx->CR1 |= CR1_ENPEC_Set;
+   2:	8803      	ldrh	r3, [r0, #0]
+   4:	b29b      	uxth	r3, r3
+   6:	f043 0320 	orr.w	r3, r3, #32	; 0x20
+   a:	e004      	b.n	16 <I2C_CalculatePEC+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:770
+  }
+  else
+  {
+    /* Disable the selected I2C PEC calculation */
+    I2Cx->CR1 &= CR1_ENPEC_Reset;
+   c:	8803      	ldrh	r3, [r0, #0]
+   e:	f023 0320 	bic.w	r3, r3, #32	; 0x20
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:772
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_GetPEC:
+
+00000000 <I2C_GetPEC>:
+I2C_GetPEC():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:784
+uint8_t I2C_GetPEC(I2C_TypeDef* I2Cx)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  /* Return the selected I2C PEC value */
+  return ((I2Cx->SR2) >> 8);
+   0:	8b00      	ldrh	r0, [r0, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:785
+}
+   2:	f3c0 2007 	ubfx	r0, r0, #8, #8
+   6:	4770      	bx	lr
+Disassembly of section .text.I2C_ARPCmd:
+
+00000000 <I2C_ARPCmd>:
+I2C_ARPCmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:799
+void I2C_ARPCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState != DISABLE)
+   0:	b121      	cbz	r1, c <I2C_ARPCmd+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:802
+  {
+    /* Enable the selected I2C ARP */
+    I2Cx->CR1 |= CR1_ENARP_Set;
+   2:	8803      	ldrh	r3, [r0, #0]
+   4:	b29b      	uxth	r3, r3
+   6:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+   a:	e004      	b.n	16 <I2C_ARPCmd+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:807
+  }
+  else
+  {
+    /* Disable the selected I2C ARP */
+    I2Cx->CR1 &= CR1_ENARP_Reset;
+   c:	8803      	ldrh	r3, [r0, #0]
+   e:	f023 0310 	bic.w	r3, r3, #16	; 0x10
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:809
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_StretchClockCmd:
+
+00000000 <I2C_StretchClockCmd>:
+I2C_StretchClockCmd():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:823
+void I2C_StretchClockCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  if (NewState == DISABLE)
+   0:	b921      	cbnz	r1, c <I2C_StretchClockCmd+0xc>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:826
+  {
+    /* Enable the selected I2C Clock stretching */
+    I2Cx->CR1 |= CR1_NOSTRETCH_Set;
+   2:	8803      	ldrh	r3, [r0, #0]
+   4:	b29b      	uxth	r3, r3
+   6:	f043 0380 	orr.w	r3, r3, #128	; 0x80
+   a:	e004      	b.n	16 <I2C_StretchClockCmd+0x16>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:831
+  }
+  else
+  {
+    /* Disable the selected I2C Clock stretching */
+    I2Cx->CR1 &= CR1_NOSTRETCH_Reset;
+   c:	8803      	ldrh	r3, [r0, #0]
+   e:	f023 0380 	bic.w	r3, r3, #128	; 0x80
+  12:	041b      	lsls	r3, r3, #16
+  14:	0c1b      	lsrs	r3, r3, #16
+  16:	8003      	strh	r3, [r0, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:833
+  }
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_FastModeDutyCycleConfig:
+
+00000000 <I2C_FastModeDutyCycleConfig>:
+I2C_FastModeDutyCycleConfig():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:849
+void I2C_FastModeDutyCycleConfig(I2C_TypeDef* I2Cx, uint16_t I2C_DutyCycle)
+{
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_I2C_DUTY_CYCLE(I2C_DutyCycle));
+  if (I2C_DutyCycle != I2C_DutyCycle_16_9)
+   0:	f5b1 4f80 	cmp.w	r1, #16384	; 0x4000
+   4:	d005      	beq.n	12 <I2C_FastModeDutyCycleConfig+0x12>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:852
+  {
+    /* I2C fast mode Tlow/Thigh=2 */
+    I2Cx->CCR &= I2C_DutyCycle_2;
+   6:	8b83      	ldrh	r3, [r0, #28]
+   8:	f423 4380 	bic.w	r3, r3, #16384	; 0x4000
+   c:	041b      	lsls	r3, r3, #16
+   e:	0c1b      	lsrs	r3, r3, #16
+  10:	e003      	b.n	1a <I2C_FastModeDutyCycleConfig+0x1a>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:857
+  }
+  else
+  {
+    /* I2C fast mode Tlow/Thigh=16/9 */
+    I2Cx->CCR |= I2C_DutyCycle_16_9;
+  12:	8b83      	ldrh	r3, [r0, #28]
+  14:	b29b      	uxth	r3, r3
+  16:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
+  1a:	8383      	strh	r3, [r0, #28]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:859
+  }
+}
+  1c:	4770      	bx	lr
+  1e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_CheckEvent:
+
+00000000 <I2C_CheckEvent>:
+I2C_CheckEvent():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:985
+  * @retval An ErrorStatus enumuration value:
+  * - SUCCESS: Last event is equal to the I2C_EVENT
+  * - ERROR: Last event is different from the I2C_EVENT
+  */
+ErrorStatus I2C_CheckEvent(I2C_TypeDef* I2Cx, uint32_t I2C_EVENT)
+{
+   0:	4603      	mov	r3, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:995
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_I2C_EVENT(I2C_EVENT));
+
+  /* Read the I2Cx status register */
+  flag1 = I2Cx->SR1;
+   2:	8a80      	ldrh	r0, [r0, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:996
+  flag2 = I2Cx->SR2;
+   4:	8b1b      	ldrh	r3, [r3, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:995
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_I2C_EVENT(I2C_EVENT));
+
+  /* Read the I2Cx status register */
+  flag1 = I2Cx->SR1;
+   6:	b280      	uxth	r0, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:996
+  flag2 = I2Cx->SR2;
+   8:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+   c:	4008      	ands	r0, r1
+   e:	f020 407f 	bic.w	r0, r0, #4278190080	; 0xff000000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1015
+    /* ERROR: last event is different from I2C_EVENT */
+    status = ERROR;
+  }
+  /* Return status */
+  return status;
+}
+  12:	4288      	cmp	r0, r1
+  14:	bf14      	ite	ne
+  16:	2000      	movne	r0, #0
+  18:	2001      	moveq	r0, #1
+  1a:	4770      	bx	lr
+Disassembly of section .text.I2C_GetLastEvent:
+
+00000000 <I2C_GetLastEvent>:
+I2C_GetLastEvent():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1033
+  *    I2C_Events in stm32f10x_i2c.h file.
+  *    
+  * @retval The last event
+  */
+uint32_t I2C_GetLastEvent(I2C_TypeDef* I2Cx)
+{
+   0:	4603      	mov	r3, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1041
+
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+
+  /* Read the I2Cx status register */
+  flag1 = I2Cx->SR1;
+   2:	8a80      	ldrh	r0, [r0, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1042
+  flag2 = I2Cx->SR2;
+   4:	8b1b      	ldrh	r3, [r3, #24]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1041
+
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+
+  /* Read the I2Cx status register */
+  flag1 = I2Cx->SR1;
+   6:	b280      	uxth	r0, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1042
+  flag2 = I2Cx->SR2;
+   8:	ea40 4003 	orr.w	r0, r0, r3, lsl #16
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1050
+  /* Get the last event value from I2C status register */
+  lastevent = (flag1 | flag2) & FLAG_Mask;
+
+  /* Return status */
+  return lastevent;
+}
+   c:	f020 407f 	bic.w	r0, r0, #4278190080	; 0xff000000
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_GetFlagStatus:
+
+00000000 <I2C_GetFlagStatus>:
+I2C_GetFlagStatus():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1088
+  *   Address matched flag (Slave mode)”ENDAD”
+  *     @arg I2C_FLAG_SB: Start bit flag (Master mode)
+  * @retval The new state of I2C_FLAG (SET or RESET).
+  */
+FlagStatus I2C_GetFlagStatus(I2C_TypeDef* I2Cx, uint32_t I2C_FLAG)
+{
+   0:	b082      	sub	sp, #8
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1090
+  FlagStatus bitstatus = RESET;
+  __IO uint32_t i2creg = 0, i2cxbase = 0;
+   2:	2300      	movs	r3, #0
+   4:	9301      	str	r3, [sp, #4]
+   6:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1100
+
+  /* Get the I2Cx peripheral base address */
+  i2cxbase = (uint32_t)I2Cx;
+  
+  /* Read flag register index */
+  i2creg = I2C_FLAG >> 28;
+   8:	0f0b      	lsrs	r3, r1, #28
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1097
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_I2C_GET_FLAG(I2C_FLAG));
+
+  /* Get the I2Cx peripheral base address */
+  i2cxbase = (uint32_t)I2Cx;
+   a:	9000      	str	r0, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1100
+  
+  /* Read flag register index */
+  i2creg = I2C_FLAG >> 28;
+   c:	9301      	str	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1105
+  
+  /* Get bit[23:0] of the flag */
+  I2C_FLAG &= FLAG_Mask;
+  
+  if(i2creg != 0)
+   e:	9b01      	ldr	r3, [sp, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1103
+  
+  /* Read flag register index */
+  i2creg = I2C_FLAG >> 28;
+  
+  /* Get bit[23:0] of the flag */
+  I2C_FLAG &= FLAG_Mask;
+  10:	f021 417f 	bic.w	r1, r1, #4278190080	; 0xff000000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1105
+  
+  if(i2creg != 0)
+  14:	b113      	cbz	r3, 1c <I2C_GetFlagStatus+0x1c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1108
+  {
+    /* Get the I2Cx SR1 register address */
+    i2cxbase += 0x14;
+  16:	9b00      	ldr	r3, [sp, #0]
+  18:	3314      	adds	r3, #20
+  1a:	e002      	b.n	22 <I2C_GetFlagStatus+0x22>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1115
+  else
+  {
+    /* Flag in I2Cx SR2 Register */
+    I2C_FLAG = (uint32_t)(I2C_FLAG >> 16);
+    /* Get the I2Cx SR2 register address */
+    i2cxbase += 0x18;
+  1c:	9b00      	ldr	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1113
+    i2cxbase += 0x14;
+  }
+  else
+  {
+    /* Flag in I2Cx SR2 Register */
+    I2C_FLAG = (uint32_t)(I2C_FLAG >> 16);
+  1e:	0c09      	lsrs	r1, r1, #16
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1115
+    /* Get the I2Cx SR2 register address */
+    i2cxbase += 0x18;
+  20:	3318      	adds	r3, #24
+  22:	9300      	str	r3, [sp, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1118
+  }
+  
+  if(((*(__IO uint32_t *)i2cxbase) & I2C_FLAG) != (uint32_t)RESET)
+  24:	9b00      	ldr	r3, [sp, #0]
+  26:	681b      	ldr	r3, [r3, #0]
+  28:	4219      	tst	r1, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1131
+    bitstatus = RESET;
+  }
+  
+  /* Return the I2C_FLAG status */
+  return  bitstatus;
+}
+  2a:	bf0c      	ite	eq
+  2c:	2000      	moveq	r0, #0
+  2e:	2001      	movne	r0, #1
+  30:	b002      	add	sp, #8
+  32:	4770      	bx	lr
+Disassembly of section .text.I2C_ClearFlag:
+
+00000000 <I2C_ClearFlag>:
+I2C_ClearFlag():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1175
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+  assert_param(IS_I2C_CLEAR_FLAG(I2C_FLAG));
+  /* Get the I2C flag position */
+  flagpos = I2C_FLAG & FLAG_Mask;
+  /* Clear the selected I2C flag */
+  I2Cx->SR1 = (uint16_t)~flagpos;
+   0:	43c9      	mvns	r1, r1
+   2:	b289      	uxth	r1, r1
+   4:	8281      	strh	r1, [r0, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1176
+}
+   6:	4770      	bx	lr
+Disassembly of section .text.I2C_GetITStatus:
+
+00000000 <I2C_GetITStatus>:
+I2C_GetITStatus():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1201
+  *                       Address matched flag (Slave mode)”ENDAD”
+  *     @arg I2C_IT_SB: Start bit flag (Master mode)
+  * @retval The new state of I2C_IT (SET or RESET).
+  */
+ITStatus I2C_GetITStatus(I2C_TypeDef* I2Cx, uint32_t I2C_IT)
+{
+   0:	8883      	ldrh	r3, [r0, #4]
+   2:	b29a      	uxth	r2, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1216
+  
+  /* Get bit[23:0] of the flag */
+  I2C_IT &= FLAG_Mask;
+
+  /* Check the status of the specified I2C flag */
+  if (((I2Cx->SR1 & I2C_IT) != (uint32_t)RESET) && enablestatus)
+   4:	8a83      	ldrh	r3, [r0, #20]
+   6:	b29b      	uxth	r3, r3
+   8:	ea13 0001 	ands.w	r0, r3, r1
+   c:	d006      	beq.n	1c <I2C_GetITStatus+0x1c>
+   e:	f001 63e0 	and.w	r3, r1, #117440512	; 0x7000000
+  12:	ea12 4313 	ands.w	r3, r2, r3, lsr #16
+  16:	bf0c      	ite	eq
+  18:	2000      	moveq	r0, #0
+  1a:	2001      	movne	r0, #1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1228
+    /* I2C_IT is reset */
+    bitstatus = RESET;
+  }
+  /* Return the I2C_IT status */
+  return  bitstatus;
+}
+  1c:	4770      	bx	lr
+  1e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.I2C_ClearITPendingBit:
+
+00000000 <I2C_ClearITPendingBit>:
+I2C_ClearITPendingBit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1262
+  *     I2C_SR1 register (I2C_GetITStatus()) followed by a write operation to 
+  *     I2C_DR register (I2C_SendData()).
+  * @retval None
+  */
+void I2C_ClearITPendingBit(I2C_TypeDef* I2Cx, uint32_t I2C_IT)
+{
+   0:	43c9      	mvns	r1, r1
+   2:	b289      	uxth	r1, r1
+   4:	8281      	strh	r1, [r0, #20]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:1271
+  assert_param(IS_I2C_CLEAR_IT(I2C_IT));
+  /* Get the I2C flag position */
+  flagpos = I2C_IT & FLAG_Mask;
+  /* Clear the selected I2C flag */
+  I2Cx->SR1 = (uint16_t)~flagpos;
+}
+   6:	4770      	bx	lr
+Disassembly of section .text.I2C_Init:
+
+00000000 <I2C_Init>:
+I2C_Init():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:191
+  * @param  I2C_InitStruct: pointer to a I2C_InitTypeDef structure that
+  *   contains the configuration information for the specified I2C peripheral.
+  * @retval None
+  */
+void I2C_Init(I2C_TypeDef* I2Cx, I2C_InitTypeDef* I2C_InitStruct)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	b086      	sub	sp, #24
+   4:	4605      	mov	r5, r0
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:207
+  assert_param(IS_I2C_ACK_STATE(I2C_InitStruct->I2C_Ack));
+  assert_param(IS_I2C_ACKNOWLEDGE_ADDRESS(I2C_InitStruct->I2C_AcknowledgedAddress));
+
+/*---------------------------- I2Cx CR2 Configuration ------------------------*/
+  /* Get the I2Cx CR2 value */
+  tmpreg = I2Cx->CR2;
+   6:	8884      	ldrh	r4, [r0, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:211
+  /* Clear frequency FREQ[5:0] bits */
+  tmpreg &= CR2_FREQ_Reset;
+  /* Get pclk1 frequency value */
+  RCC_GetClocksFreq(&rcc_clocks);
+   8:	a801      	add	r0, sp, #4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:191
+  * @param  I2C_InitStruct: pointer to a I2C_InitTypeDef structure that
+  *   contains the configuration information for the specified I2C peripheral.
+  * @retval None
+  */
+void I2C_Init(I2C_TypeDef* I2Cx, I2C_InitTypeDef* I2C_InitStruct)
+{
+   a:	460e      	mov	r6, r1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:211
+  /* Get the I2Cx CR2 value */
+  tmpreg = I2Cx->CR2;
+  /* Clear frequency FREQ[5:0] bits */
+  tmpreg &= CR2_FREQ_Reset;
+  /* Get pclk1 frequency value */
+  RCC_GetClocksFreq(&rcc_clocks);
+   c:	f7ff fffe 	bl	0 <RCC_GetClocksFreq>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:212
+  pclk1 = rcc_clocks.PCLK1_Frequency;
+  10:	9803      	ldr	r0, [sp, #12]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:214
+  /* Set frequency bits depending on pclk1 value */
+  freqrange = (uint16_t)(pclk1 / 1000000);
+  12:	4b30      	ldr	r3, [pc, #192]	(d4 <RCC_GetClocksFreq+0xd4>)
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:209
+
+/*---------------------------- I2Cx CR2 Configuration ------------------------*/
+  /* Get the I2Cx CR2 value */
+  tmpreg = I2Cx->CR2;
+  /* Clear frequency FREQ[5:0] bits */
+  tmpreg &= CR2_FREQ_Reset;
+  14:	f024 043f 	bic.w	r4, r4, #63	; 0x3f
+  18:	0424      	lsls	r4, r4, #16
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:214
+  /* Get pclk1 frequency value */
+  RCC_GetClocksFreq(&rcc_clocks);
+  pclk1 = rcc_clocks.PCLK1_Frequency;
+  /* Set frequency bits depending on pclk1 value */
+  freqrange = (uint16_t)(pclk1 / 1000000);
+  1a:	fbb0 f3f3 	udiv	r3, r0, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:209
+
+/*---------------------------- I2Cx CR2 Configuration ------------------------*/
+  /* Get the I2Cx CR2 value */
+  tmpreg = I2Cx->CR2;
+  /* Clear frequency FREQ[5:0] bits */
+  tmpreg &= CR2_FREQ_Reset;
+  1e:	0c24      	lsrs	r4, r4, #16
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:214
+  /* Get pclk1 frequency value */
+  RCC_GetClocksFreq(&rcc_clocks);
+  pclk1 = rcc_clocks.PCLK1_Frequency;
+  /* Set frequency bits depending on pclk1 value */
+  freqrange = (uint16_t)(pclk1 / 1000000);
+  20:	fa1f fe83 	uxth.w	lr, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:215
+  tmpreg |= freqrange;
+  24:	ea4e 0404 	orr.w	r4, lr, r4
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:217
+  /* Write to I2Cx CR2 */
+  I2Cx->CR2 = tmpreg;
+  28:	80ac      	strh	r4, [r5, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:221
+
+/*---------------------------- I2Cx CCR Configuration ------------------------*/
+  /* Disable the selected I2C peripheral to configure TRISE */
+  I2Cx->CR1 &= CR1_PE_Reset;
+  2a:	882b      	ldrh	r3, [r5, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:227
+  /* Reset tmpreg value */
+  /* Clear F/S, DUTY and CCR[11:0] bits */
+  tmpreg = 0;
+
+  /* Configure speed in standard mode */
+  if (I2C_InitStruct->I2C_ClockSpeed <= 100000)
+  2c:	6831      	ldr	r1, [r6, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:221
+  /* Write to I2Cx CR2 */
+  I2Cx->CR2 = tmpreg;
+
+/*---------------------------- I2Cx CCR Configuration ------------------------*/
+  /* Disable the selected I2C peripheral to configure TRISE */
+  I2Cx->CR1 &= CR1_PE_Reset;
+  2e:	f023 0301 	bic.w	r3, r3, #1	; 0x1
+  32:	041b      	lsls	r3, r3, #16
+  34:	0c1b      	lsrs	r3, r3, #16
+  36:	802b      	strh	r3, [r5, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:227
+  /* Reset tmpreg value */
+  /* Clear F/S, DUTY and CCR[11:0] bits */
+  tmpreg = 0;
+
+  /* Configure speed in standard mode */
+  if (I2C_InitStruct->I2C_ClockSpeed <= 100000)
+  38:	4b27      	ldr	r3, [pc, #156]	(d8 <RCC_GetClocksFreq+0xd8>)
+  3a:	4299      	cmp	r1, r3
+  3c:	d80c      	bhi.n	58 <RCC_GetClocksFreq+0x58>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:230
+  {
+    /* Standard mode speed calculate */
+    result = (uint16_t)(pclk1 / (I2C_InitStruct->I2C_ClockSpeed << 1));
+  3e:	004a      	lsls	r2, r1, #1
+  40:	fbb0 f2f2 	udiv	r2, r0, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:240
+      result = 0x04;  
+    }
+    /* Set speed value for standard mode */
+    tmpreg |= result;	  
+    /* Set Maximum Rise Time for standard mode */
+    I2Cx->TRISE = freqrange + 1; 
+  44:	f10e 0301 	add.w	r3, lr, #1	; 0x1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:230
+
+  /* Configure speed in standard mode */
+  if (I2C_InitStruct->I2C_ClockSpeed <= 100000)
+  {
+    /* Standard mode speed calculate */
+    result = (uint16_t)(pclk1 / (I2C_InitStruct->I2C_ClockSpeed << 1));
+  48:	b292      	uxth	r2, r2
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:240
+      result = 0x04;  
+    }
+    /* Set speed value for standard mode */
+    tmpreg |= result;	  
+    /* Set Maximum Rise Time for standard mode */
+    I2Cx->TRISE = freqrange + 1; 
+  4a:	b29b      	uxth	r3, r3
+  4c:	842b      	strh	r3, [r5, #32]
+  4e:	2a03      	cmp	r2, #3
+  50:	bf8c      	ite	hi
+  52:	4611      	movhi	r1, r2
+  54:	2104      	movls	r1, #4
+  56:	e023      	b.n	a0 <RCC_GetClocksFreq+0xa0>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:245
+  }
+  /* Configure speed in fast mode */
+  else /*(I2C_InitStruct->I2C_ClockSpeed <= 400000)*/
+  {
+    if (I2C_InitStruct->I2C_DutyCycle == I2C_DutyCycle_2)
+  58:	88f2      	ldrh	r2, [r6, #6]
+  5a:	f64b 73ff 	movw	r3, #49151	; 0xbfff
+  5e:	429a      	cmp	r2, r3
+  60:	d105      	bne.n	6e <RCC_GetClocksFreq+0x6e>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:248
+    {
+      /* Fast mode speed calculate: Tlow/Thigh = 2 */
+      result = (uint16_t)(pclk1 / (I2C_InitStruct->I2C_ClockSpeed * 3));
+  62:	2303      	movs	r3, #3
+  64:	434b      	muls	r3, r1
+  66:	fbb0 f3f3 	udiv	r3, r0, r3
+  6a:	b29a      	uxth	r2, r3
+  6c:	e006      	b.n	7c <RCC_GetClocksFreq+0x7c>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:253
+    }
+    else /*I2C_InitStruct->I2C_DutyCycle == I2C_DutyCycle_16_9*/
+    {
+      /* Fast mode speed calculate: Tlow/Thigh = 16/9 */
+      result = (uint16_t)(pclk1 / (I2C_InitStruct->I2C_ClockSpeed * 25));
+  6e:	2319      	movs	r3, #25
+  70:	434b      	muls	r3, r1
+  72:	fbb0 f3f3 	udiv	r3, r0, r3
+  76:	b29b      	uxth	r3, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:255
+      /* Set DUTY bit */
+      result |= I2C_DutyCycle_16_9;
+  78:	f443 4280 	orr.w	r2, r3, #16384	; 0x4000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:259
+    }
+
+    /* Test if CCR value is under 0x1*/
+    if ((result & CCR_CCR_Set) == 0)
+  7c:	0513      	lsls	r3, r2, #20
+  7e:	0d1b      	lsrs	r3, r3, #20
+  80:	b90b      	cbnz	r3, 86 <RCC_GetClocksFreq+0x86>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:262
+    {
+      /* Set minimum allowed value */
+      result |= (uint16_t)0x0001;  
+  82:	f042 0201 	orr.w	r2, r2, #1	; 0x1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:267
+    }
+    /* Set speed value and set F/S bit for fast mode */
+    tmpreg |= (uint16_t)(result | CCR_FS_Set);
+    /* Set Maximum Rise Time for fast mode */
+    I2Cx->TRISE = (uint16_t)(((freqrange * (uint16_t)300) / (uint16_t)1000) + (uint16_t)1);  
+  86:	f44f 7396 	mov.w	r3, #300	; 0x12c
+  8a:	fb03 f30e 	mul.w	r3, r3, lr
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:265
+    {
+      /* Set minimum allowed value */
+      result |= (uint16_t)0x0001;  
+    }
+    /* Set speed value and set F/S bit for fast mode */
+    tmpreg |= (uint16_t)(result | CCR_FS_Set);
+  8e:	f442 4100 	orr.w	r1, r2, #32768	; 0x8000
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:267
+    /* Set Maximum Rise Time for fast mode */
+    I2Cx->TRISE = (uint16_t)(((freqrange * (uint16_t)300) / (uint16_t)1000) + (uint16_t)1);  
+  92:	f44f 727a 	mov.w	r2, #1000	; 0x3e8
+  96:	fb93 f3f2 	sdiv	r3, r3, r2
+  9a:	3301      	adds	r3, #1
+  9c:	b29b      	uxth	r3, r3
+  9e:	842b      	strh	r3, [r5, #32]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:271
+  }
+
+  /* Write to I2Cx CCR */
+  I2Cx->CCR = tmpreg;
+  a0:	83a9      	strh	r1, [r5, #28]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:273
+  /* Enable the selected I2C peripheral */
+  I2Cx->CR1 |= CR1_PE_Set;
+  a2:	882b      	ldrh	r3, [r5, #0]
+  a4:	b29b      	uxth	r3, r3
+  a6:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  aa:	802b      	strh	r3, [r5, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:277
+
+/*---------------------------- I2Cx CR1 Configuration ------------------------*/
+  /* Get the I2Cx CR1 value */
+  tmpreg = I2Cx->CR1;
+  ac:	882b      	ldrh	r3, [r5, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:283
+  /* Clear ACK, SMBTYPE and  SMBUS bits */
+  tmpreg &= CR1_CLEAR_Mask;
+  /* Configure I2Cx: mode and acknowledgement */
+  /* Set SMBTYPE and SMBUS bits according to I2C_Mode value */
+  /* Set ACK bit according to I2C_Ack value */
+  tmpreg |= (uint16_t)((uint32_t)I2C_InitStruct->I2C_Mode | I2C_InitStruct->I2C_Ack);
+  ae:	8972      	ldrh	r2, [r6, #10]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:279
+
+/*---------------------------- I2Cx CR1 Configuration ------------------------*/
+  /* Get the I2Cx CR1 value */
+  tmpreg = I2Cx->CR1;
+  /* Clear ACK, SMBTYPE and  SMBUS bits */
+  tmpreg &= CR1_CLEAR_Mask;
+  b0:	f423 6380 	bic.w	r3, r3, #1024	; 0x400
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:283
+  /* Configure I2Cx: mode and acknowledgement */
+  /* Set SMBTYPE and SMBUS bits according to I2C_Mode value */
+  /* Set ACK bit according to I2C_Ack value */
+  tmpreg |= (uint16_t)((uint32_t)I2C_InitStruct->I2C_Mode | I2C_InitStruct->I2C_Ack);
+  b4:	88b1      	ldrh	r1, [r6, #4]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:279
+
+/*---------------------------- I2Cx CR1 Configuration ------------------------*/
+  /* Get the I2Cx CR1 value */
+  tmpreg = I2Cx->CR1;
+  /* Clear ACK, SMBTYPE and  SMBUS bits */
+  tmpreg &= CR1_CLEAR_Mask;
+  b6:	f023 030a 	bic.w	r3, r3, #10	; 0xa
+  ba:	041b      	lsls	r3, r3, #16
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:283
+  /* Configure I2Cx: mode and acknowledgement */
+  /* Set SMBTYPE and SMBUS bits according to I2C_Mode value */
+  /* Set ACK bit according to I2C_Ack value */
+  tmpreg |= (uint16_t)((uint32_t)I2C_InitStruct->I2C_Mode | I2C_InitStruct->I2C_Ack);
+  bc:	430a      	orrs	r2, r1
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:279
+
+/*---------------------------- I2Cx CR1 Configuration ------------------------*/
+  /* Get the I2Cx CR1 value */
+  tmpreg = I2Cx->CR1;
+  /* Clear ACK, SMBTYPE and  SMBUS bits */
+  tmpreg &= CR1_CLEAR_Mask;
+  be:	0c1b      	lsrs	r3, r3, #16
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:283
+  /* Configure I2Cx: mode and acknowledgement */
+  /* Set SMBTYPE and SMBUS bits according to I2C_Mode value */
+  /* Set ACK bit according to I2C_Ack value */
+  tmpreg |= (uint16_t)((uint32_t)I2C_InitStruct->I2C_Mode | I2C_InitStruct->I2C_Ack);
+  c0:	4313      	orrs	r3, r2
+  c2:	b29b      	uxth	r3, r3
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:285
+  /* Write to I2Cx CR1 */
+  I2Cx->CR1 = tmpreg;
+  c4:	802b      	strh	r3, [r5, #0]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:289
+
+/*---------------------------- I2Cx OAR1 Configuration -----------------------*/
+  /* Set I2Cx Own Address1 and acknowledged address */
+  I2Cx->OAR1 = (I2C_InitStruct->I2C_AcknowledgedAddress | I2C_InitStruct->I2C_OwnAddress1);
+  c6:	8933      	ldrh	r3, [r6, #8]
+  c8:	89b2      	ldrh	r2, [r6, #12]
+  ca:	4313      	orrs	r3, r2
+  cc:	b29b      	uxth	r3, r3
+  ce:	812b      	strh	r3, [r5, #8]
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:290
+}
+  d0:	b006      	add	sp, #24
+  d2:	bd70      	pop	{r4, r5, r6, pc}
+  d4:	000f4240 	.word	0x000f4240
+  d8:	000186a0 	.word	0x000186a0
+Disassembly of section .text.I2C_DeInit:
+
+00000000 <I2C_DeInit>:
+I2C_DeInit():
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:162
+  * @brief  Deinitializes the I2Cx peripheral registers to their default reset values.
+  * @param  I2Cx: where x can be 1 or 2 to select the I2C peripheral.
+  * @retval None
+  */
+void I2C_DeInit(I2C_TypeDef* I2Cx)
+{
+   0:	4b0b      	ldr	r3, [pc, #44]	(30 <I2C_DeInit+0x30>)
+   2:	b510      	push	{r4, lr}
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:166
+  /* Check the parameters */
+  assert_param(IS_I2C_ALL_PERIPH(I2Cx));
+
+  if (I2Cx == I2C1)
+   4:	4298      	cmp	r0, r3
+   6:	d107      	bne.n	18 <I2C_DeInit+0x18>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:169
+  {
+    /* Enable I2C1 reset state */
+    RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C1, ENABLE);
+   8:	f44f 1000 	mov.w	r0, #2097152	; 0x200000
+   c:	2101      	movs	r1, #1
+   e:	f7ff fffe 	bl	0 <RCC_APB1PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:171
+    /* Release I2C1 from reset state */
+    RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C1, DISABLE);
+  12:	f44f 1000 	mov.w	r0, #2097152	; 0x200000
+  16:	e006      	b.n	26 <I2C_DeInit+0x26>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:176
+  }
+  else
+  {
+    /* Enable I2C2 reset state */
+    RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, ENABLE);
+  18:	f44f 0080 	mov.w	r0, #4194304	; 0x400000
+  1c:	2101      	movs	r1, #1
+  1e:	f7ff fffe 	bl	0 <RCC_APB1PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:178
+    /* Release I2C2 from reset state */
+    RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2C2, DISABLE);
+  22:	f44f 0080 	mov.w	r0, #4194304	; 0x400000
+  26:	2100      	movs	r1, #0
+  28:	f7ff fffe 	bl	0 <RCC_APB1PeriphResetCmd>
+C:\AN2824_CHM\STM32F10x_AN2824_FW_V4.0.0\Libraries\STM32F10x_StdPeriph_Driver\src/stm32f10x_i2c.c:180
+  }
+}
+  2c:	bd10      	pop	{r4, pc}
+  2e:	46c0      	nop			(mov r8, r8)
+  30:	40005400 	.word	0x40005400

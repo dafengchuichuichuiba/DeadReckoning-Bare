@@ -108,7 +108,7 @@ int main(void) {
 
 void init_hardware() {
     init_clock();
-    I2C_Low_Level_Init(0b100100, MPU_ADDRESS);
+    I2C_Low_Level_Init(0x10, MPU_ADDRESS);
 }
 
 void init_MPU9250() {
@@ -154,14 +154,14 @@ void readAccelerometer(double* acc) {
     Returns:        void 
 */
 void init_clock(void) {
-    // Conf clock : 72MHz using HSE 8MHz crystal w/ PLL X 9 (8MHz x 9 = 72MHz)
+    // Conf clock : 16 MHz using HSE 8MHz crystal w/ PLL X 2 (8MHz x 2 = 16MHz)
     FLASH->ACR      |= FLASH_ACR_LATENCY_2; // Two wait states, per datasheet
     RCC->CFGR       |= RCC_CFGR_PPRE1_2;    // prescale AHB1 = HCLK/2
     RCC->CR         |= RCC_CR_HSEON;        // enable HSE clock
     while( !(RCC->CR & RCC_CR_HSERDY) );    // wait for the HSEREADY flag
     
     RCC->CFGR       |= RCC_CFGR_PLLSRC;     // set PLL source to HSE
-    RCC->CFGR       |= RCC_CFGR_PLLMULL9;   // multiply by 9
+    RCC->CFGR       |= RCC_CFGR_PLLMULL2;   // multiply by 2
     RCC->CR         |= RCC_CR_PLLON;        // enable the PLL
     while( !(RCC->CR & RCC_CR_PLLRDY) );    // wait for the PLLRDY flag
     
@@ -220,13 +220,18 @@ void I2C_Low_Level_Init(int ClockSpeed, int OwnAddress) {
 
     //TODO: FIGURE OUT HOW TF I2C_Init Works in I2C.c
     /*---------------------------- I2Cx CR2 Configuration ------------------------*/
-    I2C1->CR2 |= ClockSpeed; // Ex: 100100 sets to f_pclk to 36 MHz and is equal to 36
+    I2C1->CR2 |= ClockSpeed; // Ex: 0x10 sets to f_pclk to 16 MHz and is equal to 16
 
     /*---------------------------- I2Cx CCR Configuration ------------------------*/
     I2C1->CR1 &= ~I2C_CR1_PE; // disable peripherals to configure Trise and CCR
-    I2C1->CCR = (uint32_t)0x28; // set clock control register according pg 782 of datasheet
+    I2C1->CCR = (uint32_t)0x50; // set clock control register according pg 782 of datasheet
     // Configure Rise Time Registers
-    I2C1->TRISE = (001001 << 0); // Sets Trise to 9 as per Data Sheet thus PClk_1 = 125 ns
+    I2C1->TRISE = 0x11; // Sets Trise to 17 as per Data Sheet
+
+    /* Enable I2C1 reset state */
+    RCC->APB1RSTR |= RCC_APB1RSTR_I2C1RST;
+    /* Release I2C1 from reset state */
+    RCC->APB1RSTR &= ~RCC_APB1RSTR_I2C1RST;
 
     /*---------------------------- I2Cx CR1 Configuration ------------------------*/
     /* Clear ACK, SMBTYPE and  SMBUS bits */
